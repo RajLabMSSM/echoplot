@@ -1,0 +1,7 @@
+pandoc: 2.14.0.3
+pkgdown: 2.0.0.9000
+pkgdown_sha: 9b17511675bc33fd14715a84231aee38f1261edb
+articles:
+  echoverseTemplate: echoverseTemplate.html
+last_built: 2021-12-03T12:18Z
+
