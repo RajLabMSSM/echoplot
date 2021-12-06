@@ -1,0 +1,46 @@
+Package: echoverseTemplate
+Type: Package
+Title: echoverse module: echoversePackageTitle
+Version: 0.99.0
+Authors@R: 
+    c(person(given = "Brian",
+           family = "Schilder",
+           role = c("aut","cre"),
+           email = "brian_schilder@alumni.brown.edu",
+           comment = c(ORCID = "0000-0001-5949-2191")),
+    person(given = "Jack",
+           family = "Humphrey",
+           role = c("aut"),
+           email = "Jack.Humphrey@mssm.edu",
+           comment = c(ORCID = "0000-0002-6274-6620")),
+    person(given = "Towfique",
+           family = "Raj",
+           role = c("aut"),
+           email = "towfique.raj@mssm.edu",
+           comment = c(ORCID = "0000-0002-9355-5704"))
+           ) 
+Description: echoverse module: echoversePackageDescription.
+URL: https://github.com/RajLabMSSM/echoverseTemplate
+BugReports: https://github.com/RajLabMSSM/echoverseTemplate/issues
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 4.1)
+biocViews:
+    Genetics, FunctionalGenomics, SystemsBiology
+Imports:
+Suggests:
+    markdown,
+    rmarkdown,
+    magick,
+    remotes,
+    knitr,
+    BiocStyle,
+    covr,
+    testthat (>= 3.0.0),
+    badger,
+    hexSticker,
+    utils
+RoxygenNote: 7.1.2
+VignetteBuilder: knitr
+License: GPL-3
+Config/testthat/edition: 3
