@@ -95,7 +95,7 @@ gg_bats <- ggplot(d, aes(x = x, y = y, color=bsize, image=image)) +
                                   hjust = .5, vjust = 5, family = "Aller_Rg"), 
         legend.position = "none") 
  
-print(gg_bats)
+# print(gg_bats)
 ```
 
 ## hexSticker 
