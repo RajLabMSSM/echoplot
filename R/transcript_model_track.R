@@ -35,8 +35,7 @@ transcript_model_track <- function(dat,
     # dat <-echolocatoR::LRRK2; max_transcripts=3;
     # method="ggbio"; verbose=T; stacking="squish";  fill="blue"; transcriptAnnotation = c("symbol","transcript");  collapseTranscripts=c(F,T,"longest"); shape="arrow";
     requireNamespace("ggplot2")
-    requireNamespace("ggbio")
-    symbol <- NULL;
+    requireNamespace("ggbio") 
     
     gr.snp <- echodata::dt_to_granges(dat = dat,
                                       chrom_col = "CHR", 
@@ -48,6 +47,7 @@ transcript_model_track <- function(dat,
         requireNamespace("Gviz")
         requireNamespace("EnsDb.Hsapiens.v75")
         requireNamespace("ensembldb")
+        requireNamespace("AnnotationFilter")
         
         messager("+ PLOT:: Gene Model Track",v=verbose)
         txdb <-  EnsDb.Hsapiens.v75::EnsDb.Hsapiens.v75
@@ -80,8 +80,7 @@ transcript_model_track <- function(dat,
         tx <- get_transcripts(gr.snp = gr.snp,
                               max_transcripts = max_transcripts,
                               remove_pseudogenes = remove_pseudogenes)
-        if(require("pals")){
-            requireNamespace("pals")
+        if(requireNamespace("pals")){
             # Ensure teh palette size is always big enough for the
             ## number of unique genes.
             n_genes <- dplyr::n_distinct(tx$gr.snp$symbol)

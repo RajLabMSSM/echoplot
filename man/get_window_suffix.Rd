@@ -2,21 +2,21 @@
 % Please edit documentation in R/get_window_suffix.R
 \name{get_window_suffix}
 \alias{get_window_suffix}
-\title{get window suffix}
+\title{Get window suffix}
 \source{
 \code{
 dat <- echodata::BST1
-window_suffix <- echoplot:::get_window_suffix(dat=dat, plot.zoom=1000)
-window_suffix <- echoplot:::get_window_suffix(dat=dat, plot.zoom=NULL)
-window_suffix <- echoplot:::get_window_suffix(dat=dat, plot.zoom="all")
-window_suffix <- echoplot:::get_window_suffix(dat=dat, plot.zoom="2x")
+window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom=1000)
+window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom=NULL)
+window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom="all")
+window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom="2x")
 }
 }
 \usage{
-get_window_suffix(dat, plot.zoom, verbose = TRUE)
+get_window_suffix(dat, plot_zoom, verbose = TRUE)
 }
 \description{
-Determine the plot suffix indicating its window size
+Determine the plot suffix indicating its window size.
 }
 \seealso{
 Other plot: 

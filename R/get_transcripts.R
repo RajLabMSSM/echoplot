@@ -1,22 +1,30 @@
+#' Get transcripts
+#' 
+#' Get transcript positions for all genes in a range.
+#' @source
+#' \code{
+#' #### Alternative approaches I've tried ####
+#' 
+#' gr.snp <- GenomicRanges::makeGRangesFromDataFrame(echolocatoR::LRRK2, keep.extra.columns = T, seqnames.field = "CHR", start.field = "POS", end.field = "POS")
+#' 
+#' # Warning:: MUST load the full package bc
+#' # it loads other necessary packages into the namespace.
+#' 
+#' BiocManager::install("Homo.sapiens")
+#' library(Homo.sapiens)
+#' txdb <- Homo.sapiens::Homo.sapiens
+#' GenomicFeatures::genes(txdb)
+#' 
+#' BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")
+#' library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+#' txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
+#' GenomicFeatures::genes(txdb)
+#' }
+#' 
 get_transcripts <- function(gr.snp,
                             max_transcripts=1,
                             remove_pseudogenes=TRUE,
                             verbose=TRUE){
-    # gr.snp <- GenomicRanges::makeGRangesFromDataFrame(echolocatoR::LRRK2, keep.extra.columns = T, seqnames.field = "CHR", start.field = "POS", end.field = "POS")
-    
-    # Warning:: MUST load the full package bc
-    # it loads other necessary packages into the namespace.
-    
-    # BiocManager::install("Homo.sapiens")
-    # library(Homo.sapiens)
-    # txdb <- Homo.sapiens::Homo.sapiens
-    # GenomicFeatures::genes(txdb)
-    
-    # BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")
-    # library(TxDb.Hsapiens.UCSC.hg19.knownGene)
-    # txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
-    # GenomicFeatures::genes(txdb)
-    
     symbol <- tx_name <- tx_biotype <- NULL;
     requireNamespace("EnsDb.Hsapiens.v75") 
     requireNamespace("AnnotationFilter")

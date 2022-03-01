@@ -23,6 +23,11 @@ snp_track_merged(
   verbose = TRUE
 )
 }
+\arguments{
+\item{dat}{GWAS summary statistics subset to query the LD panel with.}
+
+\item{verbose}{Print messages.}
+}
 \description{
 Manhattan plot of GWAS/QTL data with various fine-mapping 
 related annotations. Support function for \link[echoplot]{plot_locus}.

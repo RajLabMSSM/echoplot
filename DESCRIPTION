@@ -31,13 +31,14 @@ Imports:
     echodata,
     echotabix,
     echoannot,
+    echoLD,
     ggplot2,
-    patchwork,
-    pals,
-    RColorBrewer,
-    ensembldb,
-    biovizBase,
-    GenomeInfoDb
+    ggbio,
+    ggrepel,
+    DescTools,
+    patchwork, 
+    data.table,
+    dplyr
 Suggests:
     markdown,
     rmarkdown,
@@ -52,11 +53,16 @@ Suggests:
     utils,
     Gviz,
     EnsDb.Hsapiens.v75,
-    stringr
+    ensembldb,
+    AnnotationFilter,
+    S4Vectors,
+    stringr,
+    pals
 Remotes:
     github::RajLabMSSM/echodata,
     github::RajLabMSSM/echotabix,
-    github::RajLabMSSM/echoannot
+    github::RajLabMSSM/echoannot,
+    github::RajLabMSSM/echoLD
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 License: GPL-3

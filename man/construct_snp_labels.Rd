@@ -16,6 +16,11 @@ construct_snp_labels(
   verbose = FALSE
 )
 }
+\arguments{
+\item{dat}{GWAS summary statistics subset to query the LD panel with.}
+
+\item{verbose}{Print messages.}
+}
 \description{
 Construct SNP labels
  

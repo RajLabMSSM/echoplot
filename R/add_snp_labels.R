@@ -3,6 +3,8 @@
 #' Add SNP labels for Manhattan plot.
 #' Support function for \link[echoplot]{plot_locus}. 
 #' 
+#' @inheritParams plot_locus
+#' @keywords internal
 #' @importFrom echodata melt_finemapping_results
 add_snp_labels <- function(snp_plot,
                            dat,
@@ -14,6 +16,7 @@ add_snp_labels <- function(snp_plot,
                            melt_methods=TRUE,
                            show.legend=TRUE){
     requireNamespace("ggplot2")
+    requireNamespace("ggrepel")
     SNP <- NULL;
     
     if(melt_methods){

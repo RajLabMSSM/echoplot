@@ -11,12 +11,12 @@ plot_locus(
   LD_reference = NULL,
   dataset_type = "GWAS",
   color_r2 = TRUE,
-  method_list = c("ABF", "FINEMAP", "SUSIE", "POLYFUN_SUSIE"),
+  finemap_methods = c("ABF", "FINEMAP", "SUSIE", "POLYFUN_SUSIE"),
   track_order = NULL,
   track_heights = NULL,
   plot_full_window = TRUE,
   dot_summary = FALSE,
-  QTL_prefixes = NULL,
+  qtl_prefixes = NULL,
   mean.PP = TRUE,
   PP_threshold = 0.95,
   consensus_threshold = 2,
@@ -26,25 +26,25 @@ plot_locus(
   point_alpha = 0.6,
   snp_group_lines = c("Lead", "UCS", "Consensus"),
   xtext = FALSE,
-  show.legend_genes = TRUE,
-  XGR_libnames = NULL,
+  show_legend_genes = TRUE,
+  xgr_libnames = NULL,
   n_top_xgr = 5,
-  Roadmap = FALSE,
-  Roadmap_query = NULL,
+  roadmap = FALSE,
+  roadmap_query = NULL,
   n_top_roadmap = 7,
   annot_overlap_threshold = 5,
   zoom_exceptions_str = "*full window$|zoom_polygon",
-  Nott_epigenome = FALSE,
-  Nott_regulatory_rects = TRUE,
-  Nott_show_placseq = TRUE,
-  Nott_binwidth = 200,
-  Nott_bigwig_dir = NULL,
+  nott_epigenome = FALSE,
+  nott_regulatory_rects = TRUE,
+  nott_show_placseq = TRUE,
+  nott_binwidth = 200,
+  nott_bigwig_dir = NULL,
   save_plot = TRUE,
   show_plot = TRUE,
   genomic_units = "Mb",
   strip.text.y.angle = 0,
   max_transcripts = 1,
-  plot.zoom = c("1x"),
+  plot_zoom = c("1x"),
   dpi = 300,
   height = 12,
   width = 10,
@@ -55,6 +55,60 @@ plot_locus(
   nThread = 1,
   verbose = TRUE
 )
+}
+\arguments{
+\item{dat}{GWAS summary statistics subset to query the LD panel with.}
+
+\item{locus_dir}{Storage directory to use.}
+
+\item{LD_reference}{LD reference to use:
+\itemize{
+\item{"1KGphase1" : }{1000 Genomes Project Phase 1}
+\item{"1KGphase3" : }{1000 Genomes Project Phase 3}
+\item{"UKB" : }{Pre-computed LD from a British
+European-decent subset of UK Biobank.}
+}}
+
+\item{PP_threshold}{The minimum fine-mapped posterior probability
+ for a SNP to be considered part of a Credible Set.
+For example, \code{PP_threshold=.95} means that all Credible Set SNPs
+will be 95\% Credible Set SNPs.}
+
+\item{roadmap}{Find and plot annotations from Roadmap.}
+
+\item{roadmap_query}{Only plot annotations from Roadmap whose
+metadata contains a string or any items from  a list of strings
+(e.g. \code{"brain"} or \code{c("brain","liver","monocytes")}).}
+
+\item{nott_binwidth}{When including Nott et al. (2019)
+epigenomic data in the track plots,
+adjust the bin width of the histograms.}
+
+\item{nott_bigwig_dir}{Instead of pulling Nott et al. (2019)
+ epigenomic data
+from the \emph{UCSC Genome Browser}, use a set of local bigwig files.}
+
+\item{plot_zoom}{Zoom into the center of the locus when plotting
+(without editing the fine-mapping results file).
+You can provide either:
+\itemize{
+\item{The size of your plot window in terms of basepairs
+(e.g. \code{plot_zoom=50000} for a 50kb window)}.
+\item{How much you want to zoom in (e.g. \code{plot_zoom="1x"}
+for the full locus, \code{plot_zoom="2x"}
+for 2x zoom into the center of the locus, etc.)}.
+}
+You can pass a list of window sizes (e.g. \code{c(50000,100000,500000)})
+to automatically generate
+multiple views of each locus.
+This can even be a mix of different style inputs: e.g.
+ \code{c("1x","4.5x",25000)}.}
+
+\item{conda_env}{Conda environment to use.}
+
+\item{nThread}{Number of threads to parallelize over.}
+
+\item{verbose}{Print messages.}
 }
 \description{
 Generate a locus-specific plot with multiple selectable tracks.

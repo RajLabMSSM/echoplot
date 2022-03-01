@@ -31,7 +31,7 @@ Generate a multi-view plot of a given locus using `echoplot::plot_locus()`.
 * You can mix and match different tracks and annotations using the 
 different arguments (see `?plot_locus` for details).  
 
-The plot is centered on the lead/index SNP. If a list is supplied to plot.zoom
+The plot is centered on the lead/index SNP. If a list is supplied to plot_zoom
 * `plot_locus()` returns a series of `ggplot` objects bound together with [`patchwork`](https://patchwork.data-imaginist.com). One can further modify this object using `ggplot2` functions like `+ theme()`.
   + The modifications will be applied to all tracks at once.  
   
@@ -40,7 +40,7 @@ The plot is centered on the lead/index SNP. If a list is supplied to plot.zoom
   + Files are saved in *jpg* format by default, but users can specify their preferred file format (e.g. `file_format="png"`)
   + Adjust the `height` and `width` of the saved plot using these respective arguments.
   + The plot will be automatically saved in the locus-specific directory as:  
-  *multiview_<locus>_<plot.zoom>.jpg*.
+  *multiview_<locus>_<plot_zoom>.jpg*.
    
 ## Load example data   
 
@@ -49,13 +49,14 @@ Original data comes from the recent Nalls et al. (2019) Parkinson's disease GWAS
 
 ```{r Load example data}
 library(ggplot2)
+library(patchwork)
 
 root.dir <- tempdir()
 locus_dir <- file.path(root.dir,echodata::locus_dir)
 finemap_DT <- echodata::BST1  
 LD_matrix <- echodata::BST1_LD_matrix
 LD_reference <- "UKB" # Used for naming saved plots
-plot.zoom = "10x"
+plot_zoom = "10x"
 show_plot <- FALSE
 ```
 
@@ -69,7 +70,7 @@ trk_plot <- echoplot::plot_locus(dat=finemap_DT,
                                  locus_dir=locus_dir,  
                                  save_plot=FALSE,
                                  show_plot=show_plot,
-                                 plot.zoom=plot.zoom) 
+                                 plot_zoom=plot_zoom) 
 ```
 
 ```{r}
@@ -78,7 +79,7 @@ print(trk_plot)
 
 ## At multiple zooms
 
-* You can easily generate the same locus plot at multiple zoomed in views by supplying a list to `plot.zoom`.  
+* You can easily generate the same locus plot at multiple zoomed in views by supplying a list to `plot_zoom`.  
 * This list can be composed of zoom multipliers (e.g. `c("1x", "2x")`), window widths in units of basepairs (e.g. `c(5000, 1500)`), or a mixture of both (e.g. `c("1x","4x", 5000, 2000)`). 
 * Each zoom view will be saved individually with its respective scale as the suffix (e.g. `multiview.BST1.UKB.4x.jpg`).  
 * Each zoom view is stored as a named item within the returned list.  
@@ -88,9 +89,9 @@ trk_plot_zooms <- plot_locus(dat=finemap_DT,
                              LD_matrix=LD_matrix, 
                              LD_reference=LD_reference,
                              locus_dir=locus_dir,  
-                             save_plot=F,
+                             save_plot=FALSE,
                              show_plot=show_plot,
-                             plot.zoom = c("1x","5x","10x")) 
+                             plot_zoom = c("1x","5x","10x")) 
 names(trk_plot_zooms) # Get zoom view names
 ```
 
@@ -111,12 +112,12 @@ trk_plot_list <- echoplot::plot_locus(dat=finemap_DT,
                                        locus_dir=locus_dir,  
                                        save_plot=FALSE,
                                        show_plot=show_plot,
-                                       plot.zoom=plot.zoom,
+                                       plot_zoom=plot_zoom,
                                        return_list=TRUE)  
 ```
 
 ```{r extract view}
-view1_list <- trk_plot_list[[plot.zoom]]
+view1_list <- trk_plot_list[[plot_zoom]]
 names(view1_list) # Get track names from a particular zoom view
 ```
 
@@ -145,7 +146,7 @@ print(fused_plot)
 
 ## Using XGR annotations   
 
-* Whenever you use annotation arguments (e.g. `XGR_libnames`,`Roadmap`,`Nott_epigenome`)
+* Whenever you use annotation arguments (e.g. `xgr_libnames`,`Roadmap`,`nott_epigenome`)
 the annotations that overlap with your locus will automatically be saved as `GRanges` objects in a locus-specific subdirectory:  
 *results/<dataset_type>/<dataset_name>/<locus>/annotation* 
 * If a selected annotation has previously been downloaded and stored for that locus, `plot_locus()` will automatically detect and import it to save time.   
@@ -156,10 +157,10 @@ trk_plot.xgr <- echoplot::plot_locus(dat=finemap_DT,
                                      LD_reference=LD_reference,
                                      locus_dir=locus_dir, 
                            
-                           XGR_libnames=c("ENCODE_TFBS_ClusteredV3_CellTypes"), 
+                           xgr_libnames=c("ENCODE_TFBS_ClusteredV3_CellTypes"), 
                            save_plot=FALSE,
                            show_plot=show_plot,
-                           plot.zoom=plot.zoom)
+                           plot_zoom=plot_zoom)
 ```
 
 ```{r}
@@ -168,7 +169,7 @@ print(trk_plot.xgr)
 
 ## Using [Roadmap](http://www.roadmapepigenomics.org/data/tables/brain) annotations
 
-* Using the `Roadmap=T` and `Roadmap_query="<query>"` arguments searches the Roadmap for chromatin mark data across various cell-types, cell-lines and tissues.  
+* Using the `Roadmap=T` and `roadmap_query="<query>"` arguments searches the Roadmap for chromatin mark data across various cell-types, cell-lines and tissues.  
 * Note that Roadmap queries requires `tabix` to be installed on your machine, or within a conda environment (`conda_env = "echoR"`). 
 * Parallelizing these queries across multiple thredas speeds up this process (`nThread=<n_cores_available>`), as does reusing previously stored data which is automatically saved to the locus-specific subfolder (`<dataset_type>/<dataset_name>/<locus>/annotations/Roadmap.ChromatinMarks_CellTypes.RDS`) .
 
@@ -178,12 +179,12 @@ trk_plot.roadmap <- plot_locus(dat=finemap_DT,
                                LD_reference=LD_reference,
                                locus_dir=locus_dir,  
                                
-                               Roadmap=T, 
-                               Roadmap_query="monocyte", 
+                               roadmap=TRUE, 
+                               roadmap_query="monocyte", 
                                
-                               save_plot=F, 
+                               save_plot=FALSE, 
                                show_plot=show_plot,
-                               plot.zoom="5x", 
+                               plot_zoom="5x", 
                                nThread = parallel::detectCores()-1,
                                conda_env = "echoR")
 ```
@@ -204,14 +205,14 @@ trk_plot.nott_2019 <- plot_locus(dat=finemap_DT,
                                  LD_reference=LD_reference,
                                  locus_dir=locus_dir, 
                                  
-                                 Nott_epigenome=T,  
-                                 Nott_binwidth = 200,
-                                 Nott_regulatory_rects = T, 
-                                 Nott_show_placseq = T,
+                                 nott_epigenome=TRUE,  
+                                 nott_binwidth = 200,
+                                 nott_regulatory_rects = TRUE, 
+                                 nott_show_placseq = TRUE,
                                  
-                                 save_plot=F,
+                                 save_plot=FALSE,
                                  show_plot=show_plot,
-                                 plot.zoom=plot.zoom) 
+                                 plot_zoom=plot_zoom) 
 ```
 
 ```{r}
@@ -233,16 +234,18 @@ trk_plot.qtl <- plot_locus(dat=finemap_DT,
                            LD_reference=LD_reference,
                            locus_dir=locus_dir,
                            
-                           QTL_prefixes=c("fake_eQTL.","fake_sQTL."), 
+                           qtl_prefixes=c("fake_eQTL.","fake_sQTL."), 
                            
-                           save_plot=F,
+                           save_plot=FALSE,
                            show_plot=show_plot,
-                           plot.zoom=plot.zoom)
+                           plot_zoom=plot_zoom)
 ```
 
 ```{r}
 print(trk_plot.qtl)
 ```
+
+<hr>
 
 # Session info  
 
@@ -253,4 +256,6 @@ utils::sessionInfo()
 ```
 
 <details>
+
+<br>
 

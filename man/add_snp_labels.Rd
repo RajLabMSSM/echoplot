@@ -16,7 +16,11 @@ add_snp_labels(
   show.legend = TRUE
 )
 }
+\arguments{
+\item{dat}{GWAS summary statistics subset to query the LD panel with.}
+}
 \description{
 Add SNP labels for Manhattan plot.
 Support function for \link[echoplot]{plot_locus}.
 }
+\keyword{internal}

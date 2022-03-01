@@ -13,7 +13,8 @@
 dot_summary_plot <- function(dat,
                              PP_threshold=.95,
                              show_plot=TRUE){
-    SNP <- CS_group <- PP <- CHR <- POS <- method <- NULL;
+    SNP <- CS_group <- PP <- CHR <- POS <- method <- leadSNP <- 
+        CS <- Consensus_SNP <- NULL;
     requireNamespace("ggplot2")
     
     snp.labs <- construct_snp_labels(dat = dat,
@@ -28,7 +29,7 @@ dot_summary_plot <- function(dat,
         data.table::melt.data.table(
             data = data.table::as.data.table(snp.labs),
             id.vars = c("SNP","CHR","POS","leadSNP","Consensus_SNP","color","size","shape"),
-            measure.vars =  patterns(CS_group=".CS$", PP=".PP$"),
+            measure.vars =  data.table:::patterns(CS_group=".CS$", PP=".PP$"),
             variable.name = c("method")) %>%
             dplyr::mutate(method=factor(methodDict[method],
                                         levels = rev(unname(methodDict)), 

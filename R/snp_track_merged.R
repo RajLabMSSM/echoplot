@@ -5,6 +5,7 @@
 #' @keywords internal
 #' @inheritParams plot_locus
 #' @importFrom echodata melt_finemapping_results
+#' @importFrom stats as.formula
 snp_track_merged <- function(dat,
                               yvar="-log10(P)",
                               labels_subset = c("Lead","UCS","Consensus"),
@@ -32,7 +33,7 @@ snp_track_merged <- function(dat,
             verbose = verbose)
         yvar <- "PP"
         sig_cutoff <- .95
-        cutoff_lab <- paste("PP ≥",sig_cutoff)
+        cutoff_lab <- paste("PP >=",sig_cutoff)
         remove_duplicates <- FALSE
         melt_methods <- TRUE
         grouping_vars <- c("SNP","Method")
@@ -69,7 +70,7 @@ snp_track_merged <- function(dat,
         ggplot2::theme_classic() +
         ggplot2::facet_grid(facets =if(is.null(facet_formula)) {
             facet_formula
-            } else  {as.formula(facet_formula)}) +
+            } else  {stats::as.formula(facet_formula)}) +
         ggplot2::theme(
             strip.text.y = ggplot2::element_text(angle=strip.text.y.angle)
         ) +

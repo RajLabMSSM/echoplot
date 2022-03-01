@@ -1,6 +1,6 @@
 set_window_limits <- function(TRKS,
                               dat,
-                              plot.zoom,
+                              plot_zoom,
                               exceptions_str="*full window$|zoom_polygon",
                               verbose=TRUE){
     requireNamespace("ggplot2")
@@ -14,7 +14,7 @@ set_window_limits <- function(TRKS,
         genomic_units <- guess_genomic_units(gg = trk)
         xlims <- get_window_limits(
             dat=dat,
-            plot.zoom = if(x %in% exceptions) "1x" else plot.zoom,
+            plot_zoom = if(x %in% exceptions) "1x" else plot_zoom,
             genomic_units=genomic_units,
             verbose=FALSE)
         unit_divisor <- if(genomic_units=="Mb") 1 else 1000000

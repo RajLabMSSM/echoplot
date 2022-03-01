@@ -2,24 +2,24 @@
 % Please edit documentation in R/get_window_limits.R
 \name{get_window_limits}
 \alias{get_window_limits}
-\title{Get window size limits for plot}
+\title{Get window limits}
 \usage{
 get_window_limits(
   dat,
-  index_as_center = T,
-  plot.zoom = NULL,
+  index_as_center = TRUE,
+  plot_zoom = NULL,
   genomic_units = "Mb",
-  verbose = T
+  verbose = TRUE
 )
 }
 \description{
-Get window size limits for plot
+Get window size limits for Manhattan plot.
 }
 \examples{
-data("BST1");
-xlims <- get_window_limits(dat=BST1, plot.zoom=50000)
-xlims <- get_window_limits(dat=BST1, plot.zoom="all")
-xlims <- get_window_limits(dat=BST1, plot.zoom="5x")
+dat <- echodata::BST1
+xlims <- get_window_limits(dat=dat, plot_zoom=50000)
+xlims <- get_window_limits(dat=dat, plot_zoom="all")
+xlims <- get_window_limits(dat=dat, plot_zoom="5x")
 }
 \seealso{
 Other plot: 

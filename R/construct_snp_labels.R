@@ -13,7 +13,7 @@ construct_snp_labels <- function(dat,
                                   grouping_vars=c("SNP"),
                                   merge_with_input=FALSE,
                                   verbose=FALSE){
-    rowID <- type <- NULL;
+    rowID <- type <- P <- leadSNP <- CS <- Support <- Consensus_SNP <- NULL;
     
     messager("+ PLOT:: Constructing SNP labels...", v=verbose)
     labelSNPs <- data.table::data.table()
