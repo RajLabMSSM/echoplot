@@ -1,7 +1,7 @@
 Package: echoplot
 Type: Package
 Title: echoverse module: Locus plot creation for fine-mapping and colocalization studies
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
@@ -51,7 +51,8 @@ Suggests:
     hexSticker,
     utils,
     Gviz,
-    EnsDb.Hsapiens.v75
+    EnsDb.Hsapiens.v75,
+    stringr
 Remotes:
     github::RajLabMSSM/echodata,
     github::RajLabMSSM/echotabix,

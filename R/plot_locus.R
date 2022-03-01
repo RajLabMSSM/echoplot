@@ -5,7 +5,10 @@
 #'  multiple resolutions.
 #' @export 
 #' @importFrom dplyr %>%
-#' @importFrom echodata find_consensus_snps 
+#' @importFrom echoLD get_lead_r2
+#' @importFrom echodata find_consensus_snps fillNA_CS_PP
+#' @importFrom echoannot XGR_plot ROADMAP_plot 
+#' @importFrom echoannot NOTT2019_plac_seq_plot NOTT2019_epigenomic_histograms
 #' @examples
 #' dat<- echodata::BST1
 #' LD_matrix <- echodata::BST1_LD_matrix
@@ -77,6 +80,9 @@ plot_locus <- function(dat,
     #  Roadmap_query=NULL; sig_cutoff=5e-8; verbose=T; QTL_prefixes=NULL; gene_track=T; genomic_units="Mb";strip.text.y.angle=0; xtext=F; plot_format="jpg"; return_list=F;
     # track_order= c("Genes","GWAS full window","zoom_polygon","GWAS","Fine-mapping", "Roadmap\nchromatin marks\ncell-types", "Nott (2019)\nread densities", "Nott (2019)\nPLAC-seq"); track_heights=NULL; plot_full_window=T;
     
+    requireNamespace("ggplot2")
+    POS <- P <- NULL;
+    
     locus <- basename(locus_dir)
     messager("+-------- Locus Plot: ",locus,"--------+")
     dir.create(locus_dir, showWarnings = FALSE, recursive = TRUE)
@@ -94,7 +100,7 @@ plot_locus <- function(dat,
     method_list <- unique(method_list[method_list %in% available_methods])
     if(mean.PP){method_list <- unique(c(method_list, "mean"))}
     # Add LD into the dat
-    dat <- echoLD:::get_lead_r2(
+    dat <- echoLD::get_lead_r2(
         dat = dat,
         LD_matrix = LD_matrix,
         LD_format = "guess")
@@ -121,11 +127,11 @@ plot_locus <- function(dat,
               dataset_type = gsub(" ","\n",full_window_name),
               strip.text.y.angle = strip.text.y.angle,
               verbose = verbose) +
-            geom_point(data = subset(dat, leadSNP),
-                       aes(x=POS, y=-log10(P)),
+            ggplot2::geom_point(data = subset(dat, leadSNP),
+                                ggplot2::aes(x=POS, y=-log10(P)),
                        color="red",pch=9, size=3, 
                        show.legend = FALSE, alpha=1) +
-            theme(axis.title.x = element_blank())
+            ggplot2::theme(axis.title.x = ggplot2::element_blank())
     }
     
     ####  Track: Main (GWAS) ####
@@ -139,8 +145,8 @@ plot_locus <- function(dat,
           dataset_type = "GWAS",
           strip.text.y.angle = strip.text.y.angle,
           verbose = verbose) +
-        geom_point(data = subset(dat, leadSNP),
-                   aes(x=POS, y=-log10(P)),
+        ggplot2::geom_point(data = subset(dat, leadSNP),
+                            ggplot2::aes(x=POS, y=-log10(P)),
                    color="red",pch=9, size=3, 
                    show.legend = FALSE, alpha=1)
     
@@ -192,15 +198,19 @@ plot_locus <- function(dat,
         xgr_out <- echoannot::XGR_plot(dat = dat, 
                                        lib_name = lib_name, 
                                        palette = palettes[i]) 
-        TRKS[[trk_name]] <- xgr_out$plot
+        TRKS[[lib_name]] <- xgr_out$plot
     } 
     #### Track: Roadmap #### 
     if(Roadmap){
-        roadmap_out <- echoannot::ROADMAP_plot()
-        
+        roadmap_out <- echoannot::ROADMAP_plot(dat = dat, 
+                                               roadmap_query = Roadmap_query, 
+                                               locus_dir = locus_dir, 
+                                               n_top = n_top_roadmap,
+                                               conda_env = conda_env, 
+                                               nThread = nThread,
+                                               verbose = verbose)
         TRKS[["Roadmap\nchromatin marks\ncell-types"]] <- roadmap_out$plot
     }
-    
     #### Track: NOTT2019 ####
     if(Nott_epigenome){
         #### Track: NOTT2019 histogram  ####
@@ -238,7 +248,6 @@ plot_locus <- function(dat,
                        save_annot=TRUE,
                        strip.text.y.angle = strip.text.y.angle,
                        xtext=xtext,
-                       as_ggplot = TRUE,
                        nThread=nThread,
                        verbose=verbose)
                 TRKS[["Nott (2019)\nPLAC-seq"]] <- track.Nott_plac$plot +
@@ -345,10 +354,10 @@ plot_locus <- function(dat,
             # Only save one zoom of these since these files are very large
             if(save_RDS & (pz==plot.zoom[1])){
                 trk_paths <- save_tracks(locus_dir=locus_dir,
-                                              TRKS_zoom=TRKS_zoom,
-                                              LD_reference = LD_reference,
-                                              window_suffix=window_suffix,
-                                              verbose=verbose)
+                                         TRKS_zoom=TRKS_zoom,
+                                         LD_reference = LD_reference,
+                                         window_suffix=window_suffix,
+                                         verbose=verbose)
             }
             #### Show the plot ####
             if(show_plot){print(TRKS_FINAL)}

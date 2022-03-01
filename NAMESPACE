@@ -2,4 +2,10 @@
 
 export(plot_locus)
 importFrom(dplyr,"%>%")
+importFrom(echoLD,get_lead_r2)
+importFrom(echoannot,NOTT2019_epigenomic_histograms)
+importFrom(echoannot,NOTT2019_plac_seq_plot)
+importFrom(echoannot,ROADMAP_plot)
+importFrom(echoannot,XGR_plot)
+importFrom(echodata,fillNA_CS_PP)
 importFrom(echodata,find_consensus_snps)
