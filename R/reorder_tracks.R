@@ -1,10 +1,10 @@
-
-
 reorder_tracks <- function(TRKS,
                            track_order=NULL,
-                           verbose=T){
+                           verbose=TRUE){
     messager("+ Reordering tracks...", v=verbose)
-    track_order <- if(is.null(track_order)) names(heights_dict()) else track_order
+    track_order <- if(is.null(track_order)) {
+        names(heights_dict()) 
+    }else {track_order}
     
     ## Find user-given tracks that are actually available
     actual_track_order <- track_order[track_order %in% names(TRKS)]

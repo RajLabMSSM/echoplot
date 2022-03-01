@@ -2,7 +2,7 @@
 % Please edit documentation in R/transcript_model_track.R
 \name{transcript_model_track}
 \alias{transcript_model_track}
-\title{Plot gene/transcript models}
+\title{Plot transcripts}
 \source{
 \href{https://bioconductor.org/packages/release/bioc/vignettes/ensembldb/inst/doc/ensembldb.html}{ensembld tutorial}
 \href{https://bioconductor.org/packages/devel/bioc/vignettes/Gviz/inst/doc/Gviz.html#45_GeneRegionTrack}{Gvix tutorial}
@@ -26,10 +26,16 @@ transcript_model_track(
   verbose = TRUE
 )
 }
+\arguments{
+\item{stacking}{The stacking type for overlapping items of the
+    track. One in \code{c(hide, dense, squish, pack,full)}. Currently,
+    only hide (don't show the track items, squish (make best use of the
+    available space) and dense (no stacking at all) are implemented.}
+}
 \description{
-Plot gene/transcript models
+Plot a max number of transcripts per genes.
 }
 \examples{
-data("LRRK2")
-gene_track <- transcript_model_track(dat=LRRK2)
+dat <- echodata::BST1
+gene_track <- echoplot::transcript_model_track(dat=dat)
 }

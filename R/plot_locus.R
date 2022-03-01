@@ -9,14 +9,15 @@
 #' @importFrom echodata find_consensus_snps fillNA_CS_PP
 #' @importFrom echoannot XGR_plot ROADMAP_plot 
 #' @importFrom echoannot NOTT2019_plac_seq_plot NOTT2019_epigenomic_histograms
+#' @importFrom patchwork wrap_plots plot_annotation
 #' @examples
 #' dat<- echodata::BST1
 #' LD_matrix <- echodata::BST1_LD_matrix
-#' locus_dir <- echodata::locus_dir
+#' locus_dir <- file.path(tempdir(),echodata::locus_dir)
 #'
-#' locus_plot <- echoplot::plot_locus(dat = dat,
-#'                                    locus_dir=locus_dir,
-#'                                    LD_matrix=LD_matrix)
+#' plot_list <- echoplot::plot_locus(dat = dat,
+#'                                   locus_dir=locus_dir,
+#'                                   LD_matrix=LD_matrix)
 plot_locus <- function(dat,
                        locus_dir,
                        LD_matrix=NULL,
@@ -81,10 +82,11 @@ plot_locus <- function(dat,
     # track_order= c("Genes","GWAS full window","zoom_polygon","GWAS","Fine-mapping", "Roadmap\nchromatin marks\ncell-types", "Nott (2019)\nread densities", "Nott (2019)\nPLAC-seq"); track_heights=NULL; plot_full_window=T;
     
     requireNamespace("ggplot2")
-    POS <- P <- NULL;
+    requireNamespace("patchwork")
+    POS <- P <- leadSNP <- NULL;
     
     locus <- basename(locus_dir)
-    messager("+-------- Locus Plot: ",locus,"--------+")
+    messager("+-------- Locus Plot: ",locus,"--------+",v=verbose)
     dir.create(locus_dir, showWarnings = FALSE, recursive = TRUE)
     #### Set up data ####
     dat <- echodata::find_consensus_snps(
@@ -109,9 +111,9 @@ plot_locus <- function(dat,
     # Track: Summary
     if(dot_summary){
         messager("++ PLOT:: Creating dot plot summary of fine-mapping results.")
-        TRKS[["Summary"]] <- dot_summary(dat = dat,
+        TRKS[["Summary"]] <- dot_summary_plot(dat = dat,
                                               PP_threshold = PP_threshold,
-                                              show_plot = F)
+                                              show_plot = FALSE)
     }
     ####  Track: Main (GWAS) frozen ####
     full_window_name <- paste(dataset_type,"full window")
@@ -193,7 +195,7 @@ plot_locus <- function(dat,
     } 
     #### Track: XGR #### 
     palettes <- c("Spectral","BrBG","PiYG", "PuOr")
-    for(i in seq_len(XGR_libnames)){
+    for(i in seq_len(length(XGR_libnames))){
         lib_name <- XGR_libnames[i]
         xgr_out <- echoannot::XGR_plot(dat = dat, 
                                        lib_name = lib_name, 
@@ -269,7 +271,7 @@ plot_locus <- function(dat,
     for(pz in plot.zoom){
         # try() Allows (X11) errors to occur and still finish the loop
         try({
-            message("+>+>+>+>+ plot.zoom = ",pz," +<+<+<+<+")
+            messager("+>+>+>+>+ plot.zoom = ",pz," +<+<+<+<+", v=verbose)
             TRKS_zoom <- TRKS
             window_suffix <- get_window_suffix(dat=dat,
                                                     plot.zoom=pz)

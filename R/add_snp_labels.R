@@ -1,14 +1,21 @@
-
-
+#' Add SNP labels
+#' 
+#' Add SNP labels for Manhattan plot.
+#' Support function for \link[echoplot]{plot_locus}. 
+#' 
+#' @importFrom echodata melt_finemapping_results
 add_snp_labels <- function(snp_plot,
                            dat,
                            labels_subset=c("CS"),
                            yvar="PP",
                            genomic_units="Mb",
                            grouping_vars=c("SNP","Method"),
-                           remove_duplicates=F,
-                           melt_methods=T,
-                           show.legend=T){
+                           remove_duplicates=FALSE,
+                           melt_methods=TRUE,
+                           show.legend=TRUE){
+    requireNamespace("ggplot2")
+    SNP <- NULL;
+    
     if(melt_methods){
         finemap_melt <- echodata::melt_finemapping_results(
             dat = dat,
@@ -24,14 +31,14 @@ add_snp_labels <- function(snp_plot,
     } else {snp_labels <- snp_points}
     # Add SNP labels to plot
     snp_plot_labeled <- snp_plot +
-        geom_point(data=snp_labels,
+        ggplot2::geom_point(data=snp_labels,
                    pch=snp_labels$shape,
                    fill=NA,
                    size=snp_labels$size,
                    color=snp_labels$color) +
         ### Background color label
         ggrepel::geom_label_repel(data=snp_labels,
-                                  aes(label=SNP),
+                                  ggplot2::aes(label=SNP),
                                   color=NA,
                                   # nudge_x = .5,
                                   fill="black",
@@ -47,7 +54,7 @@ add_snp_labels <- function(snp_plot,
                                   size = 3) +
         ### Foreground color label
         ggrepel::geom_label_repel(data=snp_labels,
-                                  aes(label=SNP),
+                                  ggplot2::aes(label=SNP),
                                   segment.colour = snp_labels$color,
                                   color="white",#labelSNPs_noDupes$color,
                                   segment.alpha = .5,
@@ -63,8 +70,9 @@ add_snp_labels <- function(snp_plot,
                                   seed = 1,
                                   size = 3) +
         # Enhance the colors of SNPs with labeled background (to see them better)
-        geom_point(data =snp_points,
-                   aes_string(x=genomic_units, y=yvar,color="r2"),
+        ggplot2::geom_point(
+            data =snp_points,
+            ggplot2::aes_string(x=genomic_units, y=yvar,color="r2"),
                    alpha=1, pch=snp_points$shape,
                    show.legend = show.legend)
     return(snp_plot_labeled)

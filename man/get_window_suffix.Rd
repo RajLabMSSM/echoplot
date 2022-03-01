@@ -2,24 +2,26 @@
 % Please edit documentation in R/get_window_suffix.R
 \name{get_window_suffix}
 \alias{get_window_suffix}
-\title{Determine the plot suffix indicating its window size}
+\title{get window suffix}
+\source{
+\code{
+dat <- echodata::BST1
+window_suffix <- echoplot:::get_window_suffix(dat=dat, plot.zoom=1000)
+window_suffix <- echoplot:::get_window_suffix(dat=dat, plot.zoom=NULL)
+window_suffix <- echoplot:::get_window_suffix(dat=dat, plot.zoom="all")
+window_suffix <- echoplot:::get_window_suffix(dat=dat, plot.zoom="2x")
+}
+}
 \usage{
-get_window_suffix(dat, plot.zoom, verbose = T)
+get_window_suffix(dat, plot.zoom, verbose = TRUE)
 }
 \description{
 Determine the plot suffix indicating its window size
 }
-\examples{
-data("BST1")
-window_suffix <- get_window_suffix(dat=BST1, plot.zoom=1000)
-window_suffix <- get_window_suffix(dat=BST1, plot.zoom=NULL)
-window_suffix <- get_window_suffix(dat=BST1, plot.zoom="all")
-window_suffix <- get_window_suffix(dat=BST1, plot.zoom="2x")
-}
 \seealso{
 Other plot: 
 \code{\link{add_multitrack_lines}()},
-\code{\link{dot_summary}()},
+\code{\link{dot_summary_plot}()},
 \code{\link{get_window_limits}()}
 }
 \concept{plot}

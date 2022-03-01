@@ -1,4 +1,11 @@
-
+#' Construct SNP labels
+#'  
+#' Construct SNP labels for Manhattan plot.
+#' Support function for \link[echoplot]{plot_locus}.
+#' @inheritParams plot_locus
+#' @importFrom dplyr %>% group_by arrange slice vars n
+#' @importFrom data.table data.table as.data.table merge.data.table
+#' @keywords internal
 construct_snp_labels <- function(dat,
                                   labels_subset=c("Lead","CS","UCS",
                                                   "Consensus"),
@@ -6,6 +13,8 @@ construct_snp_labels <- function(dat,
                                   grouping_vars=c("SNP"),
                                   merge_with_input=FALSE,
                                   verbose=FALSE){
+    rowID <- type <- NULL;
+    
     messager("+ PLOT:: Constructing SNP labels...", v=verbose)
     labelSNPs <- data.table::data.table()
     dat <- data.table::as.data.table(dat)
@@ -13,7 +22,7 @@ construct_snp_labels <- function(dat,
     
     ## BEFORE fine-mapping
     if("lead" %in% tolower(labels_subset)){
-        lead_snps <- subset(dat %>% arrange(P), leadSNP == TRUE)
+        lead_snps <- subset(dat %>% dplyr::arrange(P), leadSNP == TRUE)
         lead_snps$type <- "Lead"
         lead_snps$color <- "red"
         lead_snps$shape <- 9# 18
@@ -55,12 +64,12 @@ construct_snp_labels <- function(dat,
         }
     }
     # If there's duplicates only show the last one
-    labelSNPs$rowID <- 1:nrow(labelSNPs)
+    labelSNPs$rowID <- seq_len(nrow(labelSNPs))
     if(remove_duplicates){
         labelSNPs <- labelSNPs %>%
-            dplyr::group_by(.dots=grouping_vars) %>%
+            dplyr::group_by(dplyr::vars(grouping_vars)) %>%
             dplyr::arrange(rowID) %>%
-            dplyr::slice(n())
+            dplyr::slice(dplyr::n())
     }
     labelSNPs$type <- factor(labelSNPs$type,
                              levels = c("UCS","CS","Consensus","Lead"),

@@ -24,7 +24,7 @@ xlims <- get_window_limits(dat=BST1, plot.zoom="5x")
 \seealso{
 Other plot: 
 \code{\link{add_multitrack_lines}()},
-\code{\link{dot_summary}()},
+\code{\link{dot_summary_plot}()},
 \code{\link{get_window_suffix}()}
 }
 \concept{plot}

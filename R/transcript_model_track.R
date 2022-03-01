@@ -1,46 +1,67 @@
-#' Plot gene/transcript models
-#'
+#' Plot transcripts
+#' 
+#' Plot a max number of transcripts per genes.
+#' @inheritParams Gviz::plotTracks
+#' @inheritParams Gviz::GeneRegionTrack
+#' 
 #' @source
 #' \href{https://bioconductor.org/packages/release/bioc/vignettes/ensembldb/inst/doc/ensembldb.html}{ensembld tutorial}
 #' \href{https://bioconductor.org/packages/devel/bioc/vignettes/Gviz/inst/doc/Gviz.html#45_GeneRegionTrack}{Gvix tutorial}
 #' \href{http://bioconductor.org/packages/devel/bioc/vignettes/ggbio/inst/doc/ggbio.pdf}{ggbio tutorial}
 #'
+#' @importFrom echodata dt_to_granges
+#' @importFrom stats setNames
+#' @export
 #' @examples
-#' data("LRRK2")
-#' gene_track <- transcript_model_track(dat=LRRK2)
+#' dat <- echodata::BST1
+#' gene_track <- echoplot::transcript_model_track(dat=dat)
 transcript_model_track <- function(dat,
                                    max_transcripts=1,
                                    remove_pseudogenes=TRUE,
                                    show.legend=TRUE,
                                    show_plot=FALSE,
                                    fill="skyblue",
-                                   shape=c( "arrow", "box", "ellipse","smallArrow"),
-                                   transcriptAnnotation = c("symbol","transcript"),
+                                   shape=c( "arrow", "box", 
+                                            "ellipse","smallArrow"),
+                                   transcriptAnnotation = c("symbol",
+                                                            "transcript"),
                                    collapseTranscripts=c(FALSE,TRUE,"longest"),
-                                   stacking=c("squish","hide", "dense", "pack","full"),
+                                   stacking=c("squish","hide", "dense",
+                                              "pack","full"),
                                    method="ggplot",
                                    xtext=TRUE,
                                    expand_x_mult=c(0.05, .1),
                                    verbose=TRUE){
     # dat <-echolocatoR::LRRK2; max_transcripts=3;
     # method="ggbio"; verbose=T; stacking="squish";  fill="blue"; transcriptAnnotation = c("symbol","transcript");  collapseTranscripts=c(F,T,"longest"); shape="arrow";
-
-    gr.snp <- biovizBase::transformDfToGr(data = dat,
-                                          seqnames = "CHR",
-                                          start = "POS", end = "POS")
-    suppressWarnings(GenomeInfoDb::seqlevelsStyle(gr.snp) <- "NCBI")
+    requireNamespace("ggplot2")
+    requireNamespace("ggbio")
+    symbol <- NULL;
+    
+    gr.snp <- echodata::dt_to_granges(dat = dat,
+                                      chrom_col = "CHR", 
+                                      start_col = "POS", 
+                                      style = "NCBI", 
+                                      verbose = verbose)
     #### Gviz ####
     if(method=="gviz"){ 
         requireNamespace("Gviz")
         requireNamespace("EnsDb.Hsapiens.v75")
+        requireNamespace("ensembldb")
+        
         messager("+ PLOT:: Gene Model Track",v=verbose)
         txdb <-  EnsDb.Hsapiens.v75::EnsDb.Hsapiens.v75
-        tx <- ensembldb::getGeneRegionTrackForGviz(txdb,
-                                                   filter = GRangesFilter(value = gr.snp, feature = "tx"))
-        tx_lengths <- transcriptLengths(txdb,
-                                        filter = GRangesFilter(value = gr.snp, feature = "tx"))
-        tx$tx_len <- setNames(tx_lengths$tx_len,tx_lengths$tx_id)[tx$transcript]
-        tx <- subset(tx, !startsWith(as.character(symbol),"RP11"))
+        tx <- ensembldb::getGeneRegionTrackForGviz(
+            txdb,
+            filter = AnnotationFilter::GRangesFilter(value = gr.snp,
+                                                     feature = "tx"))
+        tx_lengths <- GenomicFeatures::transcriptLengths(
+            txdb,
+            filter = AnnotationFilter::GRangesFilter(value = gr.snp,
+                                                     feature = "tx"))
+        tx$tx_len <- stats::setNames(tx_lengths$tx_len,
+                                     tx_lengths$tx_id)[tx$transcript]
+        tx <- subset(tx, !startsWith(as.character(c),"RP11"))
         # gtrack <- GenomeAxisTrack()
         tx.models <- Gviz::GeneRegionTrack(tx,
                                            name = "Gene Model",
@@ -54,13 +75,13 @@ transcript_model_track <- function(dat,
                                 background.title = "grey20",
                                 collapseTranscripts=collapseTranscripts[1],
                                 shape = shape[1])
-        
     } else {
         #### ggbio ####
         tx <- get_transcripts(gr.snp = gr.snp,
                               max_transcripts = max_transcripts,
                               remove_pseudogenes = remove_pseudogenes)
-        if("pals" %in% row.names(installed.packages())){
+        if(require("pals")){
+            requireNamespace("pals")
             # Ensure teh palette size is always big enough for the
             ## number of unique genes.
             n_genes <- dplyr::n_distinct(tx$gr.snp$symbol)
@@ -78,29 +99,29 @@ transcript_model_track <- function(dat,
         }
         tx.models <- ggbio::autoplot(tx$txdb_filt,
                                      which=tx$tx.gr,
-                                     aes_string(fill=fill_var, color=fill_var),
+                                     ggplot2::aes_string(fill=fill_var,
+                                                         color=fill_var),
                                      columns =  c("symbol","tx_id"),
                                      names.expr = names.expr,
                                      color = color,
                                      stat = "identity",
                                      show.legend = FALSE) +
-            theme_classic() +
-            labs(y="Transcript")
+            ggplot2::theme_classic() +
+            ggplot2::labs(y="Transcript")
         
         if(!is.null(expand_x_mult)){
             tx.models <- suppressMessages(
                 tx.models +
                     # Add some padding at top and bottom
-                    scale_y_discrete(expand = expansion(mult = expand_x_mult))
+                    ggplot2::scale_y_discrete(
+                        expand = ggplot2::expansion(mult = expand_x_mult))
             )
         }
         
-        
-        
         if(xtext==FALSE){
             tx.models <- tx.models +
-                theme(axis.text.x = element_blank(),
-                      axis.title.x = element_blank())
+                ggplot2::theme(axis.text.x =ggplot2:: element_blank(),
+                      axis.title.x = ggplot2::element_blank())
         }
         # if(genomic_units=="Mb"){
         #   tx.models <- tx.models +
@@ -110,8 +131,8 @@ transcript_model_track <- function(dat,
             # Give it some nice fancy colors
             palette <- unname(pals::alphabet())
             tx.models <- tx.models +
-                scale_fill_manual(values = palette) +
-                scale_color_manual(values = palette)
+                ggplot2::scale_fill_manual(values = palette) +
+                ggplot2::scale_color_manual(values = palette)
         }
         if(method=="ggplot"){
             tx.models <- tx.models@ggplot

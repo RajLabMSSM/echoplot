@@ -1,6 +1,8 @@
 remove_margins <- function(TRKS,
                            dat,
                            verbose=TRUE){
+    requireNamespace("ggplot2")
+    
     messager("+ Removing subplot margins...", v=verbose)
     TRKS_std <- list()
     for(x in names(TRKS)){
@@ -9,7 +11,7 @@ remove_margins <- function(TRKS,
         ## Check which ones are which and set the limits accordingly.
         TRKS_std[[x]] <-  suppressMessages(suppressWarnings(
             TRKS[[x]] +
-                theme(plot.margin = unit(rep(0,4),"cm") )
+                ggplot2::theme(plot.margin = ggplot2::unit(rep(0,4),"cm") )
         ))
     }
     return(TRKS_std)

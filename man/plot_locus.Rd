@@ -64,9 +64,9 @@ Users can also generate multiple zoomed in views of the plot at
 \examples{
 dat<- echodata::BST1
 LD_matrix <- echodata::BST1_LD_matrix
-locus_dir <- echodata::locus_dir
+locus_dir <- file.path(tempdir(),echodata::locus_dir)
 
-locus_plot <- echoplot::plot_locus(dat = dat,
-                                   locus_dir=locus_dir,
-                                   LD_matrix=LD_matrix)
+plot_list <- echoplot::plot_locus(dat = dat,
+                                  locus_dir=locus_dir,
+                                  LD_matrix=LD_matrix)
 }

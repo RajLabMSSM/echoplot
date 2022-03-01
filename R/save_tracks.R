@@ -1,10 +1,10 @@
 
 save_tracks <- function(locus_dir,
-                             TRKS_zoom,
-                             window_suffix,
-                             LD_reference,
-                             split_tracks=F,
-                             verbose=T){
+                        TRKS_zoom,
+                        window_suffix,
+                        LD_reference,
+                        split_tracks=FALSE,
+                        verbose=TRUE){
     tracks_folder <- file.path(locus_dir,"plot_tracks")
     dir.create(tracks_folder, showWarnings = FALSE, recursive = TRUE)
     locus <- basename(locus_dir)
