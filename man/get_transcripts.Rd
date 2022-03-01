@@ -31,6 +31,10 @@ get_transcripts(
   verbose = TRUE
 )
 }
+\arguments{
+\item{verbose}{Print messages.}
+}
 \description{
 Get transcript positions for all genes in a range.
 }
+\keyword{internal}

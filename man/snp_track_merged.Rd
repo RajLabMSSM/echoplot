@@ -26,6 +26,8 @@ snp_track_merged(
 \arguments{
 \item{dat}{GWAS summary statistics subset to query the LD panel with.}
 
+\item{show_plot}{Print plot to screen.}
+
 \item{verbose}{Print messages.}
 }
 \description{

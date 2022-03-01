@@ -20,7 +20,8 @@
 #' txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
 #' GenomicFeatures::genes(txdb)
 #' }
-#' 
+#' @inheritParams plot_locus
+#' @keywords internal
 get_transcripts <- function(gr.snp,
                             max_transcripts=1,
                             remove_pseudogenes=TRUE,
@@ -28,6 +29,7 @@ get_transcripts <- function(gr.snp,
     symbol <- tx_name <- tx_biotype <- NULL;
     requireNamespace("EnsDb.Hsapiens.v75") 
     requireNamespace("AnnotationFilter")
+    requireNamespace("GenomicRanges")
     requireNamespace("ensembldb")
     requireNamespace("S4Vectors")
     

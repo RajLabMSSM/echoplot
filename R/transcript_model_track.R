@@ -48,6 +48,7 @@ transcript_model_track <- function(dat,
         requireNamespace("EnsDb.Hsapiens.v75")
         requireNamespace("ensembldb")
         requireNamespace("AnnotationFilter")
+        requireNamespace("GenomicFeatures")
         
         messager("+ PLOT:: Gene Model Track",v=verbose)
         txdb <-  EnsDb.Hsapiens.v75::EnsDb.Hsapiens.v75

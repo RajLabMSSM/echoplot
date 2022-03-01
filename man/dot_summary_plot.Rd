@@ -13,6 +13,8 @@ dot_summary_plot(dat, PP_threshold = 0.95, show_plot = TRUE)
  for a SNP to be considered part of a Credible Set.
 For example, \code{PP_threshold=.95} means that all Credible Set SNPs
 will be 95\% Credible Set SNPs.}
+
+\item{show_plot}{Print plot to screen.}
 }
 \description{
 Multi-fine-map summary dot plot of all lead, UCS and/or Consensus SNPs.

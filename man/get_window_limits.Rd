@@ -7,7 +7,7 @@
 get_window_limits(
   dat,
   index_as_center = TRUE,
-  plot_zoom = NULL,
+  zoom = NULL,
   genomic_units = "Mb",
   verbose = TRUE
 )
@@ -17,9 +17,9 @@ Get window size limits for Manhattan plot.
 }
 \examples{
 dat <- echodata::BST1
-xlims <- get_window_limits(dat=dat, plot_zoom=50000)
-xlims <- get_window_limits(dat=dat, plot_zoom="all")
-xlims <- get_window_limits(dat=dat, plot_zoom="5x")
+xlims <- get_window_limits(dat=dat, zoom=50000)
+xlims <- get_window_limits(dat=dat, zoom="all")
+xlims <- get_window_limits(dat=dat, zoom="5x")
 }
 \seealso{
 Other plot: 

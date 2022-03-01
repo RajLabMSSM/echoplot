@@ -44,7 +44,7 @@ plot_locus(
   genomic_units = "Mb",
   strip.text.y.angle = 0,
   max_transcripts = 1,
-  plot_zoom = c("1x"),
+  zoom = c("1x"),
   dpi = 300,
   height = 12,
   width = 10,
@@ -88,14 +88,16 @@ adjust the bin width of the histograms.}
  epigenomic data
 from the \emph{UCSC Genome Browser}, use a set of local bigwig files.}
 
-\item{plot_zoom}{Zoom into the center of the locus when plotting
+\item{show_plot}{Print plot to screen.}
+
+\item{zoom}{Zoom into the center of the locus when plotting
 (without editing the fine-mapping results file).
 You can provide either:
 \itemize{
 \item{The size of your plot window in terms of basepairs
-(e.g. \code{plot_zoom=50000} for a 50kb window)}.
-\item{How much you want to zoom in (e.g. \code{plot_zoom="1x"}
-for the full locus, \code{plot_zoom="2x"}
+(e.g. \code{zoom=50000} for a 50kb window)}.
+\item{How much you want to zoom in (e.g. \code{zoom="1x"}
+for the full locus, \code{zoom="2x"}
 for 2x zoom into the center of the locus, etc.)}.
 }
 You can pass a list of window sizes (e.g. \code{c(50000,100000,500000)})

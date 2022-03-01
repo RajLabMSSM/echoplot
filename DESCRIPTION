@@ -55,6 +55,7 @@ Suggests:
     EnsDb.Hsapiens.v75,
     ensembldb,
     AnnotationFilter,
+    GenomicFeatures,
     S4Vectors,
     stringr,
     pals

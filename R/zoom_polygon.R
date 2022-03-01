@@ -1,7 +1,7 @@
 
 zoom_polygon <- function(dat,
                          genomic_units="Mb",
-                         plot_zoom="5x",
+                         zoom="5x",
                          alpha=.15,
                          verbose=TRUE){
     requireNamespace("ggplot2")
@@ -12,7 +12,7 @@ zoom_polygon <- function(dat,
                                     genomic_units = genomic_units,
                                     verbose = FALSE)
     xlims_zoom <- get_window_limits(dat = dat,
-                                    plot_zoom = plot_zoom,
+                                    zoom = zoom,
                                     genomic_units = genomic_units,
                                     verbose = FALSE)
     positions <- data.frame(x=c(xlims_zoom, rev(xlims_orig)),

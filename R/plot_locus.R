@@ -4,14 +4,14 @@
 #' Users can also generate multiple zoomed in views of the plot at
 #'  multiple resolutions.
 #'  
-#' @param plot_zoom Zoom into the center of the locus when plotting
+#' @param zoom Zoom into the center of the locus when plotting
 #' (without editing the fine-mapping results file).
 #' You can provide either:
 #' \itemize{
 #' \item{The size of your plot window in terms of basepairs
-#' (e.g. \code{plot_zoom=50000} for a 50kb window)}.
-#' \item{How much you want to zoom in (e.g. \code{plot_zoom="1x"}
-#' for the full locus, \code{plot_zoom="2x"}
+#' (e.g. \code{zoom=50000} for a 50kb window)}.
+#' \item{How much you want to zoom in (e.g. \code{zoom="1x"}
+#' for the full locus, \code{zoom="2x"}
 #' for 2x zoom into the center of the locus, etc.)}.
 #' }
 #' You can pass a list of window sizes (e.g. \code{c(50000,100000,500000)})
@@ -33,6 +33,7 @@
 #'  for a SNP to be considered part of a Credible Set.
 #' For example, \code{PP_threshold=.95} means that all Credible Set SNPs
 #' will be 95\% Credible Set SNPs.
+#' @param show_plot Print plot to screen.
 #' @inheritParams echoLD::load_or_create
 #' @export 
 #' @importFrom dplyr %>%
@@ -96,7 +97,7 @@ plot_locus <- function(dat,
                        genomic_units="Mb",
                        strip.text.y.angle=0,
                        max_transcripts=1,
-                       plot_zoom=c("1x"),
+                       zoom=c("1x"),
                        dpi=300,
                        height=12,
                        width=10,
@@ -108,7 +109,7 @@ plot_locus <- function(dat,
                        verbose=TRUE){
      # LD_reference="UKB";
     # dat<-echolocatoR::BST1; LD_matrix <- echolocatoR::BST1_LD_matrix; locus="BST1";
-    # consensus_threshold=2; xgr_libnames=NULL; n_top_xgr=5; mean.PP=T; roadmap=F; PP_threshold=.95;  nott_epigenome=T;  save_plot=T; show_plot=T; finemap_methods=c("ABF","SUSIE","POLYFUN_SUSIE","FINEMAP","mean"); full_data=T;  max_transcripts=3; pz=plot_zoom="1x"; dataset_type="GWAS"; dot_summary=F; snp_group_lines=c("UCS","Consensus","Lead"); nThread=4;
+    # consensus_threshold=2; xgr_libnames=NULL; n_top_xgr=5; mean.PP=T; roadmap=F; PP_threshold=.95;  nott_epigenome=T;  save_plot=T; show_plot=T; finemap_methods=c("ABF","SUSIE","POLYFUN_SUSIE","FINEMAP","mean"); full_data=T;  max_transcripts=3; pz=zoom="1x"; dataset_type="GWAS"; dot_summary=F; snp_group_lines=c("UCS","Consensus","Lead"); nThread=4;
     # nott_epigenome=T; nott_regulatory_rects=T; nott_show_placseq=T; nott_binwidth=200; max_transcripts=1; dpi=400; height=12; width=10; results_path=NULL;  n_top_roadmap=7; annot_overlap_threshold=5; nott_bigwig_dir=NULL;
     #  roadmap_query=NULL; sig_cutoff=5e-8; verbose=T; qtl_prefixes=NULL; gene_track=T; genomic_units="Mb";strip.text.y.angle=0; xtext=F; plot_format="jpg"; return_list=F;
     # track_order= c("Genes","GWAS full window","zoom_polygon","GWAS","Fine-mapping", "roadmap\nchromatin marks\ncell-types", "Nott (2019)\nread densities", "Nott (2019)\nPLAC-seq"); track_heights=NULL; plot_full_window=T;
@@ -300,23 +301,23 @@ plot_locus <- function(dat,
     } 
     ##### Iterate over different window sizes #####
     plot_list <- list()
-    for(pz in plot_zoom){
+    for(pz in zoom){
         # try() Allows (X11) errors to occur and still finish the loop
         try({
-            messager("+>+>+>+>+ plot_zoom = ",pz," +<+<+<+<+", v=verbose)
+            messager("+>+>+>+>+ zoom = ",pz," +<+<+<+<+", v=verbose)
             TRKS_zoom <- TRKS
             window_suffix <- get_window_suffix(dat=dat,
-                                                    plot_zoom=pz)
+                                                    zoom=pz)
             if((plot_full_window) & (!window_suffix %in% c("1x","all"))){
                 #### Add zoom polygon ####
                 TRKS_zoom[["zoom_polygon"]] <- zoom_polygon(
                     dat = dat,
                      genomic_units = genomic_units,
-                     plot_zoom = pz)
+                     zoom = pz)
                 TRKS_zoom[[full_window_name]] <- zoom_highlight(
                     gg = TRKS_zoom[[full_window_name]],
                      dat = dat,
-                     plot_zoom = pz)
+                     zoom = pz)
             }
             #### Remove extra full_window plot #####
             # The steps MUST come before reorder_tracks
@@ -341,10 +342,10 @@ plot_locus <- function(dat,
             #### Make sure last plot has xtext ####
             TRKS_zoom <- add_back_xtext(TRKS = TRKS_zoom,
                                          verbose = verbose)
-            #### Define plot_zoom limits ####
+            #### Define zoom limits ####
             TRKS_zoom <- set_window_limits(TRKS = TRKS_zoom,
                                             dat = dat,
-                                            plot_zoom = pz,
+                                            zoom = pz,
                                             exceptions_str=zoom_exceptions_str,
                                             verbose = verbose)
             #### Construct title ####
@@ -386,7 +387,7 @@ plot_locus <- function(dat,
             
             #### Save ggplot ####
             # Only save one zoom of these since these files are very large
-            if(save_RDS & (pz==plot_zoom[1])){
+            if(save_RDS & (pz==zoom[1])){
                 trk_paths <- save_tracks(locus_dir=locus_dir,
                                          TRKS_zoom=TRKS_zoom,
                                          LD_reference = LD_reference,
@@ -396,6 +397,6 @@ plot_locus <- function(dat,
             #### Show the plot ####
             if(show_plot){print(TRKS_FINAL)}
         })
-    } # End plot_zoom loop
+    } # End zoom loop
     return(plot_list)
 }

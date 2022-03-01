@@ -8,27 +8,27 @@
 #' @source 
 #' \code{
 #' dat <- echodata::BST1
-#' window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom=1000)
-#' window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom=NULL)
-#' window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom="all")
-#' window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom="2x")
+#' window_suffix <- echoplot:::get_window_suffix(dat=dat, zoom=1000)
+#' window_suffix <- echoplot:::get_window_suffix(dat=dat, zoom=NULL)
+#' window_suffix <- echoplot:::get_window_suffix(dat=dat, zoom="all")
+#' window_suffix <- echoplot:::get_window_suffix(dat=dat, zoom="2x")
 #' }
 get_window_suffix <- function(dat,
-                              plot_zoom,
+                              zoom,
                               verbose=TRUE){
     messager("+ PLOT:: Get window suffix...",v=verbose)
-    window_suffix <- if(is.null(plot_zoom)){
+    window_suffix <- if(is.null(zoom)){
         return(paste0(DescTools::RoundTo(
             (max(dat$POS) - min(dat$POS))/1000, 100),"kb"))
     } else {
-        if(is.character(plot_zoom)){
-            if(plot_zoom=="all"){
+        if(is.character(zoom)){
+            if(zoom=="all"){
                 return("1x") 
             } else {
-                return(plot_zoom)
+                return(zoom)
             }
         } else {
-            return(paste0(plot_zoom/1000,"kb"))
+            return(paste0(zoom/1000,"kb"))
         }
     }
     return(window_suffix)

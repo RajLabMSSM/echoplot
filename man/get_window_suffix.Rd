@@ -6,14 +6,14 @@
 \source{
 \code{
 dat <- echodata::BST1
-window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom=1000)
-window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom=NULL)
-window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom="all")
-window_suffix <- echoplot:::get_window_suffix(dat=dat, plot_zoom="2x")
+window_suffix <- echoplot:::get_window_suffix(dat=dat, zoom=1000)
+window_suffix <- echoplot:::get_window_suffix(dat=dat, zoom=NULL)
+window_suffix <- echoplot:::get_window_suffix(dat=dat, zoom="all")
+window_suffix <- echoplot:::get_window_suffix(dat=dat, zoom="2x")
 }
 }
 \usage{
-get_window_suffix(dat, plot_zoom, verbose = TRUE)
+get_window_suffix(dat, zoom, verbose = TRUE)
 }
 \description{
 Determine the plot suffix indicating its window size.

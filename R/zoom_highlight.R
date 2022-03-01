@@ -1,7 +1,7 @@
 
 zoom_highlight <- function(gg,
                            dat,
-                           plot_zoom="5x",
+                           zoom="5x",
                            alpha=.15,
                            verbose=TRUE){
     requireNamespace("ggplot2")
@@ -10,7 +10,7 @@ zoom_highlight <- function(gg,
     messager("+ Highlighting zoom origin...",v=verbose)
     genomic_units <- guess_genomic_units(gg = gg)
     xlims_zoom <- get_window_limits(dat = dat,
-                                    plot_zoom = plot_zoom,
+                                    zoom = zoom,
                                     genomic_units = genomic_units,
                                     verbose = FALSE)
     rect_dat <- data.frame(x=c(xlims_zoom, rev(xlims_zoom)), 

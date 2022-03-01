@@ -5,25 +5,25 @@
 #' @keywords internal
 #' @examples
 #' dat <- echodata::BST1
-#' xlims <- get_window_limits(dat=dat, plot_zoom=50000)
-#' xlims <- get_window_limits(dat=dat, plot_zoom="all")
-#' xlims <- get_window_limits(dat=dat, plot_zoom="5x")
+#' xlims <- get_window_limits(dat=dat, zoom=50000)
+#' xlims <- get_window_limits(dat=dat, zoom="all")
+#' xlims <- get_window_limits(dat=dat, zoom="5x")
 get_window_limits <- function(dat,
                               index_as_center=TRUE,
-                              plot_zoom=NULL,
+                              zoom=NULL,
                               genomic_units="Mb",
                               verbose=TRUE){
-    # plot_zoom <- c("all","1x","4x",5000);
-    # plot_zoom <- c("5000");
+    # zoom <- c("all","1x","4x",5000);
+    # zoom <- c("5000");
     # dat=echolocatoR::BST1;
     # index_as_center=T; genomic_units="Mb"; verbose=T;
     leadSNP <- NULL;
     
-    plot_zoom <- if(is.null(plot_zoom)) "1x" else plot_zoom
-    plot_zoom[!is.na(plot_zoom)] <- plot_zoom;
-    plot_zoom[!is.null(plot_zoom)] <- plot_zoom;
+    zoom <- if(is.null(zoom)) "1x" else zoom
+    zoom[!is.na(zoom)] <- zoom;
+    zoom[!is.null(zoom)] <- zoom;
     # Iterate over list of zooms
-    xlims_list <- lapply(plot_zoom, function(pz,
+    xlims_list <- lapply(zoom, function(pz,
                                              .dat=dat,
                                              .index_as_center=index_as_center,
                                              .genomic_units=genomic_units,
@@ -73,7 +73,7 @@ get_window_limits <- function(dat,
             xlims <- xlims/1000000
         }
         return(xlims)
-    }) %>% `names<-`(plot_zoom)
+    }) %>% `names<-`(zoom)
     
     # For backwards compatibility
     if(length(xlims_list)==1) return(xlims_list[[1]]) else return(xlims_list)
