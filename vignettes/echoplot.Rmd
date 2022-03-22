@@ -32,12 +32,14 @@ Generate a multi-view plot of a given locus using `echoplot::plot_locus()`.
 different arguments (see `?plot_locus` for details).  
 
 The plot is centered on the lead/index SNP. If a list is supplied to zoom
-* `plot_locus()` returns a series of `ggplot` objects bound together with [`patchwork`](https://patchwork.data-imaginist.com). One can further modify this object using `ggplot2` functions like `+ theme()`.
+* `plot_locus()` returns a series of `ggplot` objects bound together with [`patchwork`](https://patchwork.data-imaginist.com). One can further modify 
+this object using `ggplot2` functions like `+ theme()`.
   + The modifications will be applied to all tracks at once.  
   
 * Save a high-resolution versions the plot by setting `save_plot=T`.  
   + Further increase resolution by adjusting the `dpi` argument (*default=300*).
-  + Files are saved in *jpg* format by default, but users can specify their preferred file format (e.g. `file_format="png"`)
+  + Files are saved in *jpg* format by default, but users can specify their
+  preferred file format (e.g. `file_format="png"`)
   + Adjust the `height` and `width` of the saved plot using these respective arguments.
   + The plot will be automatically saved in the locus-specific directory as:  
   *multiview_<locus>_<zoom>.jpg*.

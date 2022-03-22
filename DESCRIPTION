@@ -1,7 +1,7 @@
 Package: echoplot
 Type: Package
 Title: echoverse module: Locus plot creation for fine-mapping and colocalization studies
-Version: 0.99.1
+Version: 0.99.2
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
@@ -24,12 +24,11 @@ URL: https://github.com/RajLabMSSM/echoplot
 BugReports: https://github.com/RajLabMSSM/echoplot/issues
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 4.1)
+Depends: R (>= 4.0.0)
 biocViews:
     Genetics, FunctionalGenomics, SystemsBiology
 Imports:
     echodata,
-    echotabix,
     echoannot,
     echoLD,
     ggplot2,
@@ -61,7 +60,6 @@ Suggests:
     pals
 Remotes:
     github::RajLabMSSM/echodata,
-    github::RajLabMSSM/echotabix,
     github::RajLabMSSM/echoannot,
     github::RajLabMSSM/echoLD
 RoxygenNote: 7.1.2
