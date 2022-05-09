@@ -1,3 +1,6 @@
+*.tbi
+vignettes/*.tbi
+
 echoverse_template.Rproj$
 
 # R project files
