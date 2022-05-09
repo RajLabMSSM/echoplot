@@ -17,7 +17,7 @@ construct_snp_labels(
 )
 }
 \arguments{
-\item{dat}{Data.}
+\item{dat}{Data to query transcripts with.}
 
 \item{verbose}{Print messages.}
 }

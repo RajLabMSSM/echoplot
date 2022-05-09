@@ -24,9 +24,21 @@ snp_track_merged(
 )
 }
 \arguments{
-\item{dat}{Data.}
+\item{dat}{Data to query transcripts with.}
+
+\item{sig_cutoff}{Filters out SNPs to plot based on an (uncorrected)
+p-value significance cutoff.}
+
+\item{point_alpha}{Opacity of each data point.}
+
+\item{xtext}{Include x-axis title and text for each track
+(not just the lower-most one).}
+
+\item{dataset_type}{Dataset type (e.g. "GWAS" or "eQTL").}
 
 \item{genomic_units}{Which genomic units to return window limits in.}
+
+\item{strip.text.y.angle}{Angle of the y-axis facet labels.}
 
 \item{show_plot}{Print plot to screen.}
 

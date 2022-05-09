@@ -13,8 +13,8 @@ transcript_model_track(
   dat,
   max_transcripts = 1,
   remove_pseudogenes = TRUE,
-  show.legend = TRUE,
   show_plot = FALSE,
+  show.legend = FALSE,
   fill = "skyblue",
   shape = c("arrow", "box", "ellipse", "smallArrow"),
   transcriptAnnotation = c("symbol", "transcript"),
@@ -27,10 +27,49 @@ transcript_model_track(
 )
 }
 \arguments{
+\item{dat}{Data to query transcripts with.}
+
+\item{max_transcripts}{Maximum number of transcripts per gene.}
+
+\item{remove_pseudogenes}{Whether to remove known pseudogenes.}
+
+\item{show_plot}{Print the plot.}
+
+\item{show.legend}{Show gene plot legend.}
+
+\item{fill}{A variable name string, or a color to fill the plot data with.}
+
+\item{shape}{Shape type to plot genes as. 
+Passed to \link[Gviz]{plotTracks}.}
+
+\item{transcriptAnnotation}{Whether to show the gene symbol
+ or the full transcript ID.
+Passed to \link[Gviz]{plotTracks}.}
+
+\item{collapseTranscripts}{Logical or character scalar. 
+Can be one in gene, longest, shortest or meta. 
+Merge all transcripts of the same gene into one single gene model. 
+In the case of gene (or TRUE), this will only keep the start location 
+of the first exon and the end location of the last exon from all 
+transcripts of the gene. For shortest and longest, only the longest 
+or shortest transcript model is retained. For meta, a meta-transcript
+ containing the union of all exons is formed 
+ (essentially identical to the operation reduce(geneModel)).
+Passed to \link[Gviz]{plotTracks}.}
+
 \item{stacking}{The stacking type for overlapping items of the track. One in
 \code{c(hide, dense, squish, pack,full)}. Currently, only hide (don't show
 the track items, squish (make best use of the available space) and dense (no
 stacking at all) are implemented.}
+
+\item{method}{Method to use: "gviz" or "ggplot".}
+
+\item{xtext}{Include x-axis title and text.}
+
+\item{expand_x_mult}{Expand the x-axis limits to include partially 
+overlapping transcripts.}
+
+\item{verbose}{Print messages.}
 }
 \description{
 Plot a max number of transcripts per genes.

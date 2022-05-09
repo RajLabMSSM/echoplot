@@ -17,7 +17,7 @@ add_snp_labels(
 )
 }
 \arguments{
-\item{dat}{Data.}
+\item{dat}{Data to query transcripts with.}
 
 \item{genomic_units}{Which genomic units to return window limits in.}
 }

@@ -33,6 +33,7 @@ Imports:
     echodata,
     echoannot,
     echoLD,
+    methods,
     ggplot2,
     ggbio,
     ggrepel,

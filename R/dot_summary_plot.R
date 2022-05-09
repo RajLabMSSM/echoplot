@@ -11,7 +11,7 @@
 #' dat <- echodata::BST1
 #' gp <- echoplot::dot_summary_plot(dat=dat)
 dot_summary_plot <- function(dat,
-                             PP_threshold=.95,
+                             credset_thresh=.95,
                              show_plot=TRUE){
     SNP <- PP <- CHR <- POS <- method <- leadSNP <- 
         CS <- Consensus_SNP <- NULL;
@@ -36,7 +36,7 @@ dot_summary_plot <- function(dat,
                                         levels = rev(unname(methodDict)), 
                                         ordered = TRUE),
                           CS=ifelse(CS>0,TRUE,NA),
-                          PP=ifelse(PP>PP_threshold,PP,NA))
+                          PP=ifelse(PP>credset_thresh,PP,NA))
     )
     gp <- ggplot2::ggplot() +
         # Lead SNP

@@ -4,14 +4,14 @@
 \alias{dot_summary_plot}
 \title{Dot summary plot}
 \usage{
-dot_summary_plot(dat, PP_threshold = 0.95, show_plot = TRUE)
+dot_summary_plot(dat, credset_thresh = 0.95, show_plot = TRUE)
 }
 \arguments{
-\item{dat}{Data.}
+\item{dat}{Data to query transcripts with.}
 
-\item{PP_threshold}{The minimum fine-mapped posterior probability
+\item{credset_thresh}{The minimum fine-mapped posterior probability
  for a SNP to be considered part of a Credible Set.
-For example, \code{PP_threshold=.95} means that all Credible Set SNPs
+For example, \code{credset_thresh=.95} means that all Credible Set SNPs
 will be 95\% Credible Set SNPs.}
 
 \item{show_plot}{Print plot to screen.}

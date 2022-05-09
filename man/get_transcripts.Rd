@@ -6,8 +6,8 @@
 \source{
 \code{
 #### Alternative approaches I've tried ####
-
-gr.snp <- GenomicRanges::makeGRangesFromDataFrame(echolocatoR::LRRK2, keep.extra.columns = T, seqnames.field = "CHR", start.field = "POS", end.field = "POS")
+dat <- echodata::LRRK2
+gr.snp <- echodata::dt_to_granges(dat = dat)
 
 # Warning:: MUST load the full package bc
 # it loads other necessary packages into the namespace.
@@ -32,6 +32,8 @@ get_transcripts(
 )
 }
 \arguments{
+\item{max_transcripts}{Maximum number of transcripts per gene.}
+
 \item{verbose}{Print messages.}
 }
 \description{

@@ -1,6 +1,32 @@
 #' Plot transcripts
 #' 
 #' Plot a max number of transcripts per genes.
+#' @param dat Data to query transcripts with.
+#' @param fill A variable name string, or a color to fill the plot data with.
+#' @param shape Shape type to plot genes as. 
+#' Passed to \link[Gviz]{plotTracks}.
+#' @param transcriptAnnotation Whether to show the gene symbol
+#'  or the full transcript ID.
+#' Passed to \link[Gviz]{plotTracks}.
+#' @param collapseTranscripts Logical or character scalar. 
+#' Can be one in gene, longest, shortest or meta. 
+#' Merge all transcripts of the same gene into one single gene model. 
+#' In the case of gene (or TRUE), this will only keep the start location 
+#' of the first exon and the end location of the last exon from all 
+#' transcripts of the gene. For shortest and longest, only the longest 
+#' or shortest transcript model is retained. For meta, a meta-transcript
+#'  containing the union of all exons is formed 
+#'  (essentially identical to the operation reduce(geneModel)).
+#' Passed to \link[Gviz]{plotTracks}.
+#' @param max_transcripts Maximum number of transcripts per gene.
+#' @param remove_pseudogenes Whether to remove known pseudogenes.
+#' @param show_plot Print the plot.
+#' @param method Method to use: "gviz" or "ggplot".
+#' @param xtext Include x-axis title and text.
+#' @param expand_x_mult Expand the x-axis limits to include partially 
+#' overlapping transcripts.
+#' @param show.legend Show gene plot legend.
+#' @param verbose Print messages. 
 #' @inheritParams Gviz::plotTracks
 #' @inheritParams Gviz::GeneRegionTrack
 #' 
@@ -18,8 +44,8 @@
 transcript_model_track <- function(dat,
                                    max_transcripts=1,
                                    remove_pseudogenes=TRUE,
-                                   show.legend=TRUE,
                                    show_plot=FALSE,
+                                   show.legend=FALSE,
                                    fill="skyblue",
                                    shape=c( "arrow", "box", 
                                             "ellipse","smallArrow"),
@@ -105,7 +131,7 @@ transcript_model_track <- function(dat,
                                      names.expr = names.expr,
                                      color = color,
                                      stat = "identity",
-                                     show.legend = FALSE) +
+                                     show.legend = show.legend) +
             ggplot2::theme_classic() +
             ggplot2::labs(y="Transcript")
         
@@ -121,7 +147,7 @@ transcript_model_track <- function(dat,
         if(xtext==FALSE){
             tx.models <- tx.models +
                 ggplot2::theme(axis.text.x =ggplot2:: element_blank(),
-                      axis.title.x = ggplot2::element_blank())
+                               axis.title.x = ggplot2::element_blank())
         }
         # if(genomic_units=="Mb"){
         #   tx.models <- tx.models +
