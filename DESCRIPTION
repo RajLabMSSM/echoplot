@@ -1,6 +1,7 @@
 Package: echoplot
 Type: Package
-Title: echoverse module: Locus plot creation for fine-mapping and colocalization studies
+Title: echoverse module: Locus plot creation for fine-mapping and 
+    colocalization studies
 Version: 0.99.2
 Authors@R: 
     c(person(given = "Brian",
@@ -19,7 +20,8 @@ Authors@R:
            email = "towfique.raj@mssm.edu",
            comment = c(ORCID = "0000-0002-9355-5704"))
            ) 
-Description: echoverse module: Locus plot creation for fine-mapping and colocalization studies.
+Description: echoverse module: Locus plot creation for fine-mapping 
+    and colocalization studies.
 URL: https://github.com/RajLabMSSM/echoplot
 BugReports: https://github.com/RajLabMSSM/echoplot/issues
 Encoding: UTF-8
@@ -35,6 +37,7 @@ Imports:
     ggbio,
     ggrepel,
     DescTools,
+    GenomicRanges,
     patchwork, 
     data.table,
     dplyr

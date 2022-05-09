@@ -2,8 +2,10 @@
 
 ## Bug fixes 
 
-* Remove `echotabix` as dep since these functions are now handled by `echoannot`.
-* Update GHA workflow.
+* Removed `echotabix` as dep since these functions
+    are now handled by `echoannot`.
+* Updated GHA workflow.
+* Nott2019 tracks working again. 
 
 
 # echoplot 0.99.0

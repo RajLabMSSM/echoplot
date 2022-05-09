@@ -9,7 +9,7 @@ zoom_highlight <- function(gg,
     
     messager("+ Highlighting zoom origin...",v=verbose)
     genomic_units <- guess_genomic_units(gg = gg)
-    xlims_zoom <- get_window_limits(dat = dat,
+    xlims_zoom <- echoannot::get_window_limits(dat = dat,
                                     zoom = zoom,
                                     genomic_units = genomic_units,
                                     verbose = FALSE)

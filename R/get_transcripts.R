@@ -4,8 +4,8 @@
 #' @source
 #' \code{
 #' #### Alternative approaches I've tried ####
-#' 
-#' gr.snp <- GenomicRanges::makeGRangesFromDataFrame(echolocatoR::LRRK2, keep.extra.columns = T, seqnames.field = "CHR", start.field = "POS", end.field = "POS")
+#' dat <- echodata::LRRK2
+#' gr.snp <- echodata::dt_to_granges(dat = dat)
 #' 
 #' # Warning:: MUST load the full package bc
 #' # it loads other necessary packages into the namespace.
@@ -22,6 +22,7 @@
 #' }
 #' @inheritParams plot_locus
 #' @keywords internal
+#' @importFrom GenomicRanges seqnames findOverlaps makeGRangesFromDataFrame
 get_transcripts <- function(gr.snp,
                             max_transcripts=1,
                             remove_pseudogenes=TRUE,
@@ -29,7 +30,6 @@ get_transcripts <- function(gr.snp,
     symbol <- tx_name <- tx_biotype <- NULL;
     requireNamespace("EnsDb.Hsapiens.v75") 
     requireNamespace("AnnotationFilter")
-    requireNamespace("GenomicRanges")
     requireNamespace("ensembldb")
     requireNamespace("S4Vectors")
     
@@ -80,7 +80,8 @@ get_transcripts <- function(gr.snp,
     tx.gr <- GenomicRanges::makeGRangesFromDataFrame(
         df = tx.filt, 
         seqnames.field = "seqnames",
-        start.field = "start", end.field = "end",
+        start.field = "start", 
+        end.field = "end",
         keep.extra.columns = TRUE)
     #### Filter tx database ####
     # Just return the full txdb (filtered version causes issues w ggbio)

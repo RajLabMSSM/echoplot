@@ -3,22 +3,7 @@
 #' Generate a locus-specific plot with multiple selectable tracks.
 #' Users can also generate multiple zoomed in views of the plot at
 #'  multiple resolutions.
-#'  
-#' @param zoom Zoom into the center of the locus when plotting
-#' (without editing the fine-mapping results file).
-#' You can provide either:
-#' \itemize{
-#' \item{The size of your plot window in terms of basepairs
-#' (e.g. \code{zoom=50000} for a 50kb window)}.
-#' \item{How much you want to zoom in (e.g. \code{zoom="1x"}
-#' for the full locus, \code{zoom="2x"}
-#' for 2x zoom into the center of the locus, etc.)}.
-#' }
-#' You can pass a list of window sizes (e.g. \code{c(50000,100000,500000)})
-#' to automatically generate
-#' multiple views of each locus.
-#' This can even be a mix of different style inputs: e.g.
-#'  \code{c("1x","4.5x",25000)}.
+#' 
 #' @param nott_binwidth When including Nott et al. (2019)
 #' epigenomic data in the track plots,
 #' adjust the bin width of the histograms.
@@ -35,8 +20,10 @@
 #' will be 95\% Credible Set SNPs.
 #' @param show_plot Print plot to screen.
 #' @inheritParams echoLD::load_or_create
+#' @inheritParams echoannot::get_window_limits
 #' @export 
 #' @importFrom dplyr %>%
+#' @importFrom methods show
 #' @importFrom echoLD get_lead_r2
 #' @importFrom echodata find_consensus_snps fillNA_CS_PP
 #' @importFrom echoannot XGR_plot ROADMAP_plot 
@@ -92,7 +79,7 @@ plot_locus <- function(dat,
                        nott_binwidth=200,
                        nott_bigwig_dir=NULL,
                        
-                       save_plot=TRUE,
+                       save_plot=FALSE,
                        show_plot=TRUE,
                        genomic_units="Mb",
                        strip.text.y.angle=0,
@@ -104,16 +91,12 @@ plot_locus <- function(dat,
                        plot_format="jpg",
                        save_RDS=FALSE,
                        return_list=FALSE,
-                       conda_env="echoR",
+                       conda_env="echoR_mini",
                        nThread=1,
                        verbose=TRUE){
-     # LD_reference="UKB";
-    # dat<-echolocatoR::BST1; LD_matrix <- echolocatoR::BST1_LD_matrix; locus="BST1";
-    # consensus_threshold=2; xgr_libnames=NULL; n_top_xgr=5; mean.PP=T; roadmap=F; PP_threshold=.95;  nott_epigenome=T;  save_plot=T; show_plot=T; finemap_methods=c("ABF","SUSIE","POLYFUN_SUSIE","FINEMAP","mean"); full_data=T;  max_transcripts=3; pz=zoom="1x"; dataset_type="GWAS"; dot_summary=F; snp_group_lines=c("UCS","Consensus","Lead"); nThread=4;
-    # nott_epigenome=T; nott_regulatory_rects=T; nott_show_placseq=T; nott_binwidth=200; max_transcripts=1; dpi=400; height=12; width=10; results_path=NULL;  n_top_roadmap=7; annot_overlap_threshold=5; nott_bigwig_dir=NULL;
-    #  roadmap_query=NULL; sig_cutoff=5e-8; verbose=T; qtl_prefixes=NULL; gene_track=T; genomic_units="Mb";strip.text.y.angle=0; xtext=F; plot_format="jpg"; return_list=F;
-    # track_order= c("Genes","GWAS full window","zoom_polygon","GWAS","Fine-mapping", "roadmap\nchromatin marks\ncell-types", "Nott (2019)\nread densities", "Nott (2019)\nPLAC-seq"); track_heights=NULL; plot_full_window=T;
-    
+    # echoverseTemplate:::source_all(packages = "dplyr")
+    # echoverseTemplate:::args2vars(plot_locus)
+     
     requireNamespace("ggplot2")
     requireNamespace("patchwork")
     POS <- P <- leadSNP <- NULL; 
@@ -241,7 +224,8 @@ plot_locus <- function(dat,
                                                roadmap_query = roadmap_query, 
                                                locus_dir = locus_dir, 
                                                n_top = n_top_roadmap,
-                                               conda_env = conda_env, 
+                                               conda_env = conda_env,
+                                               show_plot = FALSE,
                                                nThread = nThread,
                                                verbose = verbose)
         TRKS[["Roadmap\nchromatin marks\ncell-types"]] <- roadmap_out$plot
@@ -259,10 +243,9 @@ plot_locus <- function(dat,
                 save_plot=FALSE,
                 full_data=TRUE,
                 return_assay_track=TRUE,
-                binwidth=nott_binwidth,
-                bigwig_dir=nott_bigwig_dir,
+                binwidth=nott_binwidth, 
                 save_annot=TRUE,
-                as_ggplot = TRUE,
+                as_ggplot=TRUE,
                 strip.text.y.angle = strip.text.y.angle,
                 xtext=xtext,
                 nThread=nThread,
@@ -275,17 +258,19 @@ plot_locus <- function(dat,
             try({
                 track.Nott_plac <- echoannot::NOTT2019_plac_seq_plot(
                     dat = dat,
-                       locus_dir=locus_dir,
-                       title=locus,
-                       show_regulatory_rects=nott_regulatory_rects,
-                       return_interaction_track=TRUE,
-                       show_arches=TRUE,
-                       save_annot=TRUE,
-                       strip.text.y.angle = strip.text.y.angle,
-                       xtext=xtext,
-                       nThread=nThread,
-                       verbose=verbose)
-                TRKS[["Nott (2019)\nPLAC-seq"]] <- track.Nott_plac$plot +
+                    locus_dir=locus_dir,
+                    title=locus,
+                    show_regulatory_rects=nott_regulatory_rects,
+                    return_interaction_track=TRUE,
+                    save_annot=TRUE,
+                    strip.text.y.angle = strip.text.y.angle,
+                    xtext=xtext,
+                    return_as = "ggplot",
+                    show_plot = FALSE,
+                    save_plot = FALSE,
+                    nThread=nThread,
+                    verbose=verbose)
+                TRKS[["Nott (2019)\nPLAC-seq"]] <- track.Nott_plac$PLACseq +
                     ggplot2::labs(y="Nott (2019)\nPLAC-seq")
             })
         }
@@ -395,7 +380,7 @@ plot_locus <- function(dat,
                                          verbose=verbose)
             }
             #### Show the plot ####
-            if(show_plot){print(TRKS_FINAL)}
+            if(show_plot){methods::show(TRKS_FINAL)}
         })
     } # End zoom loop
     return(plot_list)

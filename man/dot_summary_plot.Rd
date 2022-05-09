@@ -7,7 +7,7 @@
 dot_summary_plot(dat, PP_threshold = 0.95, show_plot = TRUE)
 }
 \arguments{
-\item{dat}{GWAS summary statistics subset to query the LD panel with.}
+\item{dat}{Data.}
 
 \item{PP_threshold}{The minimum fine-mapped posterior probability
  for a SNP to be considered part of a Credible Set.
@@ -26,7 +26,6 @@ gp <- echoplot::dot_summary_plot(dat=dat)
 \seealso{
 Other plot: 
 \code{\link{add_multitrack_lines}()},
-\code{\link{get_window_limits}()},
 \code{\link{get_window_suffix}()}
 }
 \concept{plot}

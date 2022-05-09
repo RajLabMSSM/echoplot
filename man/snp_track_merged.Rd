@@ -24,7 +24,9 @@ snp_track_merged(
 )
 }
 \arguments{
-\item{dat}{GWAS summary statistics subset to query the LD panel with.}
+\item{dat}{Data.}
+
+\item{genomic_units}{Which genomic units to return window limits in.}
 
 \item{show_plot}{Print plot to screen.}
 

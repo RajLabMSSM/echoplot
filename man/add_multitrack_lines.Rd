@@ -20,7 +20,6 @@ Adds vertical lines indicates key SNPs
 \seealso{
 Other plot: 
 \code{\link{dot_summary_plot}()},
-\code{\link{get_window_limits}()},
 \code{\link{get_window_suffix}()}
 }
 \concept{plot}

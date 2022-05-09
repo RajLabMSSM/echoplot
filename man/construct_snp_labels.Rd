@@ -17,7 +17,7 @@ construct_snp_labels(
 )
 }
 \arguments{
-\item{dat}{GWAS summary statistics subset to query the LD panel with.}
+\item{dat}{Data.}
 
 \item{verbose}{Print messages.}
 }

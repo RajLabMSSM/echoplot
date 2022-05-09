@@ -27,10 +27,10 @@ transcript_model_track(
 )
 }
 \arguments{
-\item{stacking}{The stacking type for overlapping items of the
-    track. One in \code{c(hide, dense, squish, pack,full)}. Currently,
-    only hide (don't show the track items, squish (make best use of the
-    available space) and dense (no stacking at all) are implemented.}
+\item{stacking}{The stacking type for overlapping items of the track. One in
+\code{c(hide, dense, squish, pack,full)}. Currently, only hide (don't show
+the track items, squish (make best use of the available space) and dense (no
+stacking at all) are implemented.}
 }
 \description{
 Plot a max number of transcripts per genes.

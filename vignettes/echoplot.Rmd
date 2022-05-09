@@ -88,12 +88,12 @@ print(trk_plot)
 
 ```{r trk_zoom, attr.output='style="max-height: 200px;"'}
 trk_zooms <- plot_locus(dat=finemap_DT, 
-                             LD_matrix=LD_matrix, 
-                             LD_reference=LD_reference,
-                             locus_dir=locus_dir,  
-                             save_plot=FALSE,
-                             show_plot=show_plot,
-                             zoom = c("1x","5x","10x")) 
+                        LD_matrix=LD_matrix, 
+                        LD_reference=LD_reference,
+                        locus_dir=locus_dir,  
+                        save_plot=FALSE,
+                        show_plot=show_plot,
+                        zoom = c("1x","5x","10x")) 
 names(trk_zooms) # Get zoom view names
 ```
 
@@ -128,9 +128,9 @@ Modify a specific tracks within a view.
 ```{r modify track} 
 # Modify your selected track
 modified_track <- view1_list$GWAS + 
-                      labs(title = "Modified GWAS") + 
-                      theme_dark() +
-                      theme(title = element_text(hjust = .5))
+                      ggplot2::labs(title = "Modified GWAS") + 
+                      ggplot2::theme_dark() +
+                      ggplot2::theme(title = ggplot2::element_text(hjust = .5))
 # Put it back into your track list
 view1_list[["GWAS"]] <- modified_track
 # Remove a plot you don't want
@@ -158,11 +158,10 @@ trk_plot.xgr <- echoplot::plot_locus(dat=finemap_DT,
                                      LD_matrix=LD_matrix, 
                                      LD_reference=LD_reference,
                                      locus_dir=locus_dir, 
-                           
-                           xgr_libnames=c("ENCODE_TFBS_ClusteredV3_CellTypes"), 
-                           save_plot=FALSE,
-                           show_plot=show_plot,
-                           zoom=zoom)
+                               xgr_libnames=c("ENCODE_TFBS_ClusteredV3_CellTypes"), 
+                               save_plot=FALSE,
+                               show_plot=show_plot,
+                               zoom=zoom)
 ```
 
 ```{r}
@@ -176,19 +175,17 @@ print(trk_plot.xgr)
 * Parallelizing these queries across multiple thredas speeds up this process (`nThread=<n_cores_available>`), as does reusing previously stored data which is automatically saved to the locus-specific subfolder (`<dataset_type>/<dataset_name>/<locus>/annotations/Roadmap.ChromatinMarks_CellTypes.RDS`) .
 
 ```{r trk_plot.roadmap, attr.output='style="max-height: 200px;"'} 
-trk_plot.roadmap <- plot_locus(dat=finemap_DT, 
-                               LD_matrix=LD_matrix, 
-                               LD_reference=LD_reference,
-                               locus_dir=locus_dir,  
-                               
-                               roadmap=TRUE, 
-                               roadmap_query="monocyte", 
-                               
-                               save_plot=FALSE, 
-                               show_plot=show_plot,
-                               zoom="5x", 
-                               nThread = parallel::detectCores()-1,
-                               conda_env = "echoR")
+trk_plot.roadmap <- echoplot:: plot_locus(dat=finemap_DT, 
+                                           LD_matrix=LD_matrix, 
+                                           LD_reference=LD_reference,
+                                           locus_dir=locus_dir,  
+                                           
+                                           roadmap=TRUE, 
+                                           roadmap_query="monocyte", 
+                                           
+                                           save_plot=FALSE, 
+                                           show_plot=show_plot,
+                                           zoom="5x")
 ```
 
 ```{r}
@@ -202,19 +199,19 @@ print(trk_plot.roadmap)
 (see `?NOTT_2019.bigwig_metadata` for details).
 
 ```{r trk_plot.nott_2019, attr.output='style="max-height: 200px;"'} 
-trk_plot.nott_2019 <- plot_locus(dat=finemap_DT,  
-                                 LD_matrix=LD_matrix, 
-                                 LD_reference=LD_reference,
-                                 locus_dir=locus_dir, 
-                                 
-                                 nott_epigenome=TRUE,  
-                                 nott_binwidth = 200,
-                                 nott_regulatory_rects = TRUE, 
-                                 nott_show_placseq = TRUE,
-                                 
-                                 save_plot=FALSE,
-                                 show_plot=show_plot,
-                                 zoom=zoom) 
+trk_plot.nott_2019 <- echoplot::plot_locus(dat=finemap_DT,  
+                                           LD_matrix=LD_matrix, 
+                                           LD_reference=LD_reference,
+                                           locus_dir=locus_dir, 
+                                           
+                                           nott_epigenome=TRUE,  
+                                           nott_binwidth = 200,
+                                           nott_regulatory_rects = TRUE, 
+                                           nott_show_placseq = TRUE,
+                                           
+                                           save_plot=FALSE,
+                                           show_plot=show_plot,
+                                           zoom=zoom) 
 ```
 
 ```{r}

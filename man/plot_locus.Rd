@@ -57,17 +57,7 @@ plot_locus(
 )
 }
 \arguments{
-\item{dat}{GWAS summary statistics subset to query the LD panel with.}
-
-\item{locus_dir}{Storage directory to use.}
-
-\item{LD_reference}{LD reference to use:
-\itemize{
-\item{"1KGphase1" : }{1000 Genomes Project Phase 1}
-\item{"1KGphase3" : }{1000 Genomes Project Phase 3}
-\item{"UKB" : }{Pre-computed LD from a British
-European-decent subset of UK Biobank.}
-}}
+\item{dat}{Data.}
 
 \item{PP_threshold}{The minimum fine-mapped posterior probability
  for a SNP to be considered part of a Credible Set.
@@ -90,6 +80,8 @@ from the \emph{UCSC Genome Browser}, use a set of local bigwig files.}
 
 \item{show_plot}{Print plot to screen.}
 
+\item{genomic_units}{Which genomic units to return window limits in.}
+
 \item{zoom}{Zoom into the center of the locus when plotting
 (without editing the fine-mapping results file).
 You can provide either:
@@ -105,10 +97,6 @@ to automatically generate
 multiple views of each locus.
 This can even be a mix of different style inputs: e.g.
  \code{c("1x","4.5x",25000)}.}
-
-\item{conda_env}{Conda environment to use.}
-
-\item{nThread}{Number of threads to parallelize over.}
 
 \item{verbose}{Print messages.}
 }

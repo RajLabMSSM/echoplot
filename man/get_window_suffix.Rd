@@ -21,8 +21,7 @@ Determine the plot suffix indicating its window size.
 \seealso{
 Other plot: 
 \code{\link{add_multitrack_lines}()},
-\code{\link{dot_summary_plot}()},
-\code{\link{get_window_limits}()}
+\code{\link{dot_summary_plot}()}
 }
 \concept{plot}
 \keyword{internal}

@@ -17,7 +17,9 @@ add_snp_labels(
 )
 }
 \arguments{
-\item{dat}{GWAS summary statistics subset to query the LD panel with.}
+\item{dat}{Data.}
+
+\item{genomic_units}{Which genomic units to return window limits in.}
 }
 \description{
 Add SNP labels for Manhattan plot.

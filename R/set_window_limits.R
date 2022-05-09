@@ -12,7 +12,7 @@ set_window_limits <- function(TRKS,
         # print(x)
         trk <- TRKS[[x]]
         genomic_units <- guess_genomic_units(gg = trk)
-        xlims <- get_window_limits(
+        xlims <- echoannot::get_window_limits(
             dat=dat,
             zoom = if(x %in% exceptions) "1x" else zoom,
             genomic_units=genomic_units,

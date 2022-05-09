@@ -1,4 +1,3 @@
-
 zoom_polygon <- function(dat,
                          genomic_units="Mb",
                          zoom="5x",
@@ -8,10 +7,10 @@ zoom_polygon <- function(dat,
     x <- y <- NULL;
     
     messager("+ Constructing zoom polygon...",v=verbose)
-    xlims_orig <- get_window_limits(dat = dat,
+    xlims_orig <- echoannot::get_window_limits(dat = dat,
                                     genomic_units = genomic_units,
                                     verbose = FALSE)
-    xlims_zoom <- get_window_limits(dat = dat,
+    xlims_zoom <- echoannot::get_window_limits(dat = dat,
                                     zoom = zoom,
                                     genomic_units = genomic_units,
                                     verbose = FALSE)
