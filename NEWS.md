@@ -1,3 +1,9 @@
+# echoplot 0.99.3
+
+## Bug fixes 
+
+* Fix `slice_max` bug in `transcript_model_track`.
+
 # echoplot 0.99.2
 
 ## Bug fixes 
