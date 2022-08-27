@@ -106,7 +106,8 @@ transcript_model_track <- function(dat,
         #### ggbio ####
         tx <- get_transcripts(gr.snp = gr.snp,
                               max_transcripts = max_transcripts,
-                              remove_pseudogenes = remove_pseudogenes)
+                              remove_pseudogenes = remove_pseudogenes,
+                              verbose = verbose)
         if(requireNamespace("pals")){
             # Ensure teh palette size is always big enough for the
             ## number of unique genes.

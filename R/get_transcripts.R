@@ -23,11 +23,13 @@
 #' @inheritParams plot_locus
 #' @keywords internal
 #' @importFrom GenomicRanges seqnames findOverlaps makeGRangesFromDataFrame
+#' @importFrom dplyr arrange desc filter row_number ungroup n_distinct
+#' @importFrom data.table as.data.table
 get_transcripts <- function(gr.snp,
                             max_transcripts=1,
                             remove_pseudogenes=TRUE,
                             verbose=TRUE){
-    symbol <- tx_name <- tx_biotype <- NULL;
+    symbol <- tx_name <- tx_biotype <- width <- NULL;
     requireNamespace("EnsDb.Hsapiens.v75") 
     requireNamespace("AnnotationFilter")
     requireNamespace("ensembldb")
@@ -51,19 +53,17 @@ get_transcripts <- function(gr.snp,
                                         ignore.strand=TRUE)
     
     #### limit the number of transcript per gene ####
-    tx.filt <- data.frame(txdb_transcripts[S4Vectors::subjectHits(hits),]) %>%
+    tx.filt <- data.frame(txdb_transcripts[S4Vectors::subjectHits(hits),]) |>
         ## !!IMPORTANT!! If unique() isn't applied here,
         ## dplyr will pick duplicates of the same transcript
-        unique() %>%
-        subset((!is.na(symbol)) & (!is.na(tx_name))) %>%
-        dplyr::group_by(symbol) %>%
-        # slice_max does not behave as expected.
-        # If you don't explicitly group by the group var,
-        ## you will only return the top n transcripts overall,
-        ## regardless of genes (really dumb...)
-        dplyr::slice_max(order_by = symbol, #c(symbol,width),
-                         n = max_transcripts,
-                         with_ties = FALSE) %>%
+        unique() |>
+        subset((!is.na(symbol)) & (!is.na(tx_name))) |>
+        dplyr::group_by(symbol) |>
+        # This operation does not involve huge datasets
+        # group & arrange & filter should be fine in terms of speed
+        dplyr::arrange(dplyr::desc(width)) |> 
+        dplyr::filter(dplyr::row_number() %in% seq_len(max_transcripts)) |>
+        dplyr::ungroup() |> 
         data.table::as.data.table()
     
     #### remove_pseudogenes ####
