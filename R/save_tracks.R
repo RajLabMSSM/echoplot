@@ -13,7 +13,7 @@ save_tracks <- function(locus_dir,
                 tracks_folder, 
                 paste(paste(gsub("[:]|[\n]|[/]|[ ]","-",x), "trk",sep="_"),
                       locus,LD_reference,window_suffix, "RDS",sep="."))
-            messager("+ PLOT:: Saving ggplots track:",x,"==>",rds_path,
+            messager("+ echoplot:: Saving ggplots track:",x,"==>",rds_path,
                     v=verbose)
             saveRDS(TRKS_zoom[[x]], rds_path)
             return(x)
@@ -24,7 +24,7 @@ save_tracks <- function(locus_dir,
         trk_paths <- rds_path <- file.path(
             tracks_folder, paste("multiview",locus,LD_reference,window_suffix,
                                  "RDS",sep="."))
-        messager("+ PLOT:: Saving ggplots tracks list ==>",rds_path, v=verbose)
+        messager("+ echoplot:: Saving ggplots tracks list ==>",rds_path, v=verbose)
         saveRDS(TRKS_zoom, rds_path)
     }
     return(trk_paths)

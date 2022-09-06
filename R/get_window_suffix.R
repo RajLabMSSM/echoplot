@@ -16,7 +16,7 @@
 get_window_suffix <- function(dat,
                               zoom,
                               verbose=TRUE){
-    messager("+ PLOT:: Get window suffix...",v=verbose)
+    messager("+ echoplot:: Get window suffix...",v=verbose)
     window_suffix <- if(is.null(zoom)){
         return(paste0(DescTools::RoundTo(
             (max(dat$POS) - min(dat$POS))/1000, 100),"kb"))

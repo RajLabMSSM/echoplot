@@ -76,7 +76,7 @@ transcript_model_track <- function(dat,
         requireNamespace("AnnotationFilter")
         requireNamespace("GenomicFeatures")
         
-        messager("+ PLOT:: Gene Model Track",v=verbose)
+        messager("+ echoplot:: Gene Model Track",v=verbose)
         txdb <-  EnsDb.Hsapiens.v75::EnsDb.Hsapiens.v75
         tx <- ensembldb::getGeneRegionTrackForGviz(
             txdb,

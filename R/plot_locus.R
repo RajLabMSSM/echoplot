@@ -191,7 +191,7 @@ plot_locus <- function(dat,
     TRKS <- NULL;
     # Track: Summary
     if(dot_summary){
-        messager("++ PLOT:: Creating dot plot summary of fine-mapping results.")
+        messager("++ echoplot:: Creating dot plot summary of fine-mapping results.")
         TRKS[["Summary"]] <- dot_summary_plot(dat = dat,
                                               credset_thresh = credset_thresh,
                                               show_plot = FALSE)
@@ -199,7 +199,7 @@ plot_locus <- function(dat,
     ####  Track: Main (GWAS) frozen ####
     full_window_name <- paste(dataset_type,"full window")
     if(plot_full_window){
-        messager("++ PLOT::",dataset_type,"full window track", v=verbose)
+        messager("++ echoplot::",dataset_type,"full window track", v=verbose)
         TRKS[[full_window_name]] <- snp_track_merged(
             dat = dat,
               yvar = "-log10(P)",
@@ -218,7 +218,7 @@ plot_locus <- function(dat,
     }
     
     ####  Track: Main (GWAS) ####
-    messager("++ PLOT::",dataset_type,"track", v=verbose)
+    messager("++ echoplot::",dataset_type,"track", v=verbose)
     TRKS[[dataset_type]] <- snp_track_merged(
         dat = dat,
           yvar = "-log10(P)",
@@ -235,7 +235,7 @@ plot_locus <- function(dat,
     
     #### Track: QTL ####
     for (qtl in qtl_prefixes){
-        messager("++ PLOT::",qtl,"track", v=verbose)
+        messager("++ echoplot::",qtl,"track", v=verbose)
         pval_col <- guess_pvalue_col(dat, QTL_prefix = qtl)
         TRKS[[qtl]]  <- snp_track_merged(
             dat = dat,
@@ -248,7 +248,7 @@ plot_locus <- function(dat,
               verbose = verbose)
     }
     #### Track: Fine-mapping ####
-    messager("++ PLOT:: Merged fine-mapping track", v=verbose)
+    messager("++ echoplot:: Merged fine-mapping track", v=verbose)
     TRKS[["Fine-mapping"]] <- snp_track_merged(
         dat = dat,
         yvar = "PP",
@@ -263,7 +263,7 @@ plot_locus <- function(dat,
     ##### Track: Gene Models ####
     # DB tutorial: https://rdrr.io/bioc/ensembldb/f/vignettes/ensembldb.Rmd
     if(gene_track){
-        messager("++ PLOT:: Adding Gene model track.",v=verbose)
+        messager("++ echoplot:: Adding Gene model track.",v=verbose)
         try({
             TRKS[["Genes"]] <- transcript_model_track(
                 dat = dat,
@@ -373,7 +373,7 @@ plot_locus <- function(dat,
             # The steps MUST come before reorder_tracks
             if(window_suffix=="1x"){
                 # This track becomes redundant when you don't zoom in at all.
-                messager("+ PLOT:: Removing",full_window_name,
+                messager("+ echoplot:: Removing",full_window_name,
                          "track @ zoom=1x",v=verbose)
                 TRKS_zoom[[full_window_name]] <- NULL
             }
@@ -426,7 +426,7 @@ plot_locus <- function(dat,
                 paste("multiview",locus,LD_reference,
                       window_suffix,plot_format,sep="."))
             if(save_plot){
-                messager("+ PLOT:: Saving plot ==>",plot_path)
+                messager("+ echoplot:: Saving plot ==>",plot_path)
                 ggplot2::ggsave(filename = plot_path,
                                 plot = TRKS_FINAL,
                                 height = height,

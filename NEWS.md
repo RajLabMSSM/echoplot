@@ -1,3 +1,10 @@
+# echoplot 0.99.4
+
+## New features
+
+* Replace "PLOT::" with "echoplot::"
+* Add Issues templates. 
+
 # echoplot 0.99.3
 
 ## Bug fixes 

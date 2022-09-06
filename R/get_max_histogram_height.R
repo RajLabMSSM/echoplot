@@ -9,7 +9,7 @@ get_max_histogram_height <- function(gg,
     requireNamespace("ggplot2")
     
     if(echodata::is_ggbio(gg)) gg <- gg@ggplot
-    messager("+ PLOT:: Calculating max histogram height",v=verbose)
+    messager("+ echoplot:: Calculating max histogram height",v=verbose)
     dat <- ggplot2::ggplot_build(gg)$data[[1]]
     max_height <- max(dat$ymax, na.rm = TRUE)
     if(!is.null(round_to)){

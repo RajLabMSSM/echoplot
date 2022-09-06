@@ -15,7 +15,7 @@ construct_snp_labels <- function(dat,
                                   verbose=FALSE){
     rowID <- type <- P <- leadSNP <- CS <- Support <- Consensus_SNP <- NULL;
     
-    messager("+ PLOT:: Constructing SNP labels...", v=verbose)
+    messager("+ echoplot:: Constructing SNP labels...", v=verbose)
     labelSNPs <- data.table::data.table()
     dat <- data.table::as.data.table(dat)
     dat$Mb <- dat$POS/1000000
