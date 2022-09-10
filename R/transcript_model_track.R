@@ -38,7 +38,7 @@
 #' @importFrom stats setNames
 #' @importFrom methods show
 #' @examples
-#' dat <- echodata::BST1
+#' dat <- echodata::BST1 
 #' gene_track <- echoplot::transcript_model_track(dat=dat)
 transcript_model_track <- function(dat,
                                    max_transcripts=1,
