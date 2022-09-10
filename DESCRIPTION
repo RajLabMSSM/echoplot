@@ -2,7 +2,7 @@ Package: echoplot
 Type: Package
 Title: echoverse module: Locus plot creation for fine-mapping and 
     colocalization studies
-Version: 0.99.4
+Version: 0.99.5
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
@@ -37,11 +37,17 @@ Imports:
     ggplot2,
     ggbio,
     ggrepel,
+    patchwork, 
     DescTools,
     GenomicRanges,
-    patchwork, 
+    EnsDb.Hsapiens.v75,
+    ensembldb,
+    AnnotationFilter,
+    GenomicFeatures,
+    S4Vectors,
     data.table,
-    dplyr
+    dplyr,
+    RColorBrewer
 Suggests:
     markdown,
     rmarkdown,
@@ -54,12 +60,7 @@ Suggests:
     badger,
     hexSticker,
     utils,
-    Gviz,
-    EnsDb.Hsapiens.v75,
-    ensembldb,
-    AnnotationFilter,
-    GenomicFeatures,
-    S4Vectors,
+    Gviz, 
     stringr,
     pals
 Remotes:

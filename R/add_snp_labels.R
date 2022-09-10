@@ -69,7 +69,7 @@ add_snp_labels <- function(snp_plot,
                                   # nudge_y= if(absolute_labels).5 else NULL,
                                   segment.size = .75,
                                   fill = NA,
-                                  alpha=1,
+                                  alpha = 1,
                                   seed = 1,
                                   size = 3) +
         # Enhance the colors of SNPs with labeled background (to see them better)

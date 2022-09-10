@@ -28,11 +28,17 @@ get_transcripts(
   gr.snp,
   max_transcripts = 1,
   remove_pseudogenes = TRUE,
+  tx_biotypes = NULL,
   verbose = TRUE
 )
 }
 \arguments{
 \item{max_transcripts}{Maximum number of transcripts per gene.}
+
+\item{tx_biotypes}{Transcript biotypes to include in the gene model track. 
+By default (\code{NULL}), all transcript biotypes will be included.
+See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+all available biotypes}
 
 \item{verbose}{Print messages.}
 }

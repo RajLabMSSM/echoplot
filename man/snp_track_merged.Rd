@@ -10,6 +10,7 @@ snp_track_merged(
   labels_subset = c("Lead", "UCS", "Consensus"),
   absolute_labels = FALSE,
   label_type = "rsid_only",
+  label_leadsnp = TRUE,
   sig_cutoff = 5e-08,
   cutoff_lab = paste("P <", sig_cutoff),
   point_alpha = 0.5,

@@ -9,6 +9,7 @@ plot_locus(
   locus_dir,
   LD_matrix = NULL,
   LD_reference = NULL,
+  facet_formula = "Method~.",
   dataset_type = "GWAS",
   color_r2 = TRUE,
   finemap_methods = c("ABF", "FINEMAP", "SUSIE", "POLYFUN_SUSIE"),
@@ -16,22 +17,24 @@ plot_locus(
   track_heights = NULL,
   plot_full_window = TRUE,
   dot_summary = FALSE,
-  qtl_prefixes = NULL,
+  qtl_suffixes = NULL,
   mean.PP = TRUE,
   credset_thresh = 0.95,
   consensus_thresh = 2,
   sig_cutoff = 5e-08,
   gene_track = TRUE,
+  tx_biotypes = NULL,
   point_size = 1,
   point_alpha = 0.6,
+  density_adjust = 0.2,
   snp_group_lines = c("Lead", "UCS", "Consensus"),
   xtext = FALSE,
   show_legend_genes = TRUE,
   xgr_libnames = NULL,
-  n_top_xgr = 5,
+  xgr_n_top = 5,
   roadmap = FALSE,
   roadmap_query = NULL,
-  n_top_roadmap = 7,
+  roadmap_n_top = 7,
   zoom_exceptions_str = "*full window$|zoom_polygon",
   nott_epigenome = FALSE,
   nott_regulatory_rects = TRUE,
@@ -94,8 +97,10 @@ GWAS/eQTL locus (not just the zoomed-in portion).}
 \item{dot_summary}{Include a dot-summary plot that highlights the
 Lead, Credible Set, and Consensus SNPs.}
 
-\item{qtl_prefixes}{If columns with QTL data is included in \code{dat},
-you can indicate which columns those are with one or more string prefixes.}
+\item{qtl_suffixes}{If columns with QTL data is included in \code{dat},
+you can indicate which columns those are with one or more string suffixes
+(e.g. \code{qtl_suffixes=c(".eQTL1",".eQTL2")} to use the columns 
+"P.QTL1", "Effect.QTL1", "P.QTL2", "Effect.QTL2").}
 
 \item{mean.PP}{Include a track showing mean Posterior Probabilities (PP) 
 averaged across all fine-mapping methods.}
@@ -114,9 +119,17 @@ p-value significance cutoff.}
 
 \item{gene_track}{Include a track showing gene bodies.}
 
+\item{tx_biotypes}{Transcript biotypes to include in the gene model track. 
+By default (\code{NULL}), all transcript biotypes will be included.
+See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+all available biotypes}
+
 \item{point_size}{Size of each data point.}
 
 \item{point_alpha}{Opacity of each data point.}
+
+\item{density_adjust}{Passed to \code{adjust} argument in 
+\link[ggplot2]{geom_density}.}
 
 \item{snp_group_lines}{Include vertical lines to help highlight 
 SNPs belonging to one or more of the following groups:
@@ -134,7 +147,7 @@ For full list of libraries see
  here}.
  Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.}
 
-\item{n_top_xgr}{Passed to \link[echoannot]{XGR_plot}.
+\item{xgr_n_top}{Passed to \link[echoannot]{XGR_plot}.
 Number of top annotations to be plotted
 (passed to \link[echoannot]{XGR_filter_sources} and then 
 \link[echoannot]{XGR_filter_assays}).}
@@ -145,7 +158,7 @@ Number of top annotations to be plotted
 metadata contains a string or any items from  a list of strings
 (e.g. \code{"brain"} or \code{c("brain","liver","monocytes")}).}
 
-\item{n_top_roadmap}{Passed to \link[echoannot]{ROADMAP_plot}.
+\item{roadmap_n_top}{Passed to \link[echoannot]{ROADMAP_plot}.
 Number of top annotations to be plotted
 (passed to \link[echoannot]{ROADMAP_merge_and_process_grl}).}
 
@@ -230,7 +243,8 @@ dat<- echodata::BST1
 LD_matrix <- echodata::BST1_LD_matrix
 locus_dir <- file.path(tempdir(),echodata::locus_dir)
 
-plot_list <- echoplot::plot_locus(dat = dat,
-                                  locus_dir=locus_dir,
-                                  LD_matrix=LD_matrix)
+plt <- echoplot::plot_locus(dat = dat,
+                            locus_dir=locus_dir,
+                            LD_matrix=LD_matrix,
+                            show_plot = FALSE)
 }

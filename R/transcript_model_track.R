@@ -16,17 +16,15 @@
 #' transcripts of the gene. For shortest and longest, only the longest 
 #' or shortest transcript model is retained. For meta, a meta-transcript
 #'  containing the union of all exons is formed 
-#'  (essentially identical to the operation reduce(geneModel)).
+#'  (essentially identical to the operation \code{reduce(geneModel)}).
 #' Passed to \link[Gviz]{plotTracks}.
-#' @param max_transcripts Maximum number of transcripts per gene.
 #' @param remove_pseudogenes Whether to remove known pseudogenes.
-#' @param show_plot Print the plot.
 #' @param method Method to use: "gviz" or "ggplot".
 #' @param xtext Include x-axis title and text.
 #' @param expand_x_mult Expand the x-axis limits to include partially 
 #' overlapping transcripts.
 #' @param show.legend Show gene plot legend.
-#' @param verbose Print messages. 
+#' @inheritParams plot_locus
 #' @inheritParams Gviz::plotTracks
 #' @inheritParams Gviz::GeneRegionTrack
 #' 
@@ -35,14 +33,16 @@
 #' \href{https://bioconductor.org/packages/devel/bioc/vignettes/Gviz/inst/doc/Gviz.html#45_GeneRegionTrack}{Gvix tutorial}
 #' \href{http://bioconductor.org/packages/devel/bioc/vignettes/ggbio/inst/doc/ggbio.pdf}{ggbio tutorial}
 #'
+#' @export
 #' @importFrom echodata dt_to_granges
 #' @importFrom stats setNames
-#' @export
+#' @importFrom methods show
 #' @examples
 #' dat <- echodata::BST1
 #' gene_track <- echoplot::transcript_model_track(dat=dat)
 transcript_model_track <- function(dat,
                                    max_transcripts=1,
+                                   tx_biotypes=NULL,
                                    remove_pseudogenes=TRUE,
                                    show_plot=FALSE,
                                    show.legend=FALSE,
@@ -106,6 +106,7 @@ transcript_model_track <- function(dat,
         #### ggbio ####
         tx <- get_transcripts(gr.snp = gr.snp,
                               max_transcripts = max_transcripts,
+                              tx_biotypes = tx_biotypes,
                               remove_pseudogenes = remove_pseudogenes,
                               verbose = verbose)
         if(requireNamespace("pals")){
@@ -165,7 +166,7 @@ transcript_model_track <- function(dat,
             tx.models <- tx.models@ggplot
         }
     }
-    if(show_plot) print(tx.models)
+    if(show_plot) methods::show(tx.models)
     return(tx.models)
 }
 

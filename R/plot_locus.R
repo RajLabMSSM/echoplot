@@ -17,13 +17,20 @@
 #' GWAS/eQTL locus (not just the zoomed-in portion). 
 #' @param dot_summary Include a dot-summary plot that highlights the
 #'  Lead, Credible Set, and Consensus SNPs.
-#' @param qtl_prefixes If columns with QTL data is included in \code{dat},
-#' you can indicate which columns those are with one or more string prefixes.
+#' @param qtl_suffixes If columns with QTL data is included in \code{dat},
+#' you can indicate which columns those are with one or more string suffixes
+#' (e.g. \code{qtl_suffixes=c(".eQTL1",".eQTL2")} to use the columns 
+#' "P.QTL1", "Effect.QTL1", "P.QTL2", "Effect.QTL2").
 #' @param mean.PP Include a track showing mean Posterior Probabilities (PP) 
 #' averaged across all fine-mapping methods.
 #' @param sig_cutoff Filters out SNPs to plot based on an (uncorrected)
 #' p-value significance cutoff. 
 #' @param gene_track Include a track showing gene bodies.
+#' @param max_transcripts Maximum number of transcripts per gene.
+#' @param tx_biotypes Transcript biotypes to include in the gene model track. 
+#' By default (\code{NULL}), all transcript biotypes will be included.
+#' See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+#' all available biotypes
 #' @param point_size Size of each data point.
 #' @param point_alpha Opacity of each data point.
 #' @param snp_group_lines Include vertical lines to help highlight 
@@ -40,7 +47,7 @@
 #' \href{http://XGR_r-forge.r-project.org/#annotations-at-the-genomic-region-level}{
 #'  here}.
 #'  Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.
-#' @param n_top_xgr Passed to \link[echoannot]{XGR_plot}.
+#' @param xgr_n_top Passed to \link[echoannot]{XGR_plot}.
 #' Number of top annotations to be plotted
 #' (passed to \link[echoannot]{XGR_filter_sources} and then 
 #' \link[echoannot]{XGR_filter_assays}).
@@ -60,7 +67,7 @@
 #' from the \emph{UCSC Genome Browser}, use a set of local bigwig files.
 #' 
 #' @param roadmap Find and plot annotations from Roadmap.
-#' @param n_top_roadmap Passed to \link[echoannot]{ROADMAP_plot}.
+#' @param roadmap_n_top Passed to \link[echoannot]{ROADMAP_plot}.
 #' Number of top annotations to be plotted
 #' (passed to \link[echoannot]{ROADMAP_merge_and_process_grl}). 
 #' @param roadmap_query Only plot annotations from Roadmap whose
@@ -100,13 +107,15 @@
 #' LD_matrix <- echodata::BST1_LD_matrix
 #' locus_dir <- file.path(tempdir(),echodata::locus_dir)
 #'
-#' plot_list <- echoplot::plot_locus(dat = dat,
-#'                                   locus_dir=locus_dir,
-#'                                   LD_matrix=LD_matrix)
+#' plt <- echoplot::plot_locus(dat = dat,
+#'                             locus_dir=locus_dir,
+#'                             LD_matrix=LD_matrix,
+#'                             show_plot = FALSE)
 plot_locus <- function(dat,
                        locus_dir,
                        LD_matrix=NULL,
                        LD_reference=NULL,
+                       facet_formula="Method~.",
                        dataset_type="GWAS",
                        color_r2=TRUE,
                        finemap_methods=c("ABF","FINEMAP",
@@ -115,14 +124,16 @@ plot_locus <- function(dat,
                        track_heights=NULL,
                        plot_full_window=TRUE,
                        dot_summary=FALSE,
-                       qtl_prefixes=NULL,
+                       qtl_suffixes=NULL,
                        mean.PP=TRUE,
                        credset_thresh=.95,
                        consensus_thresh=2,
                        sig_cutoff=5e-8,
                        gene_track=TRUE,
+                       tx_biotypes=NULL,
                        point_size=1,
                        point_alpha=.6,
+                       density_adjust=0.2,
                        snp_group_lines=c("Lead","UCS","Consensus"),
                        xtext=FALSE,
                        show_legend_genes=TRUE,
@@ -131,11 +142,11 @@ plot_locus <- function(dat,
                        #c("ENCODE_TFBS_ClusteredV3_CellTypes",
                        #   "ENCODE_DNaseI_ClusteredV3_CellTypes",
                        # "Broad_Histone"),
-                       n_top_xgr=5,
+                       xgr_n_top=5,
                        
                        roadmap=FALSE,
                        roadmap_query=NULL,
-                       n_top_roadmap=7,
+                       roadmap_n_top=7,
                        zoom_exceptions_str="*full window$|zoom_polygon",
                        
                        nott_epigenome=FALSE,
@@ -164,7 +175,6 @@ plot_locus <- function(dat,
      
     requireNamespace("ggplot2")
     requireNamespace("patchwork")
-    POS <- P <- leadSNP <- NULL; 
     
     locus <- basename(locus_dir)
     messager("+-------- Locus Plot: ",locus,"--------+",v=verbose)
@@ -175,46 +185,50 @@ plot_locus <- function(dat,
         credset_thresh = credset_thresh,
         consensus_thresh = consensus_thresh,
         verbose = FALSE)
-    dat <- echodata::fillNA_CS_PP(dat = dat)
-    dat$Mb <- dat$POS/1000000
+    dat <- echodata::fillNA_CS_PP(dat = dat) |> data.table::data.table()
+    dat <- echoannot::add_mb(dat = dat)
     
     available_methods <- gsub("\\.PP$","",grep("*\\.PP$",colnames(dat),
-                                               value = TRUE)) %>% unique()
-    finemap_methods <- unique(finemap_methods[finemap_methods %in% available_methods])
+                                               value = TRUE)) |> unique()
+    finemap_methods <- unique(
+        finemap_methods[finemap_methods %in% available_methods]
+    )
     if(mean.PP){finemap_methods <- unique(c(finemap_methods, "mean"))}
     # Add LD into the dat
-    dat <- echoLD::get_lead_r2(
-        dat = dat,
-        LD_matrix = LD_matrix,
-        LD_format = "guess")
+    if(!is.null(LD_matrix)){
+        dat <- echoLD::get_lead_r2(
+            dat = dat,
+            LD_matrix = LD_matrix,
+            LD_format = "guess",
+            verbose = verbose)
+    }
     # Begin constructing tracks
     TRKS <- NULL;
     # Track: Summary
-    if(dot_summary){
-        messager("++ echoplot:: Creating dot plot summary of fine-mapping results.")
+    if(isTRUE(dot_summary)){
+        messager(
+            "++ echoplot:: Creating dot plot summary of fine-mapping results.",
+            v=verbose)
         TRKS[["Summary"]] <- dot_summary_plot(dat = dat,
                                               credset_thresh = credset_thresh,
                                               show_plot = FALSE)
     }
     ####  Track: Main (GWAS) frozen ####
     full_window_name <- paste(dataset_type,"full window")
-    if(plot_full_window){
+    if(isTRUE(plot_full_window)){
         messager("++ echoplot::",dataset_type,"full window track", v=verbose)
         TRKS[[full_window_name]] <- snp_track_merged(
             dat = dat,
               yvar = "-log10(P)",
               sig_cutoff = sig_cutoff,
+              genomic_units = genomic_units,
               labels_subset = NULL,
               xtext = TRUE,
-              show.legend = FALSE,
+              show.legend = FALSE, 
               dataset_type = gsub(" ","\n",full_window_name),
               strip.text.y.angle = strip.text.y.angle,
-              verbose = verbose) +
-            ggplot2::geom_point(data = subset(dat, leadSNP),
-                                ggplot2::aes(x=POS, y=-log10(P)),
-                       color="red",pch=9, size=3, 
-                       show.legend = FALSE, alpha=1) +
-            ggplot2::theme(axis.title.x = ggplot2::element_blank())
+              facet_formula = facet_formula,
+              verbose = verbose) 
     }
     
     ####  Track: Main (GWAS) ####
@@ -222,29 +236,30 @@ plot_locus <- function(dat,
     TRKS[[dataset_type]] <- snp_track_merged(
         dat = dat,
           yvar = "-log10(P)",
+          genomic_units = genomic_units,
           sig_cutoff = sig_cutoff,
           labels_subset = NULL,
           xtext = xtext,
           dataset_type = "GWAS",
           strip.text.y.angle = strip.text.y.angle,
-          verbose = verbose) +
-        ggplot2::geom_point(data = subset(dat, leadSNP),
-                            ggplot2::aes(x=POS, y=-log10(P)),
-                   color="red",pch=9, size=3, 
-                   show.legend = FALSE, alpha=1)
+          facet_formula = facet_formula,
+          verbose = verbose) 
     
     #### Track: QTL ####
-    for (qtl in qtl_prefixes){
+    for (qtl in qtl_suffixes){
         messager("++ echoplot::",qtl,"track", v=verbose)
-        pval_col <- guess_pvalue_col(dat, QTL_prefix = qtl)
+        pval_col <- guess_pvalue_col(dat, qtl_suffix = qtl)
+        if(length(pval_col)>0) next
         TRKS[[qtl]]  <- snp_track_merged(
             dat = dat,
               yvar = paste0("-log10(",pval_col,")"),
+              genomic_units = genomic_units,
               sig_cutoff = sig_cutoff,
               labels_subset = NULL,
               xtext = xtext,
               dataset_type = qtl,
               strip.text.y.angle = strip.text.y.angle,
+              facet_formula = facet_formula,
               verbose = verbose)
     }
     #### Track: Fine-mapping ####
@@ -252,6 +267,7 @@ plot_locus <- function(dat,
     TRKS[["Fine-mapping"]] <- snp_track_merged(
         dat = dat,
         yvar = "PP",
+        genomic_units = genomic_units,
         sig_cutoff = sig_cutoff,
         absolute_labels = FALSE,
         label_type = "rsid_only",
@@ -259,28 +275,33 @@ plot_locus <- function(dat,
         show.legend = FALSE,
         xtext = xtext,
         strip.text.y.angle = strip.text.y.angle,
+        facet_formula = facet_formula,
         verbose = verbose)
-    ##### Track: Gene Models ####
+    #### Track: Gene Models ####
     # DB tutorial: https://rdrr.io/bioc/ensembldb/f/vignettes/ensembldb.Rmd
     if(gene_track){
-        messager("++ echoplot:: Adding Gene model track.",v=verbose)
-        try({
-            TRKS[["Genes"]] <- transcript_model_track(
-                dat = dat,
-                   show.legend = show_legend_genes,
-                   xtext = xtext,
-                   max_transcripts = max_transcripts,
-                   expand_x_mult=NULL,
-                   verbose=TRUE)
-        })
+        messager("++ echoplot:: Adding Gene model track.",v=verbose) 
+        TRKS[["Genes"]] <- transcript_model_track(
+            dat = dat,
+            show.legend = show_legend_genes,
+            xtext = xtext,
+            max_transcripts = max_transcripts,
+            tx_biotypes = tx_biotypes,
+            expand_x_mult=NULL,
+            verbose=verbose) 
     } 
     #### Track: XGR #### 
-    palettes <- c("Spectral","BrBG","PiYG", "PuOr")
+    palettes <- get_palettes()
     for(i in seq_len(length(xgr_libnames))){
         lib_name <- xgr_libnames[i]
         xgr_out <- echoannot::XGR_plot(dat = dat, 
+                                       locus_dir = locus_dir,
                                        lib_name = lib_name, 
-                                       palette = palettes[i]) 
+                                       palette = palettes[i],
+                                       n_top = xgr_n_top,
+                                       adjust = density_adjust,
+                                       nThread = nThread,
+                                       verbose = verbose) 
         TRKS[[lib_name]] <- xgr_out$plot
     } 
     #### Track: Roadmap #### 
@@ -288,7 +309,8 @@ plot_locus <- function(dat,
         roadmap_out <- echoannot::ROADMAP_plot(dat = dat, 
                                                roadmap_query = roadmap_query, 
                                                locus_dir = locus_dir, 
-                                               n_top = n_top_roadmap,
+                                               n_top = roadmap_n_top,
+                                               adjust = density_adjust,
                                                conda_env = conda_env,
                                                show_plot = FALSE,
                                                nThread = nThread,
@@ -309,6 +331,7 @@ plot_locus <- function(dat,
                 full_data=TRUE,
                 return_assay_track=TRUE,
                 binwidth=nott_binwidth, 
+                density_adjust = density_adjust,
                 save_annot=TRUE,
                 as_ggplot=TRUE,
                 strip.text.y.angle = strip.text.y.angle,
@@ -400,12 +423,14 @@ plot_locus <- function(dat,
                                             verbose = verbose)
             #### Construct title ####
             n_snps <- if(dataset_type %in% names(TRKS_zoom)){
-                paste0("n SNPs: ", 
-                       nrow(ggplot2::ggplot_build(
-                           TRKS_zoom[[dataset_type]])$data[[2]]),", ")
+                nrow(ggplot2::ggplot_build(
+                    TRKS_zoom[[dataset_type]])$data[[2]])
             } else {NULL}
-            title_text <- paste0(basename(locus_dir),"   (",
-                                 n_snps,"zoom: ",window_suffix,")")
+            title_text <- paste("Locus:",basename(locus_dir),
+                                 "  (",
+                                 "SNPs=",formatC(n_snps,big.mark = ","),";",
+                                 "zoom= ",window_suffix,
+                                 ")")
             
             #### Check track heights ####
             heights <- check_track_heights(TRKS = TRKS_zoom,

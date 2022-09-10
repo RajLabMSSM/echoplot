@@ -12,6 +12,7 @@
 transcript_model_track(
   dat,
   max_transcripts = 1,
+  tx_biotypes = NULL,
   remove_pseudogenes = TRUE,
   show_plot = FALSE,
   show.legend = FALSE,
@@ -31,9 +32,14 @@ transcript_model_track(
 
 \item{max_transcripts}{Maximum number of transcripts per gene.}
 
+\item{tx_biotypes}{Transcript biotypes to include in the gene model track. 
+By default (\code{NULL}), all transcript biotypes will be included.
+See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+all available biotypes}
+
 \item{remove_pseudogenes}{Whether to remove known pseudogenes.}
 
-\item{show_plot}{Print the plot.}
+\item{show_plot}{Print plot to screen.}
 
 \item{show.legend}{Show gene plot legend.}
 
@@ -54,7 +60,7 @@ of the first exon and the end location of the last exon from all
 transcripts of the gene. For shortest and longest, only the longest 
 or shortest transcript model is retained. For meta, a meta-transcript
  containing the union of all exons is formed 
- (essentially identical to the operation reduce(geneModel)).
+ (essentially identical to the operation \code{reduce(geneModel)}).
 Passed to \link[Gviz]{plotTracks}.}
 
 \item{stacking}{The stacking type for overlapping items of the track. One in
@@ -68,8 +74,6 @@ stacking at all) are implemented.}
 
 \item{expand_x_mult}{Expand the x-axis limits to include partially 
 overlapping transcripts.}
-
-\item{verbose}{Print messages.}
 }
 \description{
 Plot a max number of transcripts per genes.

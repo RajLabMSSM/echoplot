@@ -1,3 +1,16 @@
+# echoplot 0.99.5
+
+## New features
+
+* `plot_locus_multi`: New function to plot multi-GWAS/multi-ancestry results.
+* `get_transcripts_biotypes`: New exported function to help users
+    determine available biotypes.
+* `get_transcripts`: new argument `tx_biotypes=` allows user to filter by 
+    biotypes. Passes up to `plot_locus`.
+* `plot_locus`: changed `qtl_prefixes` --> `qtl_suffixes` to be consistent with 
+    `merge` naming strategy. 
+
+
 # echoplot 0.99.4
 
 ## New features
