@@ -108,8 +108,8 @@
 #' locus_dir <- file.path(tempdir(),echodata::locus_dir)
 #'
 #' plt <- echoplot::plot_locus(dat = dat,
-#'                             locus_dir=locus_dir,
-#'                             LD_matrix=LD_matrix,
+#'                             locus_dir = locus_dir,
+#'                             LD_matrix = LD_matrix,
 #'                             show_plot = FALSE)
 plot_locus <- function(dat,
                        locus_dir,
@@ -427,11 +427,12 @@ plot_locus <- function(dat,
                     TRKS_zoom[[dataset_type]])$data[[2]])
             } else {NULL}
             title_text <- paste("Locus:",basename(locus_dir),
-                                 "  (",
-                                 "SNPs=",formatC(n_snps,big.mark = ","),";",
-                                 "zoom= ",window_suffix,
-                                 ")")
-            
+                                 paste0(
+                                     "  (",
+                                     "SNPs=",formatC(n_snps,big.mark = ","),";",
+                                     "zoom=",window_suffix,
+                                     ")"
+                                 ))
             #### Check track heights ####
             heights <- check_track_heights(TRKS = TRKS_zoom,
                                                 track_heights = track_heights,
