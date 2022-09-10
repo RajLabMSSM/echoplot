@@ -9,6 +9,10 @@
     biotypes. Passes up to `plot_locus`.
 * `plot_locus`: changed `qtl_prefixes` --> `qtl_suffixes` to be consistent with 
     `merge` naming strategy. 
+    
+## Bug fixes
+
+* `transcript_model_track`: Handle when 0 transcripts are returned, without error.
 
 
 # echoplot 0.99.4

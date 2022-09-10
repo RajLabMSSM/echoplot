@@ -279,7 +279,7 @@ plot_locus <- function(dat,
         verbose = verbose)
     #### Track: Gene Models ####
     # DB tutorial: https://rdrr.io/bioc/ensembldb/f/vignettes/ensembldb.Rmd
-    if(gene_track){
+    if(isTRUE(gene_track)){
         messager("++ echoplot:: Adding Gene model track.",v=verbose) 
         TRKS[["Genes"]] <- transcript_model_track(
             dat = dat,

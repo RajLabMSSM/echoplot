@@ -109,6 +109,11 @@ transcript_model_track <- function(dat,
                               tx_biotypes = tx_biotypes,
                               remove_pseudogenes = remove_pseudogenes,
                               verbose = verbose)
+        #### Handle sitatuions where 0 genes returned ####
+        if(length(tx$tx.gr)==0){
+            messager("Returning NULL for gene track.",v=verbose)
+            return(NULL)
+        }
         if(requireNamespace("pals")){
             # Ensure teh palette size is always big enough for the
             ## number of unique genes.
