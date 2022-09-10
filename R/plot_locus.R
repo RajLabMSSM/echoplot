@@ -429,7 +429,8 @@ plot_locus <- function(dat,
             title_text <- paste("Locus:",basename(locus_dir),
                                  paste0(
                                      "  (",
-                                     "SNPs=",formatC(n_snps,big.mark = ","),";",
+                                     "SNPs=",formatC(n_snps,big.mark = ","),
+                                     "; ",
                                      "zoom=",window_suffix,
                                      ")"
                                  ))
