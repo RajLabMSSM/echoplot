@@ -74,9 +74,12 @@ add_snp_labels <- function(snp_plot,
                                   size = 3) +
         # Enhance the colors of SNPs with labeled background (to see them better)
         ggplot2::geom_point(
-            data =snp_points,
-            ggplot2::aes_string(x=genomic_units, y=yvar,color="r2"),
-                   alpha=1, pch=snp_points$shape,
-                   show.legend = show.legend)
+            data = snp_points,
+            ggplot2::aes_string(
+                x=genomic_units, y=yvar,
+                color=if("r2" %in% names(finemap_melt)) "r2" else NULL
+                ),
+            alpha=1, pch=snp_points$shape,
+            show.legend = show.legend)
     return(snp_plot_labeled)
 }

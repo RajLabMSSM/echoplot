@@ -7,26 +7,33 @@
 #' @importFrom echodata melt_finemapping_results
 #' @importFrom echoannot add_mb
 #' @importFrom stats as.formula
+#' @importFrom methods show
+#' @export
+#' @examples 
+#' dat <- echodata::BST1[seq_len(100),]
+#' plt <- snp_track_merged(dat = dat)
 snp_track_merged <- function(dat,
-                              yvar="-log10(P)",
-                              labels_subset = c("Lead","UCS","Consensus"),
-                              absolute_labels=FALSE,
-                              label_type="rsid_only",
-                              label_leadsnp=TRUE,
-                              sig_cutoff=5e-8,
-                              cutoff_lab=paste("P <",sig_cutoff),
-                              point_alpha=.5,
-                              show.legend=TRUE,
-                              xtext=TRUE,
-                              facet_formula="Method~.",
-                              dataset_type=NULL,
-                              genomic_units="POS",
-                              strip.text.y.angle=0,
-                              show_plot=FALSE,
-                              verbose=TRUE){
-    requireNamespace("ggplot2")
-    Mb <- NULL;
+                             yvar="-log10(P)",
+                             labels_subset = c("Lead","UCS","Consensus"),
+                             absolute_labels=FALSE,
+                             label_type="rsid_only",
+                             label_leadsnp=TRUE,
+                             sig_cutoff=5e-8,
+                             cutoff_lab=paste("P <",sig_cutoff),
+                             point_alpha=.5,
+                             show.legend=TRUE,
+                             xtext=TRUE,
+                             facet_formula="Method~.",
+                             dataset_type=NULL,
+                             genomic_units="POS",
+                             strip.text.y.angle=0,
+                             show_plot=FALSE,
+                             verbose=TRUE){
+    # echoverseTemplate:::args2vars(snp_track_merged)
+    # echoverseTemplate:::source_all()
+    requireNamespace("ggplot2") 
     
+    #### Prepare data ####
     if(endsWith(yvar,"PP")) {
         finemap_melt <- echodata::melt_finemapping_results(
             dat = dat,
@@ -40,30 +47,35 @@ snp_track_merged <- function(dat,
     } else {
         finemap_melt <- dat
         finemap_melt$Method <- if(is.null(dataset_type)) yvar else dataset_type
-        cutoff_lab <- paste("P <",sig_cutoff)
+        cutoff_lab <- paste0("P<",formatC(sig_cutoff))
         sig_cutoff <- -log10(sig_cutoff)
         remove_duplicates <- TRUE
         melt_methods <- FALSE
         grouping_vars <- c("SNP")
     }
     finemap_melt <- echoannot::add_mb(dat = finemap_melt)
-    
-    # Plot
+    #### Plot #####
     snp_plot <- ggplot2::ggplot(
         data = finemap_melt,
-        ggplot2::aes_string(x=genomic_units, y=yvar, color="r2")) +
+        ggplot2::aes_string(
+            x=genomic_units, y=yvar, 
+            color=if("r2" %in% names(finemap_melt)) "r2" else NULL
+        )) +
         # Bottom plot delineator
         ggplot2::geom_hline(yintercept=0) +
         ggplot2::geom_point(alpha=point_alpha, show.legend = show.legend) +
         ggplot2::scale_color_gradient(low="blue",high ="red",
                              breaks=c(0,.5,1), limits=c(0,1)) +
         ## Sig cutoff line
-        ggplot2::geom_hline(yintercept=sig_cutoff, 
+        ggplot2::geom_hline(yintercept = sig_cutoff, 
                             alpha=.5, linetype=2, size=.5, 
                    color="black") +
-        ggplot2::geom_text(ggplot2::aes(x=min(Mb), y=sig_cutoff*1.1),
+        ggplot2::geom_text(
+            data = finemap_melt[1,],
+            ggplot2::aes_string(x=paste0("(",genomic_units,")"), 
+                                y="sig_cutoff*1.1"),
                   label=cutoff_lab,
-                  size=3,color="grey", hjust = 0) +
+                  size=3, color="grey", hjust = 2) +
         ggplot2::labs(color=bquote(r^2),
              y=if(startsWith(yvar,"-log10")){
                  bquote("-log"[10]~"(p)")
@@ -122,7 +134,7 @@ snp_track_merged <- function(dat,
                                 show.legend = FALSE, alpha=1) +
             ggplot2::theme(axis.title.x = ggplot2::element_blank())
     }
-    if(show_plot) print(snp_plot)
+    if(isTRUE(show_plot)) methods::show(snp_plot)
     return(snp_plot)
 }
 

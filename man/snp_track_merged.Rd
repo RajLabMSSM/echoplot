@@ -49,4 +49,8 @@ p-value significance cutoff.}
 Manhattan plot of GWAS/QTL data with various fine-mapping 
 related annotations. Support function for \link[echoplot]{plot_locus}.
 }
+\examples{
+dat <- echodata::BST1[seq_len(100),]
+plt <- snp_track_merged(dat = dat)
+}
 \keyword{internal}

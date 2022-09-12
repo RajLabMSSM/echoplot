@@ -79,6 +79,6 @@ overlapping transcripts.}
 Plot a max number of transcripts per genes.
 }
 \examples{
-dat <- echodata::BST1
+dat <- echodata::BST1 
 gene_track <- echoplot::transcript_model_track(dat=dat)
 }

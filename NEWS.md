@@ -9,6 +9,7 @@
     biotypes. Passes up to `plot_locus`.
 * `plot_locus`: changed `qtl_prefixes` --> `qtl_suffixes` to be consistent with 
     `merge` naming strategy. 
+* Export `snp_track_merged`. 
     
 ## Bug fixes
 
