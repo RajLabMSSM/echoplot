@@ -9,7 +9,7 @@ get_tx_biotypes(tx_biotypes = NULL, as_filter = TRUE, verbose = TRUE)
 \arguments{
 \item{tx_biotypes}{Transcript biotypes to include in the gene model track. 
 By default (\code{NULL}), all transcript biotypes will be included.
-See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+See \link[echoplot]{get_tx_biotypes} for a full list of 
 all available biotypes}
 
 \item{as_filter}{Return results as an
@@ -26,5 +26,5 @@ List all available transcript biotypes in the
 \link[EnsDb.Hsapiens.v75]{EnsDb.Hsapiens.v75} database.
 }
 \examples{
-tx_filter <- get_transcripts_biotypes()
+tx_filter <- get_tx_biotypes()
 }

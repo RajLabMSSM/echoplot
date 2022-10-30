@@ -37,7 +37,7 @@ get_transcripts(
 
 \item{tx_biotypes}{Transcript biotypes to include in the gene model track. 
 By default (\code{NULL}), all transcript biotypes will be included.
-See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+See \link[echoplot]{get_tx_biotypes} for a full list of 
 all available biotypes}
 
 \item{verbose}{Print messages.}

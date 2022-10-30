@@ -12,7 +12,7 @@
 #' @importFrom ensembldb transcripts
 #' @importFrom AnnotationFilter TxBiotypeFilter
 #' @examples 
-#' tx_filter <- get_transcripts_biotypes()
+#' tx_filter <- get_tx_biotypes()
 get_tx_biotypes <- function(tx_biotypes=NULL,
                             as_filter=TRUE,
                             verbose=TRUE){ 

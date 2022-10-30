@@ -6,7 +6,7 @@
 #' @family plot
 #' @export
 #' @importFrom data.table melt.data.table
-#' @importFrom dplyr %>% arrange mutate
+#' @importFrom dplyr arrange mutate
 #' @examples
 #' dat <- echodata::BST1
 #' gp <- echoplot::dot_summary_plot(dat=dat)
@@ -18,8 +18,8 @@ dot_summary_plot <- function(dat,
     requireNamespace("ggplot2")
     
     snp.labs <- construct_snp_labels(dat = dat,
-                                      remove_duplicates = FALSE) %>%
-        dplyr::arrange(CHR,POS) %>%
+                                      remove_duplicates = FALSE) |>
+        dplyr::arrange(CHR,POS) |>
         dplyr::mutate(SNP=factor(SNP, levels = unique(SNP), ordered = TRUE))
     CS_cols <- grep(".CS$",colnames(snp.labs), value = TRUE)
     PP_cols <- grep(".PP$",colnames(snp.labs), value = TRUE)
@@ -31,7 +31,7 @@ dot_summary_plot <- function(dat,
             id.vars = c("SNP","CHR","POS","leadSNP","Consensus_SNP",
                         "color","size","shape"),
             measure.vars =  list(CS=CS_cols, PP=PP_cols),
-            variable.name = "method") %>%
+            variable.name = "method") |>
             dplyr::mutate(method=factor(x = methodDict[method],
                                         levels = rev(unname(methodDict)), 
                                         ordered = TRUE),

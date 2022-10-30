@@ -34,7 +34,7 @@ transcript_model_track(
 
 \item{tx_biotypes}{Transcript biotypes to include in the gene model track. 
 By default (\code{NULL}), all transcript biotypes will be included.
-See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+See \link[echoplot]{get_tx_biotypes} for a full list of 
 all available biotypes}
 
 \item{remove_pseudogenes}{Whether to remove known pseudogenes.}
@@ -74,9 +74,13 @@ stacking at all) are implemented.}
 
 \item{expand_x_mult}{Expand the x-axis limits to include partially 
 overlapping transcripts.}
+
+\item{verbose}{Print messages.}
 }
 \description{
 Plot a max number of transcripts per genes.
+See \link[echoplot]{get_tx_biotypes} for a full list of
+all available biotypes.
 }
 \examples{
 dat <- echodata::BST1 

@@ -31,6 +31,7 @@ snp_track_merged <- function(dat,
     # echoverseTemplate:::args2vars(snp_track_merged)
     # echoverseTemplate:::source_all()
     requireNamespace("ggplot2") 
+    leadSNP <- NULL;
     
     #### Prepare data ####
     if(endsWith(yvar,"PP")) {

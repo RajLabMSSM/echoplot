@@ -3,14 +3,14 @@
 check_track_heights <- function(TRKS,
                                 track_heights=NULL,
                                 default_height=1,
-                                verbose=T){
+                                verbose=TRUE){
     messager("+ Checking track heights...",v=verbose)
     if(is.null(track_heights)){
         track_heights <- heights_dict(keys=names(TRKS))
     } else {
         # Ensures n TRKS == n track_heights,
         ## even if user-supplied track_heights is > or < than n TRKS.
-        track_heights <- track_heights[1:length(TRKS)]
+        track_heights <- track_heights[seq_len(length(TRKS))]
     }
     track_heights <- track_heights[!is.na(track_heights)]
     

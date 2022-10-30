@@ -17,7 +17,7 @@ save_tracks <- function(locus_dir,
                     v=verbose)
             saveRDS(TRKS_zoom[[x]], rds_path)
             return(x)
-        }) %>% unlist()
+        }) |> unlist()
     }else {
         ## NOTE: Saving as one list object somehow takes up about
         ## the same storage space as each track saved individually.

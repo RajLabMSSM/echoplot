@@ -6,12 +6,12 @@ construct_snp_labels_separate <- function(finemap_melt,
     finemap_labels <- construct_snp_labels(
         dat = finemap_melt,
         labels_subset = labels_subset,
-        grouping_vars = c("SNP","Method")) %>%
+        grouping_vars = c("SNP","Method")) |>
         subset(Method!="mean")
     mean_labels <- construct_snp_labels(
         dat = finemap_melt,
         labels_subset = c("Lead","UCS","Consensus"),
-        grouping_vars = c("SNP","Method"))  %>%
+        grouping_vars = c("SNP","Method"))  |>
         subset(Method=="mean")
     mod_labels <- rbind(finemap_labels, mean_labels)
     return(mod_labels)

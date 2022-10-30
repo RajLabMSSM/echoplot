@@ -82,6 +82,9 @@ to compute LD matrix from.\cr
 \emph{Genome build} : defined by user with \code{target_genome}.}
 }}
 
+\item{facet_formula}{Formula to facet plots by.
+See \link[ggplot2]{facet_grid} for details.}
+
 \item{dataset_type}{Dataset type (e.g. "GWAS" or "eQTL").}
 
 \item{color_r2}{Whether to color data points (SNPs)
@@ -127,7 +130,7 @@ p-value significance cutoff.}
 
 \item{tx_biotypes}{Transcript biotypes to include in the gene model track. 
 By default (\code{NULL}), all transcript biotypes will be included.
-See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+See \link[echoplot]{get_tx_biotypes} for a full list of 
 all available biotypes}
 
 \item{point_size}{Size of each data point.}
@@ -146,14 +149,14 @@ SNPs belonging to one or more of the following groups:
 
 \item{show_legend_genes}{Show the legend for the \code{gene_track}.}
 
-\item{xgr_libnames}{Passed to \link[echoannot]{XGR_plot}.
+\item{xgr_libnames}{Passed to \link[echoplot]{XGR_plot}.
 Which XGR annotations to check overlap with.
 For full list of libraries see
 \href{http://XGR_r-forge.r-project.org/#annotations-at-the-genomic-region-level}{
  here}.
  Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.}
 
-\item{xgr_n_top}{Passed to \link[echoannot]{XGR_plot}.
+\item{xgr_n_top}{Passed to \link[echoplot]{XGR_plot}.
 Number of top annotations to be plotted
 (passed to \link[echoannot]{XGR_filter_sources} and then 
 \link[echoannot]{XGR_filter_assays}).}
@@ -164,9 +167,9 @@ Number of top annotations to be plotted
 metadata contains a string or any items from  a list of strings
 (e.g. \code{"brain"} or \code{c("brain","liver","monocytes")}).}
 
-\item{roadmap_n_top}{Passed to \link[echoannot]{ROADMAP_plot}.
+\item{roadmap_n_top}{Passed to \link[echoplot]{ROADMAP_plot}.
 Number of top annotations to be plotted
-(passed to \link[echoannot]{ROADMAP_merge_and_process_grl}).}
+(passed to \link[echoannot]{ROADMAP_query}).}
 
 \item{zoom_exceptions_str}{Names of tracks to exclude when zooming.}
 
@@ -248,7 +251,6 @@ Users can also generate multiple zoomed in views of the plot at
 dat<- echodata::BST1
 LD_matrix <- echodata::BST1_LD_matrix
 locus_dir <- file.path(tempdir(),echodata::locus_dir)
-
 plt <- echoplot::plot_locus(dat = dat,
                             locus_dir = locus_dir,
                             LD_matrix = LD_matrix,

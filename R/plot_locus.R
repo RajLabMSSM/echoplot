@@ -29,7 +29,7 @@
 #' @param max_transcripts Maximum number of transcripts per gene.
 #' @param tx_biotypes Transcript biotypes to include in the gene model track. 
 #' By default (\code{NULL}), all transcript biotypes will be included.
-#' See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+#' See \link[echoplot]{get_tx_biotypes} for a full list of 
 #' all available biotypes
 #' @param point_size Size of each data point.
 #' @param point_alpha Opacity of each data point.
@@ -41,13 +41,13 @@
 #' @param show_legend_genes Show the legend for the \code{gene_track}. 
 #' @param zoom_exceptions_str Names of tracks to exclude when zooming.
 #' 
-#' @param xgr_libnames Passed to \link[echoannot]{XGR_plot}.
+#' @param xgr_libnames Passed to \link[echoplot]{XGR_plot}.
 #' Which XGR annotations to check overlap with.
 #' For full list of libraries see
 #' \href{http://XGR_r-forge.r-project.org/#annotations-at-the-genomic-region-level}{
 #'  here}.
 #'  Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.
-#' @param xgr_n_top Passed to \link[echoannot]{XGR_plot}.
+#' @param xgr_n_top Passed to \link[echoplot]{XGR_plot}.
 #' Number of top annotations to be plotted
 #' (passed to \link[echoannot]{XGR_filter_sources} and then 
 #' \link[echoannot]{XGR_filter_assays}).
@@ -67,9 +67,9 @@
 #' from the \emph{UCSC Genome Browser}, use a set of local bigwig files.
 #' 
 #' @param roadmap Find and plot annotations from Roadmap.
-#' @param roadmap_n_top Passed to \link[echoannot]{ROADMAP_plot}.
+#' @param roadmap_n_top Passed to \link[echoplot]{ROADMAP_plot}.
 #' Number of top annotations to be plotted
-#' (passed to \link[echoannot]{ROADMAP_merge_and_process_grl}). 
+#' (passed to \link[echoannot]{ROADMAP_query}). 
 #' @param roadmap_query Only plot annotations from Roadmap whose
 #' metadata contains a string or any items from  a list of strings
 #' (e.g. \code{"brain"} or \code{c("brain","liver","monocytes")}).
@@ -77,6 +77,8 @@
 #'  for a SNP to be considered part of a Credible Set.
 #' For example, \code{credset_thresh=.95} means that all Credible Set SNPs
 #' will be 95\% Credible Set SNPs.
+#' @param facet_formula Formula to facet plots by.
+#'  See \link[ggplot2]{facet_grid} for details.
 #' @param show_plot Print plot to screen.
 #' @param save_plot Save plot as RDS file.
 #' @param plot_format Format to save plot as 
@@ -86,6 +88,7 @@
 #' @param return_list Return a named list with each track as a separate plot
 #'  (default: \code{FALSE}). If \code{TRUE}, will return a merged plot using
 #'  \link[patchwork]{wrap_plots}. 
+#' @param verbose Print messages.
 #' 
 #' @inheritParams transcript_model_track
 #' @inheritParams echoLD::get_LD
@@ -94,19 +97,16 @@
 #' @inheritParams echoannot::NOTT2019_epigenomic_histograms
 #' @inheritParams echodata::find_consensus_snps
 #' 
-#' @export 
-#' @importFrom dplyr %>%
+#' @export  
 #' @importFrom methods show
 #' @importFrom echoLD get_lead_r2
-#' @importFrom echodata find_consensus_snps fillNA_CS_PP
-#' @importFrom echoannot XGR_plot ROADMAP_plot 
+#' @importFrom echodata find_consensus_snps fillNA_CS_PP 
 #' @importFrom echoannot NOTT2019_plac_seq_plot NOTT2019_epigenomic_histograms
 #' @importFrom patchwork wrap_plots plot_annotation
 #' @examples
 #' dat<- echodata::BST1
 #' LD_matrix <- echodata::BST1_LD_matrix
 #' locus_dir <- file.path(tempdir(),echodata::locus_dir)
-#'
 #' plt <- echoplot::plot_locus(dat = dat,
 #'                             locus_dir = locus_dir,
 #'                             LD_matrix = LD_matrix,
@@ -294,27 +294,27 @@ plot_locus <- function(dat,
     palettes <- get_palettes()
     for(i in seq_len(length(xgr_libnames))){
         lib_name <- xgr_libnames[i]
-        xgr_out <- echoannot::XGR_plot(dat = dat, 
-                                       locus_dir = locus_dir,
-                                       lib_name = lib_name, 
-                                       palette = palettes[i],
-                                       n_top = xgr_n_top,
-                                       adjust = density_adjust,
-                                       nThread = nThread,
-                                       verbose = verbose) 
+        xgr_out <-  XGR_plot(dat = dat, 
+                             locus_dir = locus_dir,
+                             lib_name = lib_name, 
+                             palette = palettes[i],
+                             n_top = xgr_n_top,
+                             adjust = density_adjust,
+                             nThread = nThread,
+                             verbose = verbose) 
         TRKS[[lib_name]] <- xgr_out$plot
     } 
     #### Track: Roadmap #### 
-    if(roadmap){
-        roadmap_out <- echoannot::ROADMAP_plot(dat = dat, 
-                                               roadmap_query = roadmap_query, 
-                                               locus_dir = locus_dir, 
-                                               n_top = roadmap_n_top,
-                                               adjust = density_adjust,
-                                               conda_env = conda_env,
-                                               show_plot = FALSE,
-                                               nThread = nThread,
-                                               verbose = verbose)
+    if(isTRUE(roadmap)){
+        roadmap_out <- ROADMAP_plot(dat = dat, 
+                                    roadmap_query = roadmap_query, 
+                                    locus_dir = locus_dir, 
+                                    n_top = roadmap_n_top,
+                                    adjust = density_adjust,
+                                    conda_env = conda_env,
+                                    show_plot = FALSE,
+                                    nThread = nThread,
+                                    verbose = verbose)
         TRKS[["Roadmap\nchromatin marks\ncell-types"]] <- roadmap_out$plot
     }
     #### Track: NOTT2019 ####

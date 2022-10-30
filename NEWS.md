@@ -10,11 +10,16 @@
 * `plot_locus`: changed `qtl_prefixes` --> `qtl_suffixes` to be consistent with 
     `merge` naming strategy. 
 * Export `snp_track_merged`. 
+* Move functions from `echoplot`:
+    - `ROADMAP_plot` and plotting subfunctions.  
+    - `XGR_plot` and plotting subfunctions.  
     
 ## Bug fixes
 
 * `transcript_model_track`: Handle when 0 transcripts are returned, without error.
-
+* `get_transcripts_biotypes` ==> `get_tx_biotypes` in all places.
+* Document all functions. 
+* Fix GHA: @master --> @v2  
 
 # echoplot 0.99.4
 

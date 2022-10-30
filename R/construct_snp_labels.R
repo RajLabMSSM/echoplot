@@ -3,7 +3,7 @@
 #' Construct SNP labels for Manhattan plot.
 #' Support function for \link[echoplot]{plot_locus}.
 #' @inheritParams plot_locus
-#' @importFrom dplyr %>% group_by arrange slice vars n
+#' @importFrom dplyr group_by arrange slice vars n
 #' @importFrom data.table data.table as.data.table merge.data.table
 #' @keywords internal
 construct_snp_labels <- function(dat,
@@ -22,7 +22,7 @@ construct_snp_labels <- function(dat,
     
     ## BEFORE fine-mapping
     if("lead" %in% tolower(labels_subset)){
-        lead_snps <- subset(dat %>% dplyr::arrange(P), leadSNP == TRUE)
+        lead_snps <- subset(dat |> dplyr::arrange(P), leadSNP == TRUE)
         lead_snps$type <- "Lead"
         lead_snps$color <- "red"
         lead_snps$shape <- 9# 18
@@ -66,9 +66,9 @@ construct_snp_labels <- function(dat,
     # If there's duplicates only show the last one
     labelSNPs$rowID <- seq_len(nrow(labelSNPs))
     if(remove_duplicates){
-        labelSNPs <- labelSNPs %>%
-            dplyr::group_by(dplyr::vars(grouping_vars)) %>%
-            dplyr::arrange(rowID) %>%
+        labelSNPs <- labelSNPs |>
+            dplyr::group_by(dplyr::vars(grouping_vars)) |>
+            dplyr::arrange(rowID) |>
             dplyr::slice(dplyr::n())
     }
     labelSNPs$type <- factor(labelSNPs$type,

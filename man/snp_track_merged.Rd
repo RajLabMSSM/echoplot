@@ -34,6 +34,9 @@ p-value significance cutoff.}
 \item{xtext}{Include x-axis title and text for each track
 (not just the lower-most one).}
 
+\item{facet_formula}{Formula to facet plots by.
+See \link[ggplot2]{facet_grid} for details.}
+
 \item{dataset_type}{Dataset type (e.g. "GWAS" or "eQTL").}
 
 \item{genomic_units}{Which genomic units to return window limits in.}

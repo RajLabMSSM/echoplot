@@ -19,6 +19,6 @@ heights_dict <- function(keys=NULL,
         if(k %in% names(heights_dict)){
             return(heights_dict[[k]])
         }else return(default_height)
-    }) %>% unlist()
+    }) |> unlist()
     return(heights)
 }

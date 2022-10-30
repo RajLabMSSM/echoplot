@@ -37,6 +37,7 @@ Imports:
     ggplot2,
     ggbio,
     ggrepel,
+    stats,
     patchwork, 
     DescTools,
     GenomicRanges,

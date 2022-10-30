@@ -9,7 +9,6 @@ plot_locus_multi(
   LD_ls,
   locus_dir,
   conditions = names(dat_ls),
-  save_path = NULL,
   show_plot = TRUE,
   verbose = TRUE,
   ...
@@ -23,6 +22,10 @@ plot_locus_multi(
 (one per item in \code{dat_ls}).}
 
 \item{locus_dir}{Storage directory to use.}
+
+\item{conditions}{Conditions to group \code{dat_ls} by.
+The length of \code{conditions} must equal the number of
+ items in \code{dat_ls}.}
 
 \item{show_plot}{Print plot to screen.}
 
@@ -57,7 +60,7 @@ p-value significance cutoff.}
     \item{\code{max_transcripts}}{Maximum number of transcripts per gene.}
     \item{\code{tx_biotypes}}{Transcript biotypes to include in the gene model track. 
 By default (\code{NULL}), all transcript biotypes will be included.
-See \link[echoplot]{get_transcripts_biotypes} for a full list of 
+See \link[echoplot]{get_tx_biotypes} for a full list of 
 all available biotypes}
     \item{\code{point_size}}{Size of each data point.}
     \item{\code{point_alpha}}{Opacity of each data point.}
@@ -68,13 +71,13 @@ SNPs belonging to one or more of the following groups:
 (not just the lower-most one).}
     \item{\code{show_legend_genes}}{Show the legend for the \code{gene_track}.}
     \item{\code{zoom_exceptions_str}}{Names of tracks to exclude when zooming.}
-    \item{\code{xgr_libnames}}{Passed to \link[echoannot]{XGR_plot}.
+    \item{\code{xgr_libnames}}{Passed to \link[echoplot]{XGR_plot}.
 Which XGR annotations to check overlap with.
 For full list of libraries see
 \href{http://XGR_r-forge.r-project.org/#annotations-at-the-genomic-region-level}{
  here}.
  Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.}
-    \item{\code{xgr_n_top}}{Passed to \link[echoannot]{XGR_plot}.
+    \item{\code{xgr_n_top}}{Passed to \link[echoplot]{XGR_plot}.
 Number of top annotations to be plotted
 (passed to \link[echoannot]{XGR_filter_sources} and then 
 \link[echoannot]{XGR_filter_assays}).}
@@ -92,9 +95,9 @@ adjust the bin width of the histograms.}
  epigenomic data
 from the \emph{UCSC Genome Browser}, use a set of local bigwig files.}
     \item{\code{roadmap}}{Find and plot annotations from Roadmap.}
-    \item{\code{roadmap_n_top}}{Passed to \link[echoannot]{ROADMAP_plot}.
+    \item{\code{roadmap_n_top}}{Passed to \link[echoplot]{ROADMAP_plot}.
 Number of top annotations to be plotted
-(passed to \link[echoannot]{ROADMAP_merge_and_process_grl}).}
+(passed to \link[echoannot]{ROADMAP_query}).}
     \item{\code{roadmap_query}}{Only plot annotations from Roadmap whose
 metadata contains a string or any items from  a list of strings
 (e.g. \code{"brain"} or \code{c("brain","liver","monocytes")}).}
@@ -102,6 +105,8 @@ metadata contains a string or any items from  a list of strings
  for a SNP to be considered part of a Credible Set.
 For example, \code{credset_thresh=.95} means that all Credible Set SNPs
 will be 95\% Credible Set SNPs.}
+    \item{\code{facet_formula}}{Formula to facet plots by.
+See \link[ggplot2]{facet_grid} for details.}
     \item{\code{save_plot}}{Save plot as RDS file.}
     \item{\code{plot_format}}{Format to save plot as 
 when saving with \link[ggplot2]{ggsave}.}

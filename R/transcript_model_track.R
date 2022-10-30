@@ -1,6 +1,8 @@
 #' Plot transcripts
 #' 
 #' Plot a max number of transcripts per genes.
+#' See \link[echoplot]{get_tx_biotypes} for a full list of
+#' all available biotypes.
 #' @param dat Data to query transcripts with.
 #' @param fill A variable name string, or a color to fill the plot data with.
 #' @param shape Shape type to plot genes as. 
