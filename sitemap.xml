@@ -4,7 +4,7 @@
     <loc>/404.html</loc>
   </url>
   <url>
-    <loc>/articles/echoverseTemplate.html</loc>
+    <loc>/articles/echoplot.html</loc>
   </url>
   <url>
     <loc>/articles/index.html</loc>
@@ -19,6 +19,57 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/ROADMAP_plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ROADMAP_track_plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/XGR_plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/XGR_plot_peaks.html</loc>
+  </url>
+  <url>
+    <loc>/reference/add_multitrack_lines.html</loc>
+  </url>
+  <url>
+    <loc>/reference/add_snp_labels.html</loc>
+  </url>
+  <url>
+    <loc>/reference/construct_snp_labels.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dot_summary_plot.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_max_histogram_height.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_palettes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_transcripts.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_tx_biotypes.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_window_suffix.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_locus.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plot_locus_multi.html</loc>
+  </url>
+  <url>
+    <loc>/reference/snp_track_merged.html</loc>
+  </url>
+  <url>
+    <loc>/reference/transcript_model_track.html</loc>
   </url>
 </urlset>
