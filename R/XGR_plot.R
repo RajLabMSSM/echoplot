@@ -22,7 +22,7 @@
 #'  Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.
 #' @param locus_dir Locus-specific directory. 
 #' @param palette Any palette available in \pkg{pals}.
-#' See \link[echoplot]{get_palette} for a list of all palettes.
+#' See \link[echoplot]{get_palettes} for a list of all palettes.
 #' @param nThread Number of threads 
 #' to parallelise downloading annotations over.
 #' @param verbose Print messages.

@@ -37,7 +37,7 @@ For full list of libraries see
 \item{locus_dir}{Locus-specific directory.}
 
 \item{palette}{Any palette available in \pkg{pals}.
-See \link[echoplot]{get_palette} for a list of all palettes.}
+See \link[echoplot]{get_palettes} for a list of all palettes.}
 
 \item{fill_var}{Fill variable.}
 
