@@ -33,11 +33,12 @@
 #' @export
 #' @importFrom echoannot XGR_query annotation_file_name
 #' @examples
-#' xgr_out <- echoplot::XGR_plot(dat = echodata::BST1[seq_len(1000), ])
+#' xgr_out <- echoplot::XGR_plot(dat = echodata::BST1[seq_len(1000),])
 XGR_plot <- function(dat,
                      lib_name = "ENCODE_TFBS_ClusteredV3_CellTypes",
                      locus_dir = tempdir(),
-                     palette = get_palettes(n_pals=1),
+                     palette = get_palettes(n_pals=1,
+                                            names_only = TRUE),
                      fill_var = "Assay",
                      facet_var = "Source",
                      geom = "density",
@@ -47,6 +48,9 @@ XGR_plot <- function(dat,
                      show_plot = FALSE,
                      nThread = 1,
                      verbose = TRUE) {
+    
+    # echoverseTemplate:::source_all()
+    # echoverseTemplate:::args2vars(XGR_plot)
     
     messager("echoannot:: Plotting XGR annotations.", v = verbose)
     #### Create annot file name ####
@@ -83,7 +87,7 @@ XGR_plot <- function(dat,
         lib_name = lib_name,
         colors = get_palettes(preferred = palette,
                               n_pals = 1, 
-                              n = length(unique(gr.lib$Assay)))
+                              n = length(unique(gr.lib$Assay)))[[1]]
     )
     #### Return annot ####
     return(list(

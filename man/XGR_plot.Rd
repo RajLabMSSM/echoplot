@@ -8,7 +8,7 @@ XGR_plot(
   dat,
   lib_name = "ENCODE_TFBS_ClusteredV3_CellTypes",
   locus_dir = tempdir(),
-  palette = get_palettes(n_pals = 1),
+  palette = get_palettes(n_pals = 1, names_only = TRUE),
   fill_var = "Assay",
   facet_var = "Source",
   geom = "density",
@@ -70,5 +70,5 @@ Import annotation from \emph{XGR}, filter to only those within the range of
 If the annotation has already been downloaded previously, it will be reused.
 }
 \examples{
-xgr_out <- echoplot::XGR_plot(dat = echodata::BST1[seq_len(1000), ])
+xgr_out <- echoplot::XGR_plot(dat = echodata::BST1[seq_len(1000),])
 }
