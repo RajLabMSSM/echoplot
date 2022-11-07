@@ -19,7 +19,7 @@ If the annotation has already been downloaded previously, it will be reused."><!
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">echoplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.99.6</span>
       </span>
     </div>
 
@@ -64,7 +64,7 @@ If the annotation has already been downloaded previously, it will be reused.</p>
 <span>  <span class="va">dat</span>,</span>
 <span>  lib_name <span class="op">=</span> <span class="st">"ENCODE_TFBS_ClusteredV3_CellTypes"</span>,</span>
 <span>  locus_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  palette <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Spectral"</span>, <span class="st">"BrBG"</span>, <span class="st">"PiYG"</span>, <span class="st">"PuOr"</span><span class="op">)</span>,</span>
+<span>  palette <span class="op">=</span> <span class="fu"><a href="get_palettes.html">get_palettes</a></span><span class="op">(</span>n_pals <span class="op">=</span> <span class="fl">1</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
 <span>  fill_var <span class="op">=</span> <span class="st">"Assay"</span>,</span>
 <span>  facet_var <span class="op">=</span> <span class="st">"Source"</span>,</span>
 <span>  geom <span class="op">=</span> <span class="st">"density"</span>,</span>
@@ -106,8 +106,8 @@ For full list of libraries see
 
 
 <dt>palette</dt>
-<dd><p>Palette name to be passed to <code>name</code> argument in 
-<a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a>.</p></dd>
+<dd><p>Any palette available in <span class="pkg">pals</span>.
+See <a href="get_palettes.html">get_palettes</a> for a list of all palettes.</p></dd>
 
 
 <dt>fill_var</dt>
@@ -159,14 +159,14 @@ to parallelise downloading annotations over.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">xgr_out</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu">XGR_plot</span><span class="op">(</span>dat <span class="op">=</span> <span class="fu">echodata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/echodata/man/BST1.html" class="external-link">BST1</a></span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>, <span class="op">]</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">xgr_out</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu">XGR_plot</span><span class="op">(</span>dat <span class="op">=</span> <span class="fu">echodata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/echodata/man/BST1.html" class="external-link">BST1</a></span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>,<span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> echoannot:: Plotting XGR annotations.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Start at 2022-10-30 18:26:52</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Start at 2022-11-07 16:02:05</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 'ENCODE_TFBS_ClusteredV3_CellTypes' (from http://galahad.well.ox.ac.uk/bigdata/ENCODE_TFBS_ClusteredV3_CellTypes.RData) has been loaded into the working environment (at 2022-10-30 18:27:03)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 'ENCODE_TFBS_ClusteredV3_CellTypes' (from http://galahad.well.ox.ac.uk/bigdata/ENCODE_TFBS_ClusteredV3_CellTypes.RData) has been loaded into the working environment (at 2022-11-07 16:02:15)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> End at 2022-10-30 18:27:03</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Runtime in total is: 11 secs</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> End at 2022-11-07 16:02:15</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Runtime in total is: 10 secs</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Converting dat to GRanges object.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 398 query SNP(s) detected with reference overlap.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: facets</span>
@@ -185,7 +185,7 @@ to parallelise downloading annotations over.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
