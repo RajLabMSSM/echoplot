@@ -39,6 +39,7 @@
 #' @importFrom echodata dt_to_granges
 #' @importFrom stats setNames
 #' @importFrom methods show
+#' @importFrom pals alphabet
 #' @examples
 #' dat <- echodata::BST1 
 #' gene_track <- echoplot::transcript_model_track(dat=dat)
@@ -116,13 +117,11 @@ transcript_model_track <- function(dat,
             messager("Returning NULL for gene track.",v=verbose)
             return(NULL)
         }
-        if(requireNamespace("pals")){
-            # Ensure teh palette size is always big enough for the
-            ## number of unique genes.
-            n_genes <- dplyr::n_distinct(tx$gr.snp$symbol)
-            palette <- rep(unname(pals::alphabet()),
-                           n_genes%/%length(pals::alphabet())+1 )
-        }
+        # Ensure teh palette size is always big enough for the
+        ## number of unique genes.
+        n_genes <- dplyr::n_distinct(tx$gr.snp$symbol)
+        palette <- rep(unname(pals::alphabet()),
+                       n_genes%/%length(pals::alphabet())+1 )
         if(max_transcripts==1) {
             names.expr <- "symbol"
             fill_var <- NULL

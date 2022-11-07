@@ -8,7 +8,7 @@ XGR_plot(
   dat,
   lib_name = "ENCODE_TFBS_ClusteredV3_CellTypes",
   locus_dir = tempdir(),
-  palette = c("Spectral", "BrBG", "PiYG", "PuOr"),
+  palette = get_palettes(n_pals = 1),
   fill_var = "Assay",
   facet_var = "Source",
   geom = "density",
@@ -36,8 +36,8 @@ For full list of libraries see
 
 \item{locus_dir}{Locus-specific directory.}
 
-\item{palette}{Palette name to be passed to \code{name} argument in 
-\link[RColorBrewer]{brewer.pal}.}
+\item{palette}{Any palette available in \pkg{pals}.
+See \link[echoplot]{get_palette} for a list of all palettes.}
 
 \item{fill_var}{Fill variable.}
 

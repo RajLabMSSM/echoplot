@@ -4,15 +4,32 @@
 \alias{get_palettes}
 \title{Get palettes}
 \usage{
-get_palettes(preferred = c("Spectral", "BrBG", "PiYG", "PuOr"))
+get_palettes(
+  preferred = c("brewer.spectral", "brewer.brbg", "brewer.piyg", "brewer.puor"),
+  n_pals = NULL,
+  n = 8,
+  names_only = FALSE
+)
 }
 \arguments{
-\item{preferred}{Preferred palette names.}
+\item{preferred}{Preferred palette names. 
+Will be moved to the top of the list.}
+
+\item{n_pals}{Max number of palettes to return.}
+
+\item{n}{Max number of colors to return per palette.
+Only applicable when \code{names_only=FALSE}.}
+
+\item{names_only}{Only return the names of the palettes 
+(\code{TRUE}), rather than a named list of colors for each palette
+ (default: \code{TRUE}).}
 }
 \value{
 Vector of palette names.
 }
 \description{
-Get a unique set of palettes, ordered by preference.
+Get a unique set of palettes from \pkg{pals}, ordered by preference.
 }
-\keyword{internal}
+\examples{
+palettes <- get_palettes()
+}

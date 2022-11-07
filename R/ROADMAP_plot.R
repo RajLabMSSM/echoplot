@@ -12,13 +12,11 @@
 #' and only query annotations that contain your keywords.
 #' Can provide multiple keywords in list form:
 #' \code{c("placenta","liver","monocytes")}
-#'
 #' @inheritParams XGR_plot
 #' @inheritParams ROADMAP_track_plot
 #' @inheritParams echoannot::ROADMAP_query
 #' @inheritParams echoannot::ROADMAP_construct_reference
-#' @inheritParams echoannot::ROADMAP_tabix
-#' 
+#' @inheritParams echoannot::ROADMAP_tabix 
 #' @returns A named list containing:
 #' \itemize{
 #' \item{"data"}{\code{GRanges} object within the queried coordinates.}

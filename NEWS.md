@@ -1,3 +1,16 @@
+# echoplot 0.99.6
+
+## New features
+
+* New exports:
+    - `get_palettes`
+    - `list_namespace`
+* Implement `rworkflows`
+
+## Bug fixes
+
+* Make `pals` an Import, and remove `RColorBrewer`.
+
 # echoplot 0.99.5
 
 ## New features

@@ -21,8 +21,8 @@
 #'  here.}
 #'  Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.
 #' @param locus_dir Locus-specific directory. 
-#' @param palette Palette name to be passed to \code{name} argument in 
-#' \link[RColorBrewer]{brewer.pal}.
+#' @param palette Any palette available in \pkg{pals}.
+#' See \link[echoplot]{get_palette} for a list of all palettes.
 #' @param nThread Number of threads 
 #' to parallelise downloading annotations over.
 #' @param verbose Print messages.
@@ -37,7 +37,7 @@
 XGR_plot <- function(dat,
                      lib_name = "ENCODE_TFBS_ClusteredV3_CellTypes",
                      locus_dir = tempdir(),
-                     palette = c("Spectral", "BrBG", "PiYG", "PuOr"),
+                     palette = get_palettes(n_pals=1),
                      fill_var = "Assay",
                      facet_var = "Source",
                      geom = "density",
@@ -81,7 +81,9 @@ XGR_plot <- function(dat,
         xgr_track = xgr_track,
         gr.filt = gr.lib,
         lib_name = lib_name,
-        palette = palette
+        colors = get_palettes(preferred = palette,
+                              n_pals = 1, 
+                              n = length(unique(gr.lib$Assay)))
     )
     #### Return annot ####
     return(list(

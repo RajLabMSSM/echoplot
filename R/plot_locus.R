@@ -291,13 +291,13 @@ plot_locus <- function(dat,
             verbose=verbose) 
     } 
     #### Track: XGR #### 
-    palettes <- get_palettes()
+    palettes <- get_palettes(names_only = TRUE)
     for(i in seq_len(length(xgr_libnames))){
-        lib_name <- xgr_libnames[i]
+        lib_name <- xgr_libnames[[i]]
         xgr_out <-  XGR_plot(dat = dat, 
                              locus_dir = locus_dir,
                              lib_name = lib_name, 
-                             palette = palettes[i],
+                             palette = palettes[[i]],
                              n_top = xgr_n_top,
                              adjust = density_adjust,
                              nThread = nThread,
