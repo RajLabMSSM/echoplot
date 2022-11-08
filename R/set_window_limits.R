@@ -8,8 +8,7 @@ set_window_limits <- function(TRKS,
     ### Exclude the purposefully unzoomed tracks
     exceptions <- grep(exceptions_str, names(TRKS), value=TRUE)
     
-    for(x in names(TRKS)){
-        # print(x)
+    for(x in names(TRKS)){ 
         trk <- TRKS[[x]]
         genomic_units <- guess_genomic_units(gg = trk)
         xlims <- echoannot::get_window_limits(

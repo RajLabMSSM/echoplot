@@ -76,7 +76,7 @@ trk_plot <- echoplot::plot_locus(dat=dat,
 ```
 
 ```{r}
-print(trk_plot)
+methods::show(trk_plot)
 ```
 
 ## At multiple zooms
@@ -98,7 +98,7 @@ names(trk_zooms) # Get zoom view names
 ```
 
 ```{r}
-print(trk_zooms)
+methods::show(trk_zooms)
 ```
 
 
@@ -142,7 +142,7 @@ track_heights <- c(.3,.1,.3,1)
 fused_plot <- patchwork::wrap_plots(view1_list, 
                                     heights = track_heights,
                                     ncol = 1)
-print(fused_plot)
+methods::show(fused_plot)
 ```
 
 
@@ -165,7 +165,7 @@ trk_plot.xgr <- echoplot::plot_locus(dat=dat,
 ```
 
 ```{r}
-print(trk_plot.xgr)
+methods::show(trk_plot.xgr)
 ```
 
 ## Using [Roadmap](http://www.roadmapepigenomics.org/data/tables/brain) annotations
@@ -189,7 +189,7 @@ trk_plot.roadmap <- echoplot::plot_locus(dat=dat,
 ```
 
 ```{r}
-print(trk_plot.roadmap)
+methods::show(trk_plot.roadmap)
 ```
 
 ## Using [Nott_2019](https://science.sciencemag.org/content/366/6469/1134.abstract)   annotations   
@@ -215,7 +215,7 @@ trk_plot.nott_2019 <- echoplot::plot_locus(dat=dat,
 ```
 
 ```{r}
-print(trk_plot.nott_2019)
+methods::show(trk_plot.nott_2019)
 ```
 
 ## Using QTL datasets  
@@ -239,7 +239,7 @@ trk_plot.qtl <- echoplot::plot_locus_multi(dat_ls = dat_list,
 ```
 
 ```{r}
-print(trk_plot.qtl)
+methods::show(trk_plot.qtl)
 ```
 
 <hr>

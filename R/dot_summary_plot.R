@@ -7,6 +7,7 @@
 #' @export
 #' @importFrom data.table melt.data.table
 #' @importFrom dplyr arrange mutate
+#' @importFrom methods show
 #' @examples
 #' dat <- echodata::BST1
 #' gp <- echoplot::dot_summary_plot(dat=dat)
@@ -53,6 +54,6 @@ dot_summary_plot <- function(dat,
                    color="darkgoldenrod1", shape=2, size=5, stroke=1) +
         ggplot2::scale_y_discrete(position = "right") +
         ggplot2::theme_bw()
-    if(show_plot)print(gp)
+    if(isTRUE(show_plot)) methods::show(gp)
     return(gp)
 }

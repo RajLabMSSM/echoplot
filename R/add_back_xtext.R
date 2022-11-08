@@ -2,7 +2,7 @@ add_back_xtext <- function(TRKS,
                            verbose=TRUE){
     requireNamespace("ggplot2")
     
-    print("+ Ensuring last track shows genomic units...",v=verbose)
+    messager("+ Ensuring last track shows genomic units.",v=verbose)
     i <- length(TRKS)
     unit_divisor <- if(guess_genomic_units(gg = TRKS[[i]])=="Mb") 1 else 1000000
     TRKS[[i]] <- suppressMessages(
