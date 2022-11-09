@@ -4,7 +4,7 @@
 \alias{dot_summary_plot}
 \title{Dot summary plot}
 \usage{
-dot_summary_plot(dat, credset_thresh = 0.95, show_plot = TRUE)
+dot_summary_plot(dat, credset_thresh = 0.95, show_plot = TRUE, verbose = TRUE)
 }
 \arguments{
 \item{dat}{Data to query transcripts with.}
@@ -15,13 +15,15 @@ For example, \code{credset_thresh=.95} means that all Credible Set SNPs
 will be 95\% Credible Set SNPs.}
 
 \item{show_plot}{Print plot to screen.}
+
+\item{verbose}{Print messages.}
 }
 \description{
 Multi-fine-map summary dot plot of all lead, UCS and/or Consensus SNPs.
 }
 \examples{
 dat <- echodata::BST1
-gp <- echoplot::dot_summary_plot(dat=dat)
+gp <- echoplot::dot_summary_plot(dat = dat)
 }
 \seealso{
 Other plot: 

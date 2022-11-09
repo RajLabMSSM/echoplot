@@ -21,7 +21,7 @@ construct_snp_labels <- function(dat,
                                  verbose=FALSE){
     
     rowID <- type <- P <- CS <- leadSNP <- Support <- Consensus_SNP <-
-        Method <- NULL;
+        Method <- text_label <- NULL;
     
     messager("+ echoplot:: Constructing SNP labels.", v=verbose)
     #### Ensure data.table format ####

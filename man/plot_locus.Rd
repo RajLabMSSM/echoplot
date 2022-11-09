@@ -259,10 +259,10 @@ Users can also generate multiple zoomed in views of the plot at
  multiple resolutions.
 }
 \examples{
-dat<- echodata::BST1
+dat1 <- echodata::BST1
 LD_matrix <- echodata::BST1_LD_matrix
 locus_dir <- file.path(tempdir(),echodata::locus_dir)
-plt <- echoplot::plot_locus(dat = dat,
+plt <- echoplot::plot_locus(dat = dat1,
                             locus_dir = locus_dir,
                             LD_matrix = LD_matrix,
                             show_plot = TRUE)

@@ -4,8 +4,7 @@
 #' Support function for \link[echoplot]{plot_locus}. 
 #' 
 #' @inheritParams plot_locus
-#' @keywords internal
-#' @importFrom echodata melt_finemapping_results
+#' @keywords internal 
 #' @importFrom ggnewscale new_scale
 snp_track_merged_label <- function(snp_plot, 
                                    yvar="PP",

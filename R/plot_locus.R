@@ -113,10 +113,10 @@
 #' @importFrom echoannot NOTT2019_plac_seq_plot NOTT2019_epigenomic_histograms
 #' @importFrom patchwork wrap_plots plot_annotation
 #' @examples
-#' dat<- echodata::BST1
+#' dat1 <- echodata::BST1
 #' LD_matrix <- echodata::BST1_LD_matrix
 #' locus_dir <- file.path(tempdir(),echodata::locus_dir)
-#' plt <- echoplot::plot_locus(dat = dat,
+#' plt <- echoplot::plot_locus(dat = dat1,
 #'                             locus_dir = locus_dir,
 #'                             LD_matrix = LD_matrix,
 #'                             show_plot = TRUE)
@@ -213,12 +213,10 @@ plot_locus <- function(dat,
     TRKS <- NULL;
     # Track: Summary
     if(isTRUE(dot_summary)){
-        messager(
-            "++ echoplot:: Creating dot plot summary of fine-mapping results.",
-            v=verbose)
         TRKS[["Summary"]] <- dot_summary_plot(dat = dat,
                                               credset_thresh = credset_thresh,
-                                              show_plot = FALSE)
+                                              show_plot = FALSE,
+                                              verbose = verbose)
     }
     ####  Track: Main (GWAS) frozen ####
     full_window_name <- paste(dataset_type,"full window")

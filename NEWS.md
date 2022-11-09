@@ -17,6 +17,7 @@
     warnings.
 * Fixed potential issue with getting top SNPs per Method in `construct_snp_labels`.
 * Fixed `colours encodes as numbers must be positive` errors.
+* Fix `dot_summary_plot` after `construct_snp_labels` updates.
 
 # echoplot 0.99.5
 

@@ -52,7 +52,7 @@ snp_track_merged_base <- function(finemap_melt,
                 ggplot2::scale_y_continuous(
                     n.breaks = 3,
                     limits =  c(0,-log10(
-                        min(dat[[pval_stripped]], na.rm = TRUE))*1.1)
+                        min(finemap_melt[[pval_stripped]], na.rm = TRUE))*1.1)
                 )
         )
     }else {
