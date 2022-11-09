@@ -9,15 +9,28 @@ Support function for \link[echoplot]{plot_locus}.}
 \usage{
 construct_snp_labels(
   dat,
-  labels_subset = c("Lead", "CS", "UCS", "Consensus"),
+  labels_subset = c("Lead", "CS", "Consensus"),
+  mean_only_text = c("Consensus", "UCS"),
+  method_specific_consensus = TRUE,
   remove_duplicates = TRUE,
   grouping_vars = c("SNP"),
   merge_with_input = FALSE,
+  base_size = 5,
   verbose = FALSE
 )
 }
 \arguments{
 \item{dat}{Data to query transcripts with.}
+
+\item{labels_subset}{Include colored shapes and RSID labels
+to help highlight SNPs belonging to one or more of the following groups:
+ Lead, Credible Set, Consensus.}
+
+\item{mean_only_text}{Only show the text labels with RSIDs in the "mean"
+Method (not all the other method-specific facets).}
+
+\item{method_specific_consensus}{Only label Consensus SNPs 
+that are also Credible Set SNPs for a given method.}
 
 \item{verbose}{Print messages.}
 }

@@ -7,7 +7,7 @@
 snp_track_merged(
   dat,
   yvar = "-log10(P)",
-  labels_subset = c("Lead", "UCS", "Consensus"),
+  labels_subset = c("Lead", "CS", "UCS", "Consensus"),
   absolute_labels = FALSE,
   label_type = "rsid_only",
   label_leadsnp = TRUE,
@@ -18,6 +18,7 @@ snp_track_merged(
   facet_formula = "Method~.",
   dataset_type = NULL,
   genomic_units = "POS",
+  remove_duplicates = FALSE,
   strip.text.y.angle = 0,
   show_plot = FALSE,
   verbose = TRUE
@@ -25,6 +26,10 @@ snp_track_merged(
 }
 \arguments{
 \item{dat}{Data to query transcripts with.}
+
+\item{labels_subset}{Include colored shapes and RSID labels
+to help highlight SNPs belonging to one or more of the following groups:
+ Lead, Credible Set, Consensus.}
 
 \item{sig_cutoff}{Filters out SNPs to plot based on an (uncorrected)
 p-value significance cutoff.}
@@ -41,6 +46,9 @@ See \link[ggplot2]{facet_grid} for details.}
 
 \item{genomic_units}{Which genomic units to return window limits in.}
 
+\item{remove_duplicates}{Remove duplicate labels when SNPs are part of >1 
+group in \code{labels_subset}.}
+
 \item{strip.text.y.angle}{Angle of the y-axis facet labels.}
 
 \item{show_plot}{Print plot to screen.}
@@ -53,6 +61,6 @@ related annotations. Support function for \link[echoplot]{plot_locus}.
 }
 \examples{
 dat <- echodata::BST1[seq_len(100),]
-plt <- snp_track_merged(dat = dat)
+plt <- snp_track_merged(dat = dat, yvar="PP", show_plot=TRUE)
 }
 \keyword{internal}

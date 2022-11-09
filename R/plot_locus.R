@@ -36,6 +36,9 @@
 #' @param snp_group_lines Include vertical lines to help highlight 
 #' SNPs belonging to one or more of the following groups:
 #'  Lead, Credible Set, Consensus.
+#' @param labels_subset Include colored shapes and RSID labels
+#' to help highlight SNPs belonging to one or more of the following groups:
+#'  Lead, Credible Set, Consensus.
 #' @param xtext Include x-axis title and text for each track
 #' (not just the lower-most one). 
 #' @param show_legend_genes Show the legend for the \code{gene_track}. 
@@ -47,6 +50,12 @@
 #' \href{http://XGR_r-forge.r-project.org/#annotations-at-the-genomic-region-level}{
 #'  here}.
 #'  Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.
+#'  Examples:
+#'  \itemize{
+#'  \item{"ENCODE_TFBS_ClusteredV3_CellTypes"}
+#'  \item{"ENCODE_DNaseI_ClusteredV3_CellTypes"}
+#'  \item{"Broad_Histone"}
+#'  }
 #' @param xgr_n_top Passed to \link[echoplot]{XGR_plot}.
 #' Number of top annotations to be plotted
 #' (passed to \link[echoannot]{XGR_filter_sources} and then 
@@ -110,7 +119,7 @@
 #' plt <- echoplot::plot_locus(dat = dat,
 #'                             locus_dir = locus_dir,
 #'                             LD_matrix = LD_matrix,
-#'                             show_plot = FALSE)
+#'                             show_plot = TRUE)
 plot_locus <- function(dat,
                        locus_dir,
                        LD_matrix=NULL,
@@ -135,13 +144,11 @@ plot_locus <- function(dat,
                        point_alpha=.6,
                        density_adjust=0.2,
                        snp_group_lines=c("Lead","UCS","Consensus"),
+                       labels_subset=c("Lead","CS","Consensus"),
                        xtext=FALSE,
                        show_legend_genes=TRUE,
                        
                        xgr_libnames=NULL,
-                       #c("ENCODE_TFBS_ClusteredV3_CellTypes",
-                       #   "ENCODE_DNaseI_ClusteredV3_CellTypes",
-                       # "Broad_Histone"),
                        xgr_n_top=5,
                        
                        roadmap=FALSE,
@@ -271,7 +278,7 @@ plot_locus <- function(dat,
         sig_cutoff = sig_cutoff,
         absolute_labels = FALSE,
         label_type = "rsid_only",
-        labels_subset = c("Lead","CS"),
+        labels_subset = labels_subset,
         show.legend = FALSE,
         xtext = xtext,
         strip.text.y.angle = strip.text.y.angle,
@@ -318,32 +325,29 @@ plot_locus <- function(dat,
         TRKS[["Roadmap\nchromatin marks\ncell-types"]] <- roadmap_out$plot
     }
     #### Track: NOTT2019 ####
-    if(nott_epigenome){
-        #### Track: NOTT2019 histogram  ####
-        try({ 
-            track.Nott_histo <- echoannot::NOTT2019_epigenomic_histograms(
-                dat = dat,
-                locus_dir = locus_dir,
-                geom = "histogram",
-                plot_formula = "Cell_type ~.",
-                show_plot=FALSE,
-                save_plot=FALSE,
-                full_data=TRUE,
-                return_assay_track=TRUE,
-                binwidth=nott_binwidth, 
-                density_adjust = density_adjust,
-                save_annot=TRUE,
-                as_ggplot=TRUE,
-                strip.text.y.angle = strip.text.y.angle,
-                xtext=xtext,
-                nThread=nThread,
-                verbose=verbose)
-            TRKS[["Nott (2019)\nread densities"]] <- track.Nott_histo$plot +
-                ggplot2::labs(y="Nott (2019)\nread densities")
-        })
+    if(isTRUE(nott_epigenome)){
+        #### Track: NOTT2019 histogram  #### 
+        track.Nott_histo <- echoannot::NOTT2019_epigenomic_histograms(
+            dat = dat,
+            locus_dir = locus_dir,
+            geom = "histogram",
+            plot_formula = "Cell_type ~.",
+            show_plot=FALSE,
+            save_plot=FALSE,
+            full_data=TRUE,
+            return_assay_track=TRUE,
+            binwidth=nott_binwidth, 
+            density_adjust = density_adjust,
+            save_annot=TRUE,
+            as_ggplot=TRUE,
+            strip.text.y.angle = strip.text.y.angle,
+            xtext=xtext,
+            nThread=nThread,
+            verbose=verbose)
+        TRKS[["Nott (2019)\nread densities"]] <- track.Nott_histo$plot +
+            ggplot2::labs(y="Nott (2019)\nread densities") 
         #### Track: NOTT_2019 PLAC-seq  ####
-        if(nott_show_placseq){ 
-            try({
+        if(isTRUE(nott_show_placseq)){  
                 track.Nott_plac <- echoannot::NOTT2019_plac_seq_plot(
                     dat = dat,
                     locus_dir=locus_dir,
@@ -359,8 +363,7 @@ plot_locus <- function(dat,
                     nThread=nThread,
                     verbose=verbose)
                 TRKS[["Nott (2019)\nPLAC-seq"]] <- track.Nott_plac$PLACseq +
-                    ggplot2::labs(y="Nott (2019)\nPLAC-seq")
-            })
+                    ggplot2::labs(y="Nott (2019)\nPLAC-seq") 
         }
     } 
     #### Add vertical lines  ####
@@ -376,7 +379,7 @@ plot_locus <- function(dat,
     plot_list <- list()
     for(pz in zoom){
         # try() Allows (X11) errors to occur and still finish the loop
-        try({
+        tryCatch({
             messager("+>+>+>+>+ zoom = ",pz," +<+<+<+<+", v=verbose)
             TRKS_zoom <- TRKS
             window_suffix <- get_window_suffix(dat=dat,
@@ -473,7 +476,7 @@ plot_locus <- function(dat,
             }
             #### Show the plot ####
             if(show_plot){methods::show(TRKS_FINAL)}
-        })
+        }, error=function(e){message(e);NULL})
     } # End zoom loop
     return(plot_list)
 }

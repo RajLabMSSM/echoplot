@@ -36,6 +36,7 @@ Imports:
     ggplot2,
     ggbio,
     ggrepel,
+    ggnewscale,
     stats,
     patchwork, 
     DescTools,

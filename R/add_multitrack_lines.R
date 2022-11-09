@@ -13,7 +13,7 @@ add_multitrack_lines <- function(TRKS,
     requireNamespace("ggplot2")
     type <- NULL;
     
-    messager("+ Adding vertical lines to highlight SNP groups...",v=verbose)
+    messager("+ Adding vertical lines to highlight SNP groups.",v=verbose)
     snp_labels <- construct_snp_labels(dat = dat,
                                         labels_subset = snp_groups,
                                         remove_duplicates = FALSE,
@@ -40,14 +40,20 @@ add_multitrack_lines <- function(TRKS,
             trk <- trk +  # Consensus
                 ggplot2::geom_vline(xintercept = consensus.pos,
                                     color="goldenrod1",
-                           alpha=line_alpha, size=line_size,
-                           linetype='solid')
+                                    alpha=line_alpha, 
+                                    size=line_size,
+                                    linewidth=line_size,
+                                    linetype='solid')
         }
         if("UCS" %in% snp_groups){
             UCS.pos <- subset(snp_vlines, type=="UCS")[[genomic_units]]
             trk <- trk +  # Consensus
-                ggplot2::geom_vline(xintercept = UCS.pos, color="green3",
-                           alpha=line_alpha, size=line_size, linetype='dashed')
+                ggplot2::geom_vline(xintercept = UCS.pos, 
+                                    color="green3",
+                                    alpha=line_alpha,
+                                    size=line_size,
+                                    linewidth=line_size,
+                                    linetype='dashed')
         }
         if("Lead" %in% snp_groups){
             lead.pos <- subset(snp_vlines, type=="Lead")[[genomic_units]]

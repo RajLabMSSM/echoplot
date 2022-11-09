@@ -2,6 +2,8 @@
 #' 
 #' Manhattan plot of GWAS/QTL data with various fine-mapping 
 #' related annotations. Support function for \link[echoplot]{plot_locus}. 
+#' @param remove_duplicates Remove duplicate labels when SNPs are part of >1 
+#' group in \code{labels_subset}.
 #' @keywords internal
 #' @inheritParams plot_locus
 #' @importFrom echodata melt_finemapping_results
@@ -11,10 +13,10 @@
 #' @export
 #' @examples 
 #' dat <- echodata::BST1[seq_len(100),]
-#' plt <- snp_track_merged(dat = dat)
+#' plt <- snp_track_merged(dat = dat, yvar="PP", show_plot=TRUE)
 snp_track_merged <- function(dat,
                              yvar="-log10(P)",
-                             labels_subset = c("Lead","UCS","Consensus"),
+                             labels_subset = c("Lead","CS","UCS","Consensus"),
                              absolute_labels=FALSE,
                              label_type="rsid_only",
                              label_leadsnp=TRUE,
@@ -25,11 +27,13 @@ snp_track_merged <- function(dat,
                              facet_formula="Method~.",
                              dataset_type=NULL,
                              genomic_units="POS",
+                             remove_duplicates=FALSE,
                              strip.text.y.angle=0,
                              show_plot=FALSE,
                              verbose=TRUE){
     # echoverseTemplate:::args2vars(snp_track_merged)
     # echoverseTemplate:::source_all()
+    
     requireNamespace("ggplot2") 
     leadSNP <- NULL;
     
@@ -41,86 +45,50 @@ snp_track_merged <- function(dat,
         yvar <- "PP"
         sig_cutoff <- .95
         cutoff_lab <- paste("PP >=",sig_cutoff)
-        remove_duplicates <- FALSE
         melt_methods <- TRUE
         grouping_vars <- c("SNP","Method")
     } else {
         finemap_melt <- dat
         finemap_melt$Method <- if(is.null(dataset_type)) yvar else dataset_type
         cutoff_lab <- paste0("P<",formatC(sig_cutoff))
-        sig_cutoff <- -log10(sig_cutoff)
-        remove_duplicates <- TRUE
+        sig_cutoff <- -log10(sig_cutoff) 
         melt_methods <- FALSE
         grouping_vars <- c("SNP")
-    }
+    } 
     finemap_melt <- echoannot::add_mb(dat = finemap_melt)
-    #### Plot #####
-    snp_plot <- ggplot2::ggplot(
-        data = finemap_melt,
-        ggplot2::aes_string(
-            x=genomic_units, y=yvar, 
-            color=if("r2" %in% names(finemap_melt)) "r2" else NULL
-        )) +
-        # Bottom plot delineator
-        ggplot2::geom_hline(yintercept=0) +
-        ggplot2::geom_point(alpha=point_alpha, show.legend = show.legend) +
-        ggplot2::scale_color_gradient(low="blue",high ="red",
-                             breaks=c(0,.5,1), limits=c(0,1)) +
-        ## Sig cutoff line
-        ggplot2::geom_hline(yintercept = sig_cutoff, 
-                            alpha=.5, linetype=2, size=.5, 
-                   color="black") +
-        ggplot2::geom_text(
-            data = finemap_melt[1,],
-            ggplot2::aes_string(x=paste0("(",genomic_units,")"), 
-                                y="sig_cutoff*1.1"),
-                  label=cutoff_lab,
-                  size=3, color="grey", hjust = 2) +
-        ggplot2::labs(color=bquote(r^2),
-             y=if(startsWith(yvar,"-log10")){
-                 bquote("-log"[10]~"(p)")
-             } else {yvar} ) +
-        ggplot2::theme_classic() +
-        ggplot2::facet_grid(facets =if(is.null(facet_formula)) {
-            facet_formula
-            } else  {stats::as.formula(facet_formula)}) +
-        ggplot2::theme(
-            strip.text.y = ggplot2::element_text(angle=strip.text.y.angle)
-        ) +
-        ggplot2::guides(
-            fill = ggplot2::guide_colourbar(barwidth = 1,
-                                            barheight = 3))
-    
-    #  Choose breaks and ylims
-    if(startsWith(yvar,"-log")){
-        pval_stripped <- gsub("-log|-log10|[()]|[)]","",yvar)
-        snp_plot <- suppressMessages(
-            snp_plot + 
-                ggplot2::scale_y_continuous(
-                    n.breaks = 3,
-                    limits =  c(0,-log10(
-                        min(dat[[pval_stripped]], na.rm = TRUE))*1.1)
-                    )
-        )
-    }else {
-        snp_plot <- suppressMessages(
-            snp_plot + ggplot2::scale_y_continuous(breaks = c(0,.5,1),
-                                          limits = c(0,1.15)) +
-                ggplot2::labs(y="Fine-mapping PP")
-        )
-    }
+    #### Get grouping vars from facet formula ####
+    grouping_vars <- c("SNP",
+                       formula_terms(formula_str = facet_formula))
+    #### add SNP labels ####
     if(!is.null(labels_subset)){
-        snp_plot <- add_snp_labels(snp_plot = snp_plot,
-                                    dat = dat,
-                                    yvar = yvar,
-                                    genomic_units = genomic_units,
-                                    labels_subset = labels_subset,
-                                    remove_duplicates = remove_duplicates,
-                                    melt_methods = melt_methods,
-                                    grouping_vars = grouping_vars,
-                                    show.legend = show.legend)
+        finemap_melt <- construct_snp_labels(
+            dat = finemap_melt,
+            labels_subset = labels_subset,
+            remove_duplicates = remove_duplicates,
+            mean_only_text = c("UCS"),
+            grouping_vars = grouping_vars,
+            merge_with_input = TRUE,
+            verbose = verbose) 
+    } 
+    #### Get info on SNPs ####
+    # subset(finemap_melt, !is.na(type)) |> dplyr::group_by(Method) |> count()
+    #### Plot #####
+    snp_plot <- snp_track_merged_base(finemap_melt = finemap_melt, 
+                                      genomic_units = genomic_units, yvar = yvar, 
+                                      point_alpha = point_alpha,
+                                      show.legend = show.legend,
+                                      sig_cutoff = sig_cutoff, 
+                                      cutoff_lab = cutoff_lab, 
+                                      facet_formula = facet_formula, 
+                                      strip.text.y.angle = strip.text.y.angle)  
+    if(!is.null(labels_subset)){
+        snp_plot <- snp_track_merged_label(snp_plot = snp_plot, 
+                                           yvar = yvar,
+                                           genomic_units = genomic_units, 
+                                           show.legend = show.legend,
+                                           verbose = verbose) 
     }
-    if(xtext==FALSE){
+    if(isFALSE(xtext)){
         snp_plot <- snp_plot +
             ggplot2::theme(axis.text.x = ggplot2::element_blank(),
                   axis.title.x = ggplot2::element_blank())

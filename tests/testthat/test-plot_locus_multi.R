@@ -2,7 +2,7 @@ test_that("plot_locus_multi works", {
   
     locus_dir <- file.path(tempdir(),echodata::locus_dir)
     #### Make dat_ls ####
-    dat <- echodata::BST1
+    dat <- echodata::filter_snps(echodata::BST1, bp_distance = 10000) 
     dat_ls <- list(gwas1=dat, gwas2=dat)
     #### Make LD_ls ####
     LD_matrix <- echodata::BST1_LD_matrix

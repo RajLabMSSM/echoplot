@@ -67,6 +67,9 @@ all available biotypes}
     \item{\code{snp_group_lines}}{Include vertical lines to help highlight 
 SNPs belonging to one or more of the following groups:
  Lead, Credible Set, Consensus.}
+    \item{\code{labels_subset}}{Include colored shapes and RSID labels
+to help highlight SNPs belonging to one or more of the following groups:
+ Lead, Credible Set, Consensus.}
     \item{\code{xtext}}{Include x-axis title and text for each track
 (not just the lower-most one).}
     \item{\code{show_legend_genes}}{Show the legend for the \code{gene_track}.}
@@ -76,7 +79,13 @@ Which XGR annotations to check overlap with.
 For full list of libraries see
 \href{http://XGR_r-forge.r-project.org/#annotations-at-the-genomic-region-level}{
  here}.
- Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.}
+ Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.
+ Examples:
+ \itemize{
+ \item{"ENCODE_TFBS_ClusteredV3_CellTypes"}
+ \item{"ENCODE_DNaseI_ClusteredV3_CellTypes"}
+ \item{"Broad_Histone"}
+ }}
     \item{\code{xgr_n_top}}{Passed to \link[echoplot]{XGR_plot}.
 Number of top annotations to be plotted
 (passed to \link[echoannot]{XGR_filter_sources} and then 
@@ -172,7 +181,7 @@ Plot multi-GWAS/QTL or multi-ancestry(i.e. trans-ethnic) fine-mapping
 \examples{
 locus_dir <- file.path(tempdir(),echodata::locus_dir)
 #### Make dat_ls ####
-dat <- echodata::BST1
+dat <- echodata::filter_snps(echodata::BST1, bp_distance = 10000) 
 dat_ls <- list(gwas1=dat, gwas2=dat)
 #### Make LD_ls ####
 LD_matrix <- echodata::BST1_LD_matrix

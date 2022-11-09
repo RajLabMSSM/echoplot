@@ -6,10 +6,17 @@
     - `get_palettes`
     - `list_namespace`
 * Implement `rworkflows`
+* `plot_locus`:
+    - pass up `subset_labels` arg.
 
 ## Bug fixes
 
 * Make `pals` an Import, and remove `RColorBrewer`.
+* Fix `Can't combine ..1$Method <factor<2f980>> and ..4$Method <ordered<4e1b3>>.` error.
+* Get rid of `ggrepel: 7 unlabeled data points (too many overlaps). Consider increasing max.overlaps` 
+    warnings.
+* Fixed potential issue with getting top SNPs per Method in `construct_snp_labels`.
+* Fixed `colours encodes as numbers must be positive` errors.
 
 # echoplot 0.99.5
 
