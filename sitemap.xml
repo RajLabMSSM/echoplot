@@ -34,9 +34,6 @@
     <loc>/reference/add_multitrack_lines.html</loc>
   </url>
   <url>
-    <loc>/reference/add_snp_labels.html</loc>
-  </url>
-  <url>
     <loc>/reference/construct_snp_labels.html</loc>
   </url>
   <url>
@@ -71,6 +68,9 @@
   </url>
   <url>
     <loc>/reference/snp_track_merged.html</loc>
+  </url>
+  <url>
+    <loc>/reference/snp_track_merged_label.html</loc>
   </url>
   <url>
     <loc>/reference/transcript_model_track.html</loc>

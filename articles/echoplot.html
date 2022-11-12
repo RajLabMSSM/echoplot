@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>``r read.dcf('../DESCRIPTION', fields = 'Package')[1]``: Getting Started • echoplot</title>
+<title>`Get Started • echoplot</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="``r read.dcf('../DESCRIPTION', fields = 'Package')[1]``: Getting Started">
+<script src="../pkgdown.js"></script><meta property="og:title" content="`Get Started">
 <meta property="og:description" content="echoplot">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -69,13 +69,12 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>
-<code>echoplot</code>: Getting Started</h1>
+      <h1 data-toc-skip>`Get Started</h1>
                         <h4 data-toc-skip class="author"><h4> ¶ Author:
 <i>Brian M. Schilder</i> ¶ </h4></h4>
             
             <h4 data-toc-skip class="date"><h4> ¶ Updated:
-<i>Nov-07-2022</i> ¶ </h4></h4>
+<i>Nov-12-2022</i> ¶ </h4></h4>
       
       <small class="dont-index">Source: <a href="https://github.com/RajLabMSSM/echoplot/blob/HEAD/vignettes/echoplot.Rmd" class="external-link"><code>vignettes/echoplot.Rmd</code></a></small>
       <div class="hidden name"><code>echoplot.Rmd</code></div>
@@ -136,7 +135,7 @@ details).</p>
 <span></span>
 <span><span class="va">root.dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">locus_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">root.dir</span>,<span class="fu">echodata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/echodata/man/locus_dir.html" class="external-link">locus_dir</a></span><span class="op">)</span></span>
-<span><span class="va">finemap_DT</span> <span class="op">&lt;-</span> <span class="fu">echodata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/echodata/man/BST1.html" class="external-link">BST1</a></span>  </span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">echodata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/echodata/man/BST1.html" class="external-link">BST1</a></span>  </span>
 <span><span class="va">LD_matrix</span> <span class="op">&lt;-</span> <span class="fu">echodata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/echodata/man/BST1_LD_matrix.html" class="external-link">BST1_LD_matrix</a></span></span>
 <span><span class="va">LD_reference</span> <span class="op">&lt;-</span> <span class="st">"UKB"</span> <span class="co"># Used for naming saved plots</span></span>
 <span><span class="va">zoom</span> <span class="op">=</span> <span class="st">"10x"</span></span>
@@ -146,7 +145,7 @@ details).</p>
 <h3 id="full-window">Full window<a class="anchor" aria-label="anchor" href="#full-window"></a>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">trk_plot</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">finemap_DT</span>, </span>
+<code class="sourceCode R"><span><span class="va">trk_plot</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span> <span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">dat</span>, </span>
 <span>                                 LD_matrix<span class="op">=</span><span class="va">LD_matrix</span>, </span>
 <span>                                 LD_reference<span class="op">=</span><span class="va">LD_reference</span>,</span>
 <span>                                 locus_dir<span class="op">=</span><span class="va">locus_dir</span>,  </span>
@@ -167,6 +166,8 @@ details).</p>
 <pre><code><span><span class="co">## ++ echoplot:: GWAS track</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Merged fine-mapping track</span></span></code></pre>
 <pre><code><span><span class="co">## Melting PP and CS from 5 fine-mapping methods.</span></span></code></pre>
+<pre><code><span><span class="co">## + echoplot:: Constructing SNP labels.</span></span></code></pre>
+<pre><code><span><span class="co">## Adding SNP group labels to locus plot.</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Adding Gene model track.</span></span></code></pre>
 <pre><code><span><span class="co">## Converting dat to GRanges object.</span></span></code></pre>
 <pre><code><span><span class="co">## Loading required namespace: EnsDb.Hsapiens.v75</span></span></code></pre>
@@ -180,18 +181,18 @@ details).</p>
 <span><span class="co">## aggregating...</span></span>
 <span><span class="co">## Done</span></span>
 <span><span class="co">## Constructing graphics...</span></span>
-<span><span class="co">## + Adding vertical lines to highlight SNP groups...</span></span>
+<span><span class="co">## + Adding vertical lines to highlight SNP groups.</span></span>
 <span><span class="co">## +&gt;+&gt;+&gt;+&gt;+ zoom =  10x  +&lt;+&lt;+&lt;+&lt;+</span></span>
 <span><span class="co">## + echoplot:: Get window suffix...</span></span>
 <span><span class="co">## + Constructing zoom polygon...</span></span>
 <span><span class="co">## + Highlighting zoom origin...</span></span>
 <span><span class="co">## + Removing subplot margins...</span></span>
-<span><span class="co">## + Reordering tracks...</span></span></code></pre>
-<pre style="max-height: 200px;"><code><span><span class="co">## [1] "+ Ensuring last track shows genomic units..."</span></span></code></pre>
-<pre><code><span><span class="co">## + Aligning xlimits for each subplot...</span></span>
+<span><span class="co">## + Reordering tracks...</span></span>
+<span><span class="co">## + Ensuring last track shows genomic units.</span></span>
+<span><span class="co">## + Aligning xlimits for each subplot...</span></span>
 <span><span class="co">## + Checking track heights...</span></span></code></pre>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">trk_plot</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">trk_plot</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $`10x`</span></span></code></pre>
 <pre><code><span><span class="co">## Found more than one class "simpleUnit" in cache; using the first, from namespace 'hexbin'</span></span></code></pre>
 <pre><code><span><span class="co">## Also defined by 'ggbio'</span></span></code></pre>
@@ -215,7 +216,7 @@ as the suffix (e.g. <code>multiview.BST1.UKB.4x.jpg</code>).<br>
 list.</li>
 </ul>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">trk_zooms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">finemap_DT</span>, </span>
+<code class="sourceCode R"><span><span class="va">trk_zooms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">dat</span>, </span>
 <span>                        LD_matrix<span class="op">=</span><span class="va">LD_matrix</span>, </span>
 <span>                        LD_reference<span class="op">=</span><span class="va">LD_reference</span>,</span>
 <span>                        locus_dir<span class="op">=</span><span class="va">locus_dir</span>,  </span>
@@ -236,6 +237,8 @@ list.</li>
 <pre><code><span><span class="co">## ++ echoplot:: GWAS track</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Merged fine-mapping track</span></span></code></pre>
 <pre><code><span><span class="co">## Melting PP and CS from 5 fine-mapping methods.</span></span></code></pre>
+<pre><code><span><span class="co">## + echoplot:: Constructing SNP labels.</span></span></code></pre>
+<pre><code><span><span class="co">## Adding SNP group labels to locus plot.</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Adding Gene model track.</span></span></code></pre>
 <pre><code><span><span class="co">## Converting dat to GRanges object.</span></span></code></pre>
 <pre><code><span><span class="co">## max_transcripts= 1 .</span></span></code></pre>
@@ -248,38 +251,38 @@ list.</li>
 <span><span class="co">## aggregating...</span></span>
 <span><span class="co">## Done</span></span>
 <span><span class="co">## Constructing graphics...</span></span>
-<span><span class="co">## + Adding vertical lines to highlight SNP groups...</span></span>
+<span><span class="co">## + Adding vertical lines to highlight SNP groups.</span></span>
 <span><span class="co">## +&gt;+&gt;+&gt;+&gt;+ zoom =  1x  +&lt;+&lt;+&lt;+&lt;+</span></span>
 <span><span class="co">## + echoplot:: Get window suffix...</span></span>
 <span><span class="co">## + echoplot:: Removing GWAS full window track @ zoom=1x</span></span>
 <span><span class="co">## + Removing subplot margins...</span></span>
-<span><span class="co">## + Reordering tracks...</span></span></code></pre>
-<pre style="max-height: 200px;"><code><span><span class="co">## [1] "+ Ensuring last track shows genomic units..."</span></span></code></pre>
-<pre><code><span><span class="co">## + Aligning xlimits for each subplot...</span></span>
+<span><span class="co">## + Reordering tracks...</span></span>
+<span><span class="co">## + Ensuring last track shows genomic units.</span></span>
+<span><span class="co">## + Aligning xlimits for each subplot...</span></span>
 <span><span class="co">## + Checking track heights...</span></span>
 <span><span class="co">## +&gt;+&gt;+&gt;+&gt;+ zoom =  5x  +&lt;+&lt;+&lt;+&lt;+</span></span>
 <span><span class="co">## + echoplot:: Get window suffix...</span></span>
 <span><span class="co">## + Constructing zoom polygon...</span></span>
 <span><span class="co">## + Highlighting zoom origin...</span></span>
 <span><span class="co">## + Removing subplot margins...</span></span>
-<span><span class="co">## + Reordering tracks...</span></span></code></pre>
-<pre style="max-height: 200px;"><code><span><span class="co">## [1] "+ Ensuring last track shows genomic units..."</span></span></code></pre>
-<pre><code><span><span class="co">## + Aligning xlimits for each subplot...</span></span>
+<span><span class="co">## + Reordering tracks...</span></span>
+<span><span class="co">## + Ensuring last track shows genomic units.</span></span>
+<span><span class="co">## + Aligning xlimits for each subplot...</span></span>
 <span><span class="co">## + Checking track heights...</span></span>
 <span><span class="co">## +&gt;+&gt;+&gt;+&gt;+ zoom =  10x  +&lt;+&lt;+&lt;+&lt;+</span></span>
 <span><span class="co">## + echoplot:: Get window suffix...</span></span>
 <span><span class="co">## + Constructing zoom polygon...</span></span>
 <span><span class="co">## + Highlighting zoom origin...</span></span>
 <span><span class="co">## + Removing subplot margins...</span></span>
-<span><span class="co">## + Reordering tracks...</span></span></code></pre>
-<pre style="max-height: 200px;"><code><span><span class="co">## [1] "+ Ensuring last track shows genomic units..."</span></span></code></pre>
-<pre><code><span><span class="co">## + Aligning xlimits for each subplot...</span></span>
+<span><span class="co">## + Reordering tracks...</span></span>
+<span><span class="co">## + Ensuring last track shows genomic units.</span></span>
+<span><span class="co">## + Aligning xlimits for each subplot...</span></span>
 <span><span class="co">## + Checking track heights...</span></span></code></pre>
-<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">trk_zooms</span><span class="op">)</span> <span class="co"># Get zoom view names</span></span></code></pre></div>
 <pre style="max-height: 200px;"><code><span><span class="co">## [1] "1x"  "5x"  "10x"</span></span></code></pre>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">trk_zooms</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">trk_zooms</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $`1x`</span></span></code></pre>
 <p><img src="echoplot_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 <pre><code><span><span class="co">## </span></span>
@@ -302,8 +305,8 @@ individually.</li>
 plots back together with
 <code>patchwork::wrap_plots(tracks_list, ncol = 1)</code>.</li>
 </ul>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">trk_plot_list</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">finemap_DT</span>, </span>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">trk_plot_list</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">dat</span>, </span>
 <span>                                       LD_matrix<span class="op">=</span><span class="va">LD_matrix</span>, </span>
 <span>                                       LD_reference<span class="op">=</span><span class="va">LD_reference</span>,</span>
 <span>                                       locus_dir<span class="op">=</span><span class="va">locus_dir</span>,  </span>
@@ -325,6 +328,8 @@ plots back together with
 <pre><code><span><span class="co">## ++ echoplot:: GWAS track</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Merged fine-mapping track</span></span></code></pre>
 <pre><code><span><span class="co">## Melting PP and CS from 5 fine-mapping methods.</span></span></code></pre>
+<pre><code><span><span class="co">## + echoplot:: Constructing SNP labels.</span></span></code></pre>
+<pre><code><span><span class="co">## Adding SNP group labels to locus plot.</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Adding Gene model track.</span></span></code></pre>
 <pre><code><span><span class="co">## Converting dat to GRanges object.</span></span></code></pre>
 <pre><code><span><span class="co">## max_transcripts= 1 .</span></span></code></pre>
@@ -337,23 +342,23 @@ plots back together with
 <span><span class="co">## aggregating...</span></span>
 <span><span class="co">## Done</span></span>
 <span><span class="co">## Constructing graphics...</span></span>
-<span><span class="co">## + Adding vertical lines to highlight SNP groups...</span></span>
+<span><span class="co">## + Adding vertical lines to highlight SNP groups.</span></span>
 <span><span class="co">## +&gt;+&gt;+&gt;+&gt;+ zoom =  10x  +&lt;+&lt;+&lt;+&lt;+</span></span>
 <span><span class="co">## + echoplot:: Get window suffix...</span></span>
 <span><span class="co">## + Constructing zoom polygon...</span></span>
 <span><span class="co">## + Highlighting zoom origin...</span></span>
 <span><span class="co">## + Removing subplot margins...</span></span>
-<span><span class="co">## + Reordering tracks...</span></span></code></pre>
-<pre style="max-height: 200px;"><code><span><span class="co">## [1] "+ Ensuring last track shows genomic units..."</span></span></code></pre>
-<pre><code><span><span class="co">## + Aligning xlimits for each subplot...</span></span>
+<span><span class="co">## + Reordering tracks...</span></span>
+<span><span class="co">## + Ensuring last track shows genomic units.</span></span>
+<span><span class="co">## + Aligning xlimits for each subplot...</span></span>
 <span><span class="co">## + Checking track heights...</span></span></code></pre>
-<div class="sourceCode" id="cb84"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb80"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">view1_list</span> <span class="op">&lt;-</span> <span class="va">trk_plot_list</span><span class="op">[[</span><span class="va">zoom</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">view1_list</span><span class="op">)</span> <span class="co"># Get track names from a particular zoom view</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] "GWAS full window" "zoom_polygon"     "Genes"            "GWAS"            </span></span>
 <span><span class="co">## [5] "Fine-mapping"</span></span></code></pre>
 <p>Modify a specific tracks within a view.</p>
-<div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb82"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Modify your selected track</span></span>
 <span><span class="va">modified_track</span> <span class="op">&lt;-</span> <span class="va">view1_list</span><span class="op">$</span><span class="va">GWAS</span> <span class="op">+</span> </span>
 <span>                      <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Modified GWAS"</span><span class="op">)</span> <span class="op">+</span> </span>
@@ -370,7 +375,7 @@ plots back together with
 <span><span class="va">fused_plot</span> <span class="op">&lt;-</span> <span class="fu">patchwork</span><span class="fu">::</span><span class="fu"><a href="https://patchwork.data-imaginist.com/reference/wrap_plots.html" class="external-link">wrap_plots</a></span><span class="op">(</span><span class="va">view1_list</span>, </span>
 <span>                                    heights <span class="op">=</span> <span class="va">track_heights</span>,</span>
 <span>                                    ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fused_plot</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">fused_plot</span><span class="op">)</span></span></code></pre></div>
 <p><img src="echoplot_files/figure-html/modify%20track-1.png" width="700"></p>
 </div>
 <div class="section level3">
@@ -386,8 +391,8 @@ as <code>GRanges</code> objects in a locus-specific subdirectory:<br><em>results
 for that locus, <code><a href="../reference/plot_locus.html">plot_locus()</a></code> will automatically detect and
 import it to save time.</li>
 </ul>
-<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">trk_plot.xgr</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">finemap_DT</span>, </span>
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">trk_plot.xgr</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">dat</span>, </span>
 <span>                                     LD_matrix<span class="op">=</span><span class="va">LD_matrix</span>, </span>
 <span>                                     LD_reference<span class="op">=</span><span class="va">LD_reference</span>,</span>
 <span>                                     locus_dir<span class="op">=</span><span class="va">locus_dir</span>, </span>
@@ -409,6 +414,8 @@ import it to save time.</li>
 <pre><code><span><span class="co">## ++ echoplot:: GWAS track</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Merged fine-mapping track</span></span></code></pre>
 <pre><code><span><span class="co">## Melting PP and CS from 5 fine-mapping methods.</span></span></code></pre>
+<pre><code><span><span class="co">## + echoplot:: Constructing SNP labels.</span></span></code></pre>
+<pre><code><span><span class="co">## Adding SNP group labels to locus plot.</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Adding Gene model track.</span></span></code></pre>
 <pre><code><span><span class="co">## Converting dat to GRanges object.</span></span></code></pre>
 <pre><code><span><span class="co">## max_transcripts= 1 .</span></span></code></pre>
@@ -422,42 +429,43 @@ import it to save time.</li>
 <span><span class="co">## Done</span></span>
 <span><span class="co">## Constructing graphics...</span></span>
 <span><span class="co">## echoannot:: Plotting XGR annotations.</span></span>
-<span><span class="co">## Start at 2022-11-07 16:04:00</span></span>
+<span><span class="co">## Start at 2022-11-12 14:48:28.904922</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## 'ENCODE_TFBS_ClusteredV3_CellTypes' (from http://galahad.well.ox.ac.uk/bigdata/ENCODE_TFBS_ClusteredV3_CellTypes.RData) has been loaded into the working environment (at 2022-11-07 16:04:10)</span></span>
+<span><span class="co">## 'ENCODE_TFBS_ClusteredV3_CellTypes' (from http://galahad.well.ox.ac.uk/bigdata/ENCODE_TFBS_ClusteredV3_CellTypes.RData) has been loaded into the working environment (at 2022-11-12 14:48:39.076834)</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">## End at 2022-11-07 16:04:10</span></span>
-<span><span class="co">## Runtime in total is: 10 secs</span></span>
+<span><span class="co">## End at 2022-11-12 14:48:39.077934</span></span>
+<span><span class="co">## Runtime in total is: 11 secs</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Converting dat to GRanges object.</span></span>
 <span><span class="co">## 1,579 query SNP(s) detected with reference overlap.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Ignoring unknown parameters: facets</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in (function (mapping = NULL, data = NULL, stat = "density", position =</span></span>
+<span><span class="co">## "identity", : Ignoring unknown parameters: `facets`</span></span></code></pre>
 <pre><code><span><span class="co">## Warning in max(xlim): no non-missing arguments to max; returning -Inf</span></span></code></pre>
-<pre><code><span><span class="co">## + Adding vertical lines to highlight SNP groups...</span></span></code></pre>
+<pre><code><span><span class="co">## + Adding vertical lines to highlight SNP groups.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (position_stack).</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (`position_stack()`).</span></span></code></pre>
 <pre><code><span><span class="co">## +&gt;+&gt;+&gt;+&gt;+ zoom =  10x  +&lt;+&lt;+&lt;+&lt;+</span></span>
 <span><span class="co">## + echoplot:: Get window suffix...</span></span>
 <span><span class="co">## + Constructing zoom polygon...</span></span>
 <span><span class="co">## + Highlighting zoom origin...</span></span>
 <span><span class="co">## + Removing subplot margins...</span></span>
-<span><span class="co">## + Reordering tracks...</span></span></code></pre>
-<pre style="max-height: 200px;"><code><span><span class="co">## [1] "+ Ensuring last track shows genomic units..."</span></span></code></pre>
+<span><span class="co">## + Reordering tracks...</span></span>
+<span><span class="co">## + Ensuring last track shows genomic units.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (position_stack).</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (`position_stack()`).</span></span></code></pre>
 <pre><code><span><span class="co">## + Aligning xlimits for each subplot...</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (position_stack).</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (`position_stack()`).</span></span></code></pre>
 <pre><code><span><span class="co">## + Checking track heights...</span></span></code></pre>
-<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">trk_plot.xgr</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">trk_plot.xgr</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $`10x`</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (position_stack).</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 2 rows containing missing values (`position_stack()`).</span></span></code></pre>
 <p><img src="echoplot_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
 <div class="section level3">
@@ -477,11 +485,10 @@ installed on your machine, or within a conda environment
 process (<code>nThread=&lt;n_cores_available&gt;</code>), as does
 reusing previously stored data which is automatically saved to the
 locus-specific subfolder
-(<code>&lt;dataset_type&gt;/&lt;dataset_name&gt;/&lt;locus&gt;/annotations/Roadmap.ChromatinMarks_CellTypes.RDS</code>)
-.</li>
+(<code>&lt;dataset_type&gt;/&lt;dataset_name&gt;/&lt;locus&gt;/annotations/Roadmap.ChromatinMarks_CellTypes.RDS</code>).</li>
 </ul>
-<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">trk_plot.roadmap</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">finemap_DT</span>, </span>
+<div class="sourceCode" id="cb124"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">trk_plot.roadmap</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">dat</span>, </span>
 <span>                                           LD_matrix<span class="op">=</span><span class="va">LD_matrix</span>, </span>
 <span>                                           LD_reference<span class="op">=</span><span class="va">LD_reference</span>,</span>
 <span>                                           locus_dir<span class="op">=</span><span class="va">locus_dir</span>,  </span>
@@ -506,6 +513,8 @@ locus-specific subfolder
 <pre><code><span><span class="co">## ++ echoplot:: GWAS track</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Merged fine-mapping track</span></span></code></pre>
 <pre><code><span><span class="co">## Melting PP and CS from 5 fine-mapping methods.</span></span></code></pre>
+<pre><code><span><span class="co">## + echoplot:: Constructing SNP labels.</span></span></code></pre>
+<pre><code><span><span class="co">## Adding SNP group labels to locus plot.</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Adding Gene model track.</span></span></code></pre>
 <pre><code><span><span class="co">## Converting dat to GRanges object.</span></span></code></pre>
 <pre><code><span><span class="co">## max_transcripts= 1 .</span></span></code></pre>
@@ -525,58 +534,59 @@ locus-specific subfolder
 <span><span class="co">## + as_blocks=TRUE: Will query a single range per chromosome that covers all regions requested (plus anything in between).</span></span>
 <span><span class="co">## Downloading Roadmap Chromatin Marks: E124</span></span>
 <span><span class="co">## Converting dat to GRanges object.</span></span>
-<span><span class="co">## Saving query ==&gt; /tmp/RtmpzAeHOE/roadmap_query--monocyte.n_top--7.limit_files--./ROADMAP_query.E124.rds</span></span>
+<span><span class="co">## Saving query ==&gt; /tmp/RtmpqzqODU/roadmap_query--monocyte.n_top--7.limit_files--./ROADMAP_query.E124.rds</span></span>
 <span><span class="co">## Converting 1 GRanges object to separate BED files.</span></span>
-<span><span class="co">## Saving BED file ==&gt; /tmp/RtmpzAeHOE/roadmap_query--monocyte.n_top--7.limit_files--./E124.bed.txt.gz</span></span>
-<span><span class="co">## BED subset downloaded in 9.369 seconds</span></span>
+<span><span class="co">## Saving BED file ==&gt; /tmp/RtmpqzqODU/roadmap_query--monocyte.n_top--7.limit_files--./E124.bed.txt.gz</span></span>
+<span><span class="co">## BED subset downloaded in 9.958 seconds</span></span>
 <span><span class="co">## Constructing GRanges query using min/max ranges across one or more chromosomes.</span></span>
 <span><span class="co">## + as_blocks=TRUE: Will query a single range per chromosome that covers all regions requested (plus anything in between).</span></span>
 <span><span class="co">## Downloading Roadmap Chromatin Marks: E029</span></span>
 <span><span class="co">## Converting dat to GRanges object.</span></span>
-<span><span class="co">## Saving query ==&gt; /tmp/RtmpzAeHOE/roadmap_query--monocyte.n_top--7.limit_files--./ROADMAP_query.E029.rds</span></span>
+<span><span class="co">## Saving query ==&gt; /tmp/RtmpqzqODU/roadmap_query--monocyte.n_top--7.limit_files--./ROADMAP_query.E029.rds</span></span>
 <span><span class="co">## Converting 1 GRanges object to separate BED files.</span></span>
-<span><span class="co">## Saving BED file ==&gt; /tmp/RtmpzAeHOE/roadmap_query--monocyte.n_top--7.limit_files--./E029.bed.txt.gz</span></span>
-<span><span class="co">## BED subset downloaded in 10.938 seconds</span></span>
+<span><span class="co">## Saving BED file ==&gt; /tmp/RtmpqzqODU/roadmap_query--monocyte.n_top--7.limit_files--./E029.bed.txt.gz</span></span>
+<span><span class="co">## BED subset downloaded in 10.395 seconds</span></span>
 <span><span class="co">## ROADMAP:: Annotating GRangesList.</span></span>
 <span><span class="co">## Annotating chromatin states.</span></span>
 <span><span class="co">## Merging and processing ROADMAP annotations.</span></span>
-<span><span class="co">## ROADMAP:: Done in 0.38 min.</span></span>
+<span><span class="co">## ROADMAP:: Done in 0.41 min.</span></span>
 <span><span class="co">## Generating ROADMAP track plot.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Ignoring unknown parameters: facets</span></span></code></pre>
+<pre><code><span><span class="co">## Warning in (function (mapping = NULL, data = NULL, stat = "density", position =</span></span>
+<span><span class="co">## "identity", : Ignoring unknown parameters: `facets`</span></span></code></pre>
 <pre><code><span><span class="co">## Warning in max(xlim): no non-missing arguments to max; returning -Inf</span></span></code></pre>
-<pre><code><span><span class="co">## + Adding vertical lines to highlight SNP groups...</span></span></code></pre>
+<pre><code><span><span class="co">## + Adding vertical lines to highlight SNP groups.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Removed 4 rows containing missing values (position_stack).</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 4 rows containing missing values (`position_stack()`).</span></span></code></pre>
 <pre><code><span><span class="co">## +&gt;+&gt;+&gt;+&gt;+ zoom =  5x  +&lt;+&lt;+&lt;+&lt;+</span></span>
 <span><span class="co">## + echoplot:: Get window suffix...</span></span>
 <span><span class="co">## + Constructing zoom polygon...</span></span>
 <span><span class="co">## + Highlighting zoom origin...</span></span>
 <span><span class="co">## + Removing subplot margins...</span></span>
-<span><span class="co">## + Reordering tracks...</span></span></code></pre>
-<pre style="max-height: 200px;"><code><span><span class="co">## [1] "+ Ensuring last track shows genomic units..."</span></span></code></pre>
+<span><span class="co">## + Reordering tracks...</span></span>
+<span><span class="co">## + Ensuring last track shows genomic units.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Removed 4 rows containing missing values (position_stack).</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 4 rows containing missing values (`position_stack()`).</span></span></code></pre>
 <pre><code><span><span class="co">## + Aligning xlimits for each subplot...</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Removed 4 rows containing missing values (position_stack).</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 4 rows containing missing values (`position_stack()`).</span></span></code></pre>
 <pre><code><span><span class="co">## + Checking track heights...</span></span></code></pre>
-<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">trk_plot.roadmap</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">trk_plot.roadmap</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $`5x`</span></span></code></pre>
 <pre><code><span><span class="co">## Warning: Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span>
 <span><span class="co">## Groups with fewer than two data points have been dropped.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Removed 4 rows containing missing values (position_stack).</span></span></code></pre>
+<pre><code><span><span class="co">## Warning: Removed 4 rows containing missing values (`position_stack()`).</span></span></code></pre>
 <p><img src="echoplot_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
 <div class="section level3">
@@ -588,8 +598,8 @@ annotations<a class="anchor" aria-label="anchor" href="#using-nott_2019-annotati
 et al. (Science, 2019)</a><br>
 (see <code>?NOTT_2019.bigwig_metadata</code> for details).</li>
 </ul>
-<div class="sourceCode" id="cb167"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">trk_plot.nott_2019</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">finemap_DT</span>,  </span>
+<div class="sourceCode" id="cb165"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">trk_plot.nott_2019</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">dat</span>,  </span>
 <span>                                           LD_matrix<span class="op">=</span><span class="va">LD_matrix</span>, </span>
 <span>                                           LD_reference<span class="op">=</span><span class="va">LD_reference</span>,</span>
 <span>                                           locus_dir<span class="op">=</span><span class="va">locus_dir</span>, </span>
@@ -616,6 +626,8 @@ et al. (Science, 2019)</a><br>
 <pre><code><span><span class="co">## ++ echoplot:: GWAS track</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Merged fine-mapping track</span></span></code></pre>
 <pre><code><span><span class="co">## Melting PP and CS from 5 fine-mapping methods.</span></span></code></pre>
+<pre><code><span><span class="co">## + echoplot:: Constructing SNP labels.</span></span></code></pre>
+<pre><code><span><span class="co">## Adding SNP group labels to locus plot.</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Adding Gene model track.</span></span></code></pre>
 <pre><code><span><span class="co">## Converting dat to GRanges object.</span></span></code></pre>
 <pre><code><span><span class="co">## max_transcripts= 1 .</span></span></code></pre>
@@ -646,7 +658,7 @@ et al. (Science, 2019)</a><br>
 <span><span class="co">## Importing... [12] neurons_H3K4me3</span></span>
 <span><span class="co">## Importing... [13] oligodendrocytes_H3K4me3</span></span>
 <span><span class="co">## Importing... [14] astrocytes_H3K4me3</span></span>
-<span><span class="co">## Saving bigwig query ==&gt; /tmp/RtmpzAeHOE/BST1_Nott2019_bigwig.rds</span></span>
+<span><span class="co">## Saving bigwig query ==&gt; /tmp/RtmpqzqODU/BST1_Nott2019_bigwig.rds</span></span>
 <span><span class="co">## Importing previously downloaded files: /github/home/.cache/R/echoannot/NOTT2019_epigenomic_peaks.rds</span></span>
 <span><span class="co">## ++ NOTT2019:: 634,540 ranges retrieved.</span></span>
 <span><span class="co">## dat is already a GRanges object.</span></span>
@@ -676,25 +688,25 @@ et al. (Science, 2019)</a><br>
 <span><span class="co">## 49 query SNP(s) detected with reference overlap.</span></span>
 <span><span class="co">## Converting dat to GRanges object.</span></span>
 <span><span class="co">## Preparing data for highlighting PLAC-seq interactions that overlap with SNP subset: Support&gt;0</span></span>
-<span><span class="co">## Saving annotations ==&gt; /tmp/RtmpzAeHOE/results/GWAS/Nalls23andMe_2019/BST1/annotations/NOTT2019_interactome.rds</span></span>
-<span><span class="co">## Saving annotation ==&gt; /tmp/RtmpzAeHOE/results/GWAS/Nalls23andMe_2019/BST1/annotations/NOTT2019_enhancers_promoters.rds</span></span>
+<span><span class="co">## Saving annotations ==&gt; /tmp/RtmpqzqODU/results/GWAS/Nalls23andMe_2019/BST1/annotations/NOTT2019_interactome.rds</span></span>
+<span><span class="co">## Saving annotation ==&gt; /tmp/RtmpqzqODU/results/GWAS/Nalls23andMe_2019/BST1/annotations/NOTT2019_enhancers_promoters.rds</span></span>
 <span><span class="co">## Initializing PLAC-seq plot.</span></span>
 <span><span class="co">## ++ Adding enhancer/promoter rectangles</span></span>
 <span><span class="co">## ++ Removing xtext.</span></span>
 <span><span class="co">## x_limits will be used to limit the min/max x-axis values for all plots.</span></span>
 <span><span class="co">## Converting plots to a named list of ggplot objects.</span></span>
-<span><span class="co">## + Adding vertical lines to highlight SNP groups...</span></span>
+<span><span class="co">## + Adding vertical lines to highlight SNP groups.</span></span>
 <span><span class="co">## +&gt;+&gt;+&gt;+&gt;+ zoom =  10x  +&lt;+&lt;+&lt;+&lt;+</span></span>
 <span><span class="co">## + echoplot:: Get window suffix...</span></span>
 <span><span class="co">## + Constructing zoom polygon...</span></span>
 <span><span class="co">## + Highlighting zoom origin...</span></span>
 <span><span class="co">## + Removing subplot margins...</span></span>
-<span><span class="co">## + Reordering tracks...</span></span></code></pre>
-<pre style="max-height: 200px;"><code><span><span class="co">## [1] "+ Ensuring last track shows genomic units..."</span></span></code></pre>
-<pre><code><span><span class="co">## + Aligning xlimits for each subplot...</span></span>
+<span><span class="co">## + Reordering tracks...</span></span>
+<span><span class="co">## + Ensuring last track shows genomic units.</span></span>
+<span><span class="co">## + Aligning xlimits for each subplot...</span></span>
 <span><span class="co">## + Checking track heights...</span></span></code></pre>
-<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">trk_plot.nott_2019</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">trk_plot.nott_2019</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $`10x`</span></span></code></pre>
 <p><img src="echoplot_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
@@ -703,41 +715,42 @@ et al. (Science, 2019)</a><br>
 </h3>
 <ul>
 <li>Plot multiple QTL p-value columns (or really P-value columns from
-any kind of datset).<br>
+any kind of dataset).<br>
 </li>
 <li>Each QTL dataset will be plotted as a new track.</li>
 </ul>
-<div class="sourceCode" id="cb191"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Make fake QTL P-values for the sake a demonstration</span></span>
-<span><span class="va">finemap_DT</span><span class="op">$</span><span class="va">P.fake_eQTL</span> <span class="op">&lt;-</span> <span class="va">finemap_DT</span><span class="op">$</span><span class="va">P</span>  <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.9</span>,<span class="fl">.7</span><span class="op">)</span></span>
-<span><span class="va">finemap_DT</span><span class="op">$</span><span class="va">P.fake_sQTL</span> <span class="op">&lt;-</span> <span class="va">finemap_DT</span><span class="op">$</span><span class="va">P</span>  <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">.8</span>,<span class="fl">.5</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb189"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dat1</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/copy.html" class="external-link">copy</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/copy.html" class="external-link">copy</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span><span class="co"># Make fake QTL P-values for the sake a demonstration</span></span>
+<span><span class="va">dat1</span><span class="op">$</span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/jitter.html" class="external-link">jitter</a></span><span class="op">(</span><span class="va">dat1</span><span class="op">$</span><span class="va">P</span>, amount <span class="op">=</span> <span class="fl">1e-15</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dat2</span><span class="op">$</span><span class="va">P</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/jitter.html" class="external-link">jitter</a></span><span class="op">(</span><span class="va">dat2</span><span class="op">$</span><span class="va">P</span>, amount <span class="op">=</span> <span class="fl">1e-16</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dat_ls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="st">"fake_eQTL"</span><span class="op">=</span><span class="va">dat1</span>, </span>
+<span>               <span class="st">"fake_sQTL"</span><span class="op">=</span><span class="va">dat2</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">trk_plot.qtl</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plot_locus.html">plot_locus</a></span><span class="op">(</span>dat<span class="op">=</span><span class="va">finemap_DT</span>, </span>
-<span>                           LD_matrix<span class="op">=</span><span class="va">LD_matrix</span>, </span>
-<span>                           LD_reference<span class="op">=</span><span class="va">LD_reference</span>,</span>
-<span>                           locus_dir<span class="op">=</span><span class="va">locus_dir</span>,</span>
-<span>                           </span>
-<span>                           qtl_suffixes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">".fake_eQTL"</span>,<span class="st">".fake_sQTL"</span><span class="op">)</span>, </span>
-<span>                           </span>
-<span>                           save_plot<span class="op">=</span><span class="cn">FALSE</span>,</span>
-<span>                           show_plot<span class="op">=</span><span class="va">show_plot</span>,</span>
-<span>                           zoom<span class="op">=</span><span class="va">zoom</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">trk_plot.qtl</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu"><a href="../reference/plot_locus_multi.html">plot_locus_multi</a></span><span class="op">(</span>dat_ls <span class="op">=</span> <span class="va">dat_ls</span>, </span>
+<span>                                           LD_ls <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">LD_matrix</span>,<span class="va">LD_matrix</span><span class="op">)</span>,  </span>
+<span>                                           locus_dir <span class="op">=</span> <span class="va">locus_dir</span>,</span>
+<span>                                           show_plot <span class="op">=</span> <span class="va">show_plot</span>,</span>
+<span>                                           zoom <span class="op">=</span> <span class="st">"10x"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## LD_matrix detected. Coloring SNPs by LD with lead SNP.</span></span></code></pre>
+<pre><code><span><span class="co">## Filling r/r2 NAs with 0</span></span></code></pre>
+<pre><code><span><span class="co">## LD_matrix detected. Coloring SNPs by LD with lead SNP.</span></span></code></pre>
+<pre><code><span><span class="co">## Filling r/r2 NAs with 0</span></span></code></pre>
 <pre><code><span><span class="co">## +-------- Locus Plot:  BST1 --------+</span></span></code></pre>
 <pre><code><span><span class="co">## + support_thresh = 2</span></span></code></pre>
 <pre><code><span><span class="co">## + Calculating mean Posterior Probability (mean.PP)...</span></span></code></pre>
 <pre><code><span><span class="co">## + 4 fine-mapping methods used.</span></span></code></pre>
-<pre><code><span><span class="co">## + 7 Credible Set SNPs identified.</span></span></code></pre>
-<pre><code><span><span class="co">## + 3 Consensus SNPs identified.</span></span></code></pre>
+<pre><code><span><span class="co">## + 14 Credible Set SNPs identified.</span></span></code></pre>
+<pre><code><span><span class="co">## + 6 Consensus SNPs identified.</span></span></code></pre>
 <pre><code><span><span class="co">## + Filling NAs in CS cols with 0.</span></span></code></pre>
 <pre><code><span><span class="co">## + Filling NAs in PP cols with 0.</span></span></code></pre>
-<pre><code><span><span class="co">## LD_matrix detected. Coloring SNPs by LD with lead SNP.</span></span></code></pre>
-<pre><code><span><span class="co">## Filling r/r2 NAs with 0</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: GWAS full window track</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: GWAS track</span></span></code></pre>
-<pre><code><span><span class="co">## ++ echoplot:: .fake_eQTL track</span></span></code></pre>
-<pre><code><span><span class="co">## ++ echoplot:: .fake_sQTL track</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Merged fine-mapping track</span></span></code></pre>
 <pre><code><span><span class="co">## Melting PP and CS from 5 fine-mapping methods.</span></span></code></pre>
+<pre><code><span><span class="co">## + echoplot:: Constructing SNP labels.</span></span></code></pre>
+<pre><code><span><span class="co">## Adding SNP group labels to locus plot.</span></span></code></pre>
 <pre><code><span><span class="co">## ++ echoplot:: Adding Gene model track.</span></span></code></pre>
 <pre><code><span><span class="co">## Converting dat to GRanges object.</span></span></code></pre>
 <pre><code><span><span class="co">## max_transcripts= 1 .</span></span></code></pre>
@@ -750,18 +763,19 @@ any kind of datset).<br>
 <span><span class="co">## aggregating...</span></span>
 <span><span class="co">## Done</span></span>
 <span><span class="co">## Constructing graphics...</span></span>
-<span><span class="co">## + Adding vertical lines to highlight SNP groups...</span></span>
+<span><span class="co">## + Adding vertical lines to highlight SNP groups.</span></span>
 <span><span class="co">## +&gt;+&gt;+&gt;+&gt;+ zoom =  10x  +&lt;+&lt;+&lt;+&lt;+</span></span>
 <span><span class="co">## + echoplot:: Get window suffix...</span></span>
 <span><span class="co">## + Constructing zoom polygon...</span></span>
 <span><span class="co">## + Highlighting zoom origin...</span></span>
 <span><span class="co">## + Removing subplot margins...</span></span>
-<span><span class="co">## + Reordering tracks...</span></span></code></pre>
-<pre style="max-height: 200px;"><code><span><span class="co">## [1] "+ Ensuring last track shows genomic units..."</span></span></code></pre>
-<pre><code><span><span class="co">## + Aligning xlimits for each subplot...</span></span>
+<span><span class="co">## + Reordering tracks...</span></span>
+<span><span class="co">## + Ensuring last track shows genomic units.</span></span>
+<span><span class="co">## + Aligning xlimits for each subplot...</span></span>
 <span><span class="co">## + Checking track heights...</span></span></code></pre>
-<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">trk_plot.qtl</span><span class="op">)</span></span></code></pre></div>
+<p><img src="echoplot_files/figure-html/trk_plot.QTL-1.png" width="700"></p>
+<div class="sourceCode" id="cb213"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">methods</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">trk_plot.qtl</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## $`10x`</span></span></code></pre>
 <p><img src="echoplot_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 <hr>
@@ -770,15 +784,15 @@ any kind of datset).<br>
 <div class="section level2">
 <h2 id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<details><div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<details><div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre style="max-height: 200px;"><code><span><span class="co">## R version 4.2.1 (2022-06-23)</span></span>
+<pre style="max-height: 200px;"><code><span><span class="co">## R Under development (unstable) (2022-11-11 r83336)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span><span class="co">## Running under: Ubuntu 20.04.5 LTS</span></span>
+<span><span class="co">## Running under: Ubuntu 22.04.1 LTS</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Matrix products: default</span></span>
 <span><span class="co">## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span></span>
-<span><span class="co">## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3</span></span>
+<span><span class="co">## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## locale:</span></span>
 <span><span class="co">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
@@ -788,111 +802,114 @@ any kind of datset).<br>
 <span><span class="co">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
 <span><span class="co">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
 <span><span class="co">## </span></span>
+<span><span class="co">## time zone: UTC</span></span>
+<span><span class="co">## tzcode source: system (glibc)</span></span>
+<span><span class="co">## </span></span>
 <span><span class="co">## attached base packages:</span></span>
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] patchwork_1.1.2  ggplot2_3.3.6    echoplot_0.99.6  BiocStyle_2.26.0</span></span>
+<span><span class="co">## [1] patchwork_1.1.2  ggplot2_3.4.0    echoplot_0.99.6  BiocStyle_2.27.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##   [1] utf8_1.2.2                  reticulate_1.26            </span></span>
-<span><span class="co">##   [3] R.utils_2.12.1              tidyselect_1.2.0           </span></span>
-<span><span class="co">##   [5] RSQLite_2.2.18              AnnotationDbi_1.60.0       </span></span>
-<span><span class="co">##   [7] htmlwidgets_1.5.4           grid_4.2.1                 </span></span>
-<span><span class="co">##   [9] BiocParallel_1.32.0         XGR_1.1.8                  </span></span>
-<span><span class="co">##  [11] munsell_0.5.0               codetools_0.2-18           </span></span>
-<span><span class="co">##  [13] ragg_1.2.4                  interp_1.1-3               </span></span>
-<span><span class="co">##  [15] DT_0.26                     withr_2.5.0                </span></span>
-<span><span class="co">##  [17] colorspace_2.0-3            OrganismDbi_1.40.0         </span></span>
-<span><span class="co">##  [19] Biobase_2.58.0              filelock_1.0.2             </span></span>
-<span><span class="co">##  [21] highr_0.9                   knitr_1.40                 </span></span>
-<span><span class="co">##  [23] supraHex_1.36.0             rstudioapi_0.14            </span></span>
-<span><span class="co">##  [25] stats4_4.2.1                DescTools_0.99.47          </span></span>
-<span><span class="co">##  [27] labeling_0.4.2              MatrixGenerics_1.10.0      </span></span>
-<span><span class="co">##  [29] GenomeInfoDbData_1.2.9      farver_2.1.1               </span></span>
-<span><span class="co">##  [31] bit64_4.0.5                 echoconda_0.99.8           </span></span>
-<span><span class="co">##  [33] rprojroot_2.0.3             basilisk_1.9.12            </span></span>
-<span><span class="co">##  [35] vctrs_0.5.0                 generics_0.1.3             </span></span>
-<span><span class="co">##  [37] xfun_0.34                   biovizBase_1.46.0          </span></span>
-<span><span class="co">##  [39] BiocFileCache_2.6.0         R6_2.5.1                   </span></span>
-<span><span class="co">##  [41] GenomeInfoDb_1.34.1         pals_1.7                   </span></span>
-<span><span class="co">##  [43] AnnotationFilter_1.22.0     bitops_1.0-7               </span></span>
-<span><span class="co">##  [45] cachem_1.0.6                reshape_0.8.9              </span></span>
-<span><span class="co">##  [47] DelayedArray_0.24.0         assertthat_0.2.1           </span></span>
-<span><span class="co">##  [49] BiocIO_1.8.0                scales_1.2.1               </span></span>
-<span><span class="co">##  [51] nnet_7.3-18                 rootSolve_1.8.2.3          </span></span>
-<span><span class="co">##  [53] gtable_0.3.1                lmom_2.9                   </span></span>
-<span><span class="co">##  [55] ggbio_1.46.0                ensembldb_2.22.0           </span></span>
-<span><span class="co">##  [57] rlang_1.0.6                 systemfonts_1.0.4          </span></span>
-<span><span class="co">##  [59] echodata_0.99.15            splines_4.2.1              </span></span>
-<span><span class="co">##  [61] rtracklayer_1.58.0          lazyeval_0.2.2             </span></span>
-<span><span class="co">##  [63] dichromat_2.0-0.1           hexbin_1.28.2              </span></span>
-<span><span class="co">##  [65] checkmate_2.1.0             reshape2_1.4.4             </span></span>
-<span><span class="co">##  [67] BiocManager_1.30.19         yaml_2.3.6                 </span></span>
-<span><span class="co">##  [69] backports_1.4.1             snpStats_1.48.0            </span></span>
-<span><span class="co">##  [71] GenomicFeatures_1.50.2      ggnetwork_0.5.10           </span></span>
-<span><span class="co">##  [73] Hmisc_4.7-1                 RBGL_1.74.0                </span></span>
-<span><span class="co">##  [75] tools_4.2.1                 bookdown_0.29              </span></span>
-<span><span class="co">##  [77] ellipsis_0.3.2              jquerylib_0.1.4            </span></span>
-<span><span class="co">##  [79] RColorBrewer_1.1-3          proxy_0.4-27               </span></span>
-<span><span class="co">##  [81] BiocGenerics_0.44.0         Rcpp_1.0.9                 </span></span>
-<span><span class="co">##  [83] plyr_1.8.7                  base64enc_0.1-3            </span></span>
-<span><span class="co">##  [85] progress_1.2.2              zlibbioc_1.44.0            </span></span>
-<span><span class="co">##  [87] purrr_0.3.5                 RCurl_1.98-1.9             </span></span>
-<span><span class="co">##  [89] basilisk.utils_1.10.0       prettyunits_1.1.1          </span></span>
-<span><span class="co">##  [91] rpart_4.1.19                deldir_1.0-6               </span></span>
-<span><span class="co">##  [93] S4Vectors_0.36.0            cluster_2.1.4              </span></span>
-<span><span class="co">##  [95] SummarizedExperiment_1.28.0 ggrepel_0.9.1              </span></span>
-<span><span class="co">##  [97] fs_1.5.2                    crul_1.3                   </span></span>
-<span><span class="co">##  [99] magrittr_2.0.3              data.table_1.14.4          </span></span>
-<span><span class="co">## [101] echotabix_0.99.8            dnet_1.1.7                 </span></span>
-<span><span class="co">## [103] openxlsx_4.2.5.1            mvtnorm_1.1-3              </span></span>
-<span><span class="co">## [105] ProtGenerics_1.30.0         matrixStats_0.62.0         </span></span>
-<span><span class="co">## [107] hms_1.1.2                   evaluate_0.17              </span></span>
-<span><span class="co">## [109] XML_3.99-0.12               jpeg_0.1-9                 </span></span>
-<span><span class="co">## [111] readxl_1.4.1                gridExtra_2.3              </span></span>
-<span><span class="co">## [113] IRanges_2.32.0              compiler_4.2.1             </span></span>
-<span><span class="co">## [115] biomaRt_2.54.0              maps_3.4.1                 </span></span>
-<span><span class="co">## [117] tibble_3.1.8                crayon_1.5.2               </span></span>
-<span><span class="co">## [119] R.oo_1.25.0                 htmltools_0.5.3            </span></span>
-<span><span class="co">## [121] echoannot_0.99.10           tzdb_0.3.0                 </span></span>
-<span><span class="co">## [123] Formula_1.2-4               tidyr_1.2.1                </span></span>
-<span><span class="co">## [125] expm_0.999-6                Exact_3.2                  </span></span>
-<span><span class="co">## [127] DBI_1.1.3                   dbplyr_2.2.1               </span></span>
-<span><span class="co">## [129] MASS_7.3-58.1               rappdirs_0.3.3             </span></span>
-<span><span class="co">## [131] boot_1.3-28                 EnsDb.Hsapiens.v75_2.99.0  </span></span>
-<span><span class="co">## [133] Matrix_1.5-1                readr_2.1.3                </span></span>
-<span><span class="co">## [135] piggyback_0.1.4             cli_3.4.1                  </span></span>
-<span><span class="co">## [137] R.methodsS3_1.8.2           parallel_4.2.1             </span></span>
-<span><span class="co">## [139] igraph_1.3.5                GenomicRanges_1.50.0       </span></span>
-<span><span class="co">## [141] pkgconfig_2.0.3             pkgdown_2.0.6              </span></span>
-<span><span class="co">## [143] GenomicAlignments_1.34.0    dir.expiry_1.6.0           </span></span>
-<span><span class="co">## [145] RCircos_1.2.2               foreign_0.8-83             </span></span>
-<span><span class="co">## [147] osfr_0.2.9                  xml2_1.3.3                 </span></span>
-<span><span class="co">## [149] bslib_0.4.0                 XVector_0.38.0             </span></span>
-<span><span class="co">## [151] echoLD_0.99.8               stringr_1.4.1              </span></span>
-<span><span class="co">## [153] VariantAnnotation_1.44.0    digest_0.6.30              </span></span>
-<span><span class="co">## [155] graph_1.76.0                httpcode_0.3.0             </span></span>
-<span><span class="co">## [157] Biostrings_2.66.0           rmarkdown_2.17             </span></span>
-<span><span class="co">## [159] cellranger_1.1.0            htmlTable_2.4.1            </span></span>
-<span><span class="co">## [161] gld_2.6.6                   restfulr_0.0.15            </span></span>
-<span><span class="co">## [163] curl_4.3.3                  Rsamtools_2.14.0           </span></span>
-<span><span class="co">## [165] rjson_0.2.21                lifecycle_1.0.3            </span></span>
-<span><span class="co">## [167] nlme_3.1-160                jsonlite_1.8.3             </span></span>
-<span><span class="co">## [169] mapproj_1.2.9               desc_1.4.2                 </span></span>
-<span><span class="co">## [171] BSgenome_1.66.1             fansi_1.0.3                </span></span>
-<span><span class="co">## [173] downloadR_0.99.5            pillar_1.8.1               </span></span>
-<span><span class="co">## [175] lattice_0.20-45             GGally_2.1.2               </span></span>
-<span><span class="co">## [177] KEGGREST_1.38.0             fastmap_1.1.0              </span></span>
-<span><span class="co">## [179] httr_1.4.4                  survival_3.4-0             </span></span>
-<span><span class="co">## [181] glue_1.6.2                  zip_2.2.2                  </span></span>
-<span><span class="co">## [183] png_0.1-7                   bit_4.0.4                  </span></span>
-<span><span class="co">## [185] Rgraphviz_2.42.0            class_7.3-20               </span></span>
-<span><span class="co">## [187] stringi_1.7.8               sass_0.4.2                 </span></span>
-<span><span class="co">## [189] blob_1.2.3                  textshaping_0.3.6          </span></span>
-<span><span class="co">## [191] latticeExtra_0.6-30         memoise_2.0.1              </span></span>
-<span><span class="co">## [193] dplyr_1.0.10                e1071_1.7-12               </span></span>
-<span><span class="co">## [195] ape_5.6-2</span></span></code></pre>
+<span><span class="co">##   [1] fs_1.5.2                    ProtGenerics_1.31.0        </span></span>
+<span><span class="co">##   [3] matrixStats_0.62.0          bitops_1.0-7               </span></span>
+<span><span class="co">##   [5] EnsDb.Hsapiens.v75_2.99.0   httr_1.4.4                 </span></span>
+<span><span class="co">##   [7] RColorBrewer_1.1-3          Rgraphviz_2.42.0           </span></span>
+<span><span class="co">##   [9] tools_4.3.0                 backports_1.4.1            </span></span>
+<span><span class="co">##  [11] utf8_1.2.2                  R6_2.5.1                   </span></span>
+<span><span class="co">##  [13] DT_0.26                     lazyeval_0.2.2             </span></span>
+<span><span class="co">##  [15] withr_2.5.0                 prettyunits_1.1.1          </span></span>
+<span><span class="co">##  [17] GGally_2.1.2                gridExtra_2.3              </span></span>
+<span><span class="co">##  [19] cli_3.4.1                   Biobase_2.59.0             </span></span>
+<span><span class="co">##  [21] textshaping_0.3.6           labeling_0.4.2             </span></span>
+<span><span class="co">##  [23] ggbio_1.47.0                sass_0.4.2                 </span></span>
+<span><span class="co">##  [25] mvtnorm_1.1-3               readr_2.1.3                </span></span>
+<span><span class="co">##  [27] proxy_0.4-27                pkgdown_2.0.6              </span></span>
+<span><span class="co">##  [29] Rsamtools_2.15.0            systemfonts_1.0.4          </span></span>
+<span><span class="co">##  [31] foreign_0.8-83              R.utils_2.12.2             </span></span>
+<span><span class="co">##  [33] dichromat_2.0-0.1           BSgenome_1.67.1            </span></span>
+<span><span class="co">##  [35] maps_3.4.1                  readxl_1.4.1               </span></span>
+<span><span class="co">##  [37] rstudioapi_0.14             RSQLite_2.2.18             </span></span>
+<span><span class="co">##  [39] httpcode_0.3.0              pals_1.7                   </span></span>
+<span><span class="co">##  [41] generics_0.1.3              BiocIO_1.9.0               </span></span>
+<span><span class="co">##  [43] echoconda_0.99.8            dplyr_1.0.10               </span></span>
+<span><span class="co">##  [45] zip_2.2.2                   Matrix_1.5-3               </span></span>
+<span><span class="co">##  [47] interp_1.1-3                fansi_1.0.3                </span></span>
+<span><span class="co">##  [49] DescTools_0.99.47           S4Vectors_0.37.0           </span></span>
+<span><span class="co">##  [51] R.methodsS3_1.8.2           lifecycle_1.0.3            </span></span>
+<span><span class="co">##  [53] yaml_2.3.6                  SummarizedExperiment_1.29.1</span></span>
+<span><span class="co">##  [55] BiocFileCache_2.7.0         grid_4.3.0                 </span></span>
+<span><span class="co">##  [57] blob_1.2.3                  crayon_1.5.2               </span></span>
+<span><span class="co">##  [59] dir.expiry_1.6.0            lattice_0.20-45            </span></span>
+<span><span class="co">##  [61] GenomicFeatures_1.51.2      KEGGREST_1.39.0            </span></span>
+<span><span class="co">##  [63] mapproj_1.2.9               pillar_1.8.1               </span></span>
+<span><span class="co">##  [65] knitr_1.40                  GenomicRanges_1.51.1       </span></span>
+<span><span class="co">##  [67] rjson_0.2.21                osfr_0.2.9                 </span></span>
+<span><span class="co">##  [69] boot_1.3-28                 gld_2.6.6                  </span></span>
+<span><span class="co">##  [71] codetools_0.2-18            glue_1.6.2                 </span></span>
+<span><span class="co">##  [73] data.table_1.14.4           vctrs_0.5.0                </span></span>
+<span><span class="co">##  [75] png_0.1-7                   XGR_1.1.8                  </span></span>
+<span><span class="co">##  [77] cellranger_1.1.0            gtable_0.3.1               </span></span>
+<span><span class="co">##  [79] assertthat_0.2.1            cachem_1.0.6               </span></span>
+<span><span class="co">##  [81] dnet_1.1.7                  xfun_0.34                  </span></span>
+<span><span class="co">##  [83] openxlsx_4.2.5.1            survival_3.4-0             </span></span>
+<span><span class="co">##  [85] ellipsis_0.3.2              nlme_3.1-160               </span></span>
+<span><span class="co">##  [87] bit64_4.0.5                 progress_1.2.2             </span></span>
+<span><span class="co">##  [89] filelock_1.0.2              GenomeInfoDb_1.35.3        </span></span>
+<span><span class="co">##  [91] rprojroot_2.0.3             bslib_0.4.1                </span></span>
+<span><span class="co">##  [93] rpart_4.1.19                colorspace_2.0-3           </span></span>
+<span><span class="co">##  [95] BiocGenerics_0.45.0         DBI_1.1.3                  </span></span>
+<span><span class="co">##  [97] Hmisc_4.7-1                 nnet_7.3-18                </span></span>
+<span><span class="co">##  [99] Exact_3.2                   tidyselect_1.2.0           </span></span>
+<span><span class="co">## [101] bit_4.0.4                   compiler_4.3.0             </span></span>
+<span><span class="co">## [103] curl_4.3.3                  graph_1.77.0               </span></span>
+<span><span class="co">## [105] htmlTable_2.4.1             expm_0.999-6               </span></span>
+<span><span class="co">## [107] basilisk.utils_1.10.0       xml2_1.3.3                 </span></span>
+<span><span class="co">## [109] desc_1.4.2                  DelayedArray_0.25.0        </span></span>
+<span><span class="co">## [111] bookdown_0.30               rtracklayer_1.59.0         </span></span>
+<span><span class="co">## [113] checkmate_2.1.0             scales_1.2.1               </span></span>
+<span><span class="co">## [115] hexbin_1.28.2               RBGL_1.75.0                </span></span>
+<span><span class="co">## [117] echoLD_0.99.8               RCircos_1.2.2              </span></span>
+<span><span class="co">## [119] rappdirs_0.3.3              stringr_1.4.1              </span></span>
+<span><span class="co">## [121] supraHex_1.36.0             digest_0.6.30              </span></span>
+<span><span class="co">## [123] piggyback_0.1.4             rmarkdown_2.18             </span></span>
+<span><span class="co">## [125] basilisk_1.9.12             XVector_0.39.0             </span></span>
+<span><span class="co">## [127] htmltools_0.5.3             pkgconfig_2.0.3            </span></span>
+<span><span class="co">## [129] jpeg_0.1-9                  base64enc_0.1-3            </span></span>
+<span><span class="co">## [131] MatrixGenerics_1.11.0       echodata_0.99.16           </span></span>
+<span><span class="co">## [133] highr_0.9                   dbplyr_2.2.1               </span></span>
+<span><span class="co">## [135] fastmap_1.1.0               ensembldb_2.23.1           </span></span>
+<span><span class="co">## [137] rlang_1.0.6                 htmlwidgets_1.5.4          </span></span>
+<span><span class="co">## [139] farver_2.1.1                jquerylib_0.1.4            </span></span>
+<span><span class="co">## [141] jsonlite_1.8.3              BiocParallel_1.33.0        </span></span>
+<span><span class="co">## [143] R.oo_1.25.0                 VariantAnnotation_1.45.0   </span></span>
+<span><span class="co">## [145] RCurl_1.98-1.9              magrittr_2.0.3             </span></span>
+<span><span class="co">## [147] Formula_1.2-4               GenomeInfoDbData_1.2.9     </span></span>
+<span><span class="co">## [149] ggnetwork_0.5.10            munsell_0.5.0              </span></span>
+<span><span class="co">## [151] Rcpp_1.0.9                  ape_5.6-2                  </span></span>
+<span><span class="co">## [153] ggnewscale_0.4.8            reticulate_1.26            </span></span>
+<span><span class="co">## [155] stringi_1.7.8               rootSolve_1.8.2.3          </span></span>
+<span><span class="co">## [157] zlibbioc_1.45.0             MASS_7.3-58.1              </span></span>
+<span><span class="co">## [159] plyr_1.8.8                  parallel_4.3.0             </span></span>
+<span><span class="co">## [161] ggrepel_0.9.2               snpStats_1.48.0            </span></span>
+<span><span class="co">## [163] lmom_2.9                    deldir_1.0-6               </span></span>
+<span><span class="co">## [165] echoannot_0.99.10           Biostrings_2.67.0          </span></span>
+<span><span class="co">## [167] splines_4.3.0               hms_1.1.2                  </span></span>
+<span><span class="co">## [169] igraph_1.3.5                reshape2_1.4.4             </span></span>
+<span><span class="co">## [171] biomaRt_2.55.0              stats4_4.3.0               </span></span>
+<span><span class="co">## [173] crul_1.3                    XML_3.99-0.12              </span></span>
+<span><span class="co">## [175] evaluate_0.18               latticeExtra_0.6-30        </span></span>
+<span><span class="co">## [177] biovizBase_1.47.0           BiocManager_1.30.19        </span></span>
+<span><span class="co">## [179] tzdb_0.3.0                  tidyr_1.2.1                </span></span>
+<span><span class="co">## [181] purrr_0.3.5                 reshape_0.8.9              </span></span>
+<span><span class="co">## [183] echotabix_0.99.8            restfulr_0.0.15            </span></span>
+<span><span class="co">## [185] AnnotationFilter_1.23.0     e1071_1.7-12               </span></span>
+<span><span class="co">## [187] downloadR_0.99.5            class_7.3-20.1             </span></span>
+<span><span class="co">## [189] ragg_1.2.4                  OrganismDbi_1.41.0         </span></span>
+<span><span class="co">## [191] tibble_3.1.8                memoise_2.0.1              </span></span>
+<span><span class="co">## [193] AnnotationDbi_1.61.0        GenomicAlignments_1.35.0   </span></span>
+<span><span class="co">## [195] IRanges_2.33.0              cluster_2.1.4</span></span></code></pre>
 <details><p><br></p>
 </details></details>
 </div>

@@ -71,10 +71,13 @@ Support function for <a href="plot_locus.html">plot_locus</a>.</p>
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">construct_snp_labels</span><span class="op">(</span></span>
 <span>  <span class="va">dat</span>,</span>
-<span>  labels_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lead"</span>, <span class="st">"CS"</span>, <span class="st">"UCS"</span>, <span class="st">"Consensus"</span><span class="op">)</span>,</span>
+<span>  labels_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lead"</span>, <span class="st">"CS"</span>, <span class="st">"Consensus"</span><span class="op">)</span>,</span>
+<span>  mean_only_text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Consensus"</span>, <span class="st">"UCS"</span><span class="op">)</span>,</span>
+<span>  method_specific_consensus <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  remove_duplicates <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  grouping_vars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SNP"</span><span class="op">)</span>,</span>
 <span>  merge_with_input <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  base_size <span class="op">=</span> <span class="fl">5</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -83,6 +86,22 @@ Support function for <a href="plot_locus.html">plot_locus</a>.</p>
     <h2>Arguments</h2>
     <dl><dt>dat</dt>
 <dd><p>Data to query transcripts with.</p></dd>
+
+
+<dt>labels_subset</dt>
+<dd><p>Include colored shapes and RSID labels
+to help highlight SNPs belonging to one or more of the following groups:
+ Lead, Credible Set, Consensus.</p></dd>
+
+
+<dt>mean_only_text</dt>
+<dd><p>Only show the text labels with RSIDs in the "mean"
+Method (not all the other method-specific facets).</p></dd>
+
+
+<dt>method_specific_consensus</dt>
+<dd><p>Only label Consensus SNPs 
+that are also Credible Set SNPs for a given method.</p></dd>
 
 
 <dt>verbose</dt>

@@ -61,7 +61,7 @@ related annotations. Support function for <a href="plot_locus.html">plot_locus</
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">snp_track_merged</span><span class="op">(</span></span>
 <span>  <span class="va">dat</span>,</span>
 <span>  yvar <span class="op">=</span> <span class="st">"-log10(P)"</span>,</span>
-<span>  labels_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lead"</span>, <span class="st">"UCS"</span>, <span class="st">"Consensus"</span><span class="op">)</span>,</span>
+<span>  labels_subset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Lead"</span>, <span class="st">"CS"</span>, <span class="st">"UCS"</span>, <span class="st">"Consensus"</span><span class="op">)</span>,</span>
 <span>  absolute_labels <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  label_type <span class="op">=</span> <span class="st">"rsid_only"</span>,</span>
 <span>  label_leadsnp <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -72,6 +72,7 @@ related annotations. Support function for <a href="plot_locus.html">plot_locus</
 <span>  facet_formula <span class="op">=</span> <span class="st">"Method~."</span>,</span>
 <span>  dataset_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  genomic_units <span class="op">=</span> <span class="st">"POS"</span>,</span>
+<span>  remove_duplicates <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  strip.text.y.angle <span class="op">=</span> <span class="fl">0</span>,</span>
 <span>  show_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
@@ -82,6 +83,12 @@ related annotations. Support function for <a href="plot_locus.html">plot_locus</
     <h2>Arguments</h2>
     <dl><dt>dat</dt>
 <dd><p>Data to query transcripts with.</p></dd>
+
+
+<dt>labels_subset</dt>
+<dd><p>Include colored shapes and RSID labels
+to help highlight SNPs belonging to one or more of the following groups:
+ Lead, Credible Set, Consensus.</p></dd>
 
 
 <dt>sig_cutoff</dt>
@@ -111,6 +118,11 @@ See <a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="ext
 <dd><p>Which genomic units to return window limits in.</p></dd>
 
 
+<dt>remove_duplicates</dt>
+<dd><p>Remove duplicate labels when SNPs are part of &gt;1 
+group in <code>labels_subset</code>.</p></dd>
+
+
 <dt>strip.text.y.angle</dt>
 <dd><p>Angle of the y-axis facet labels.</p></dd>
 
@@ -127,7 +139,11 @@ See <a href="https://ggplot2.tidyverse.org/reference/facet_grid.html" class="ext
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">echodata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/echodata/man/BST1.html" class="external-link">BST1</a></span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,<span class="op">]</span></span></span>
-<span class="r-in"><span><span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu">snp_track_merged</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">plt</span> <span class="op">&lt;-</span> <span class="fu">snp_track_merged</span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat</span>, yvar<span class="op">=</span><span class="st">"PP"</span>, show_plot<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Melting PP and CS from 5 fine-mapping methods.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> + echoplot:: Constructing SNP labels.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Adding SNP group labels to locus plot.</span>
+<span class="r-plt img"><img src="snp_track_merged-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
   </div>
