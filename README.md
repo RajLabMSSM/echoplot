@@ -1,19 +1,21 @@
 <img src='https://github.com/RajLabMSSM/echoplot/raw/master/inst/hex/hex.png' height='300'><br><br>
-[![](https://img.shields.io/badge/devel%20version-0.99.0-black.svg)](https://github.com/RajLabMSSM/echoplot)
+[![](https://img.shields.io/badge/devel%20version-0.99.6-black.svg)](https://github.com/RajLabMSSM/echoplot)
 [![R build
-status](https://github.com/RajLabMSSM/echoplot/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/RajLabMSSM/echoplot/actions)
+status](https://github.com/RajLabMSSM/echoplot/workflows/rworkflows/badge.svg)](https://github.com/RajLabMSSM/echoplot/actions)
 [![](https://img.shields.io/github/last-commit/RajLabMSSM/echoplot.svg)](https://github.com/RajLabMSSM/echoplot/commits/master)
-[![](https://codecov.io/gh/RajLabMSSM/echoplot/branch/master/graph/badge.svg)](https://codecov.io/gh/RajLabMSSM/echoplot)
+[![](https://app.codecov.io/gh/RajLabMSSM/echoplot/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RajLabMSSM/echoplot)
 [![License:
 GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
 <h5>
 Author: <i>Brian M. Schilder</i>
 </h5>
 <h5>
-README updated: <i>Feb-28-2022</i>
+README updated: <i>Nov-12-2022</i>
 </h5>
 
-## `echoplot`: Locus plot creation for fine-mapping and colocalization studies.
+## `echoplot`: Locus plot creation for fine-mapping
+
+and colocalization studies.
 
 This R package is part of the *echoverse* suite that supports
 [`echolocatoR`](https://github.com/RajLabMSSM/echolocatoR): an automated
