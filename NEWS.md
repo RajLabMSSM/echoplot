@@ -2,10 +2,10 @@
 
 ## New features
 
+* Implement `rworkflows`
 * New exports:
     - `get_palettes`
     - `list_namespace`
-* Implement `rworkflows`
 * `plot_locus`:
     - pass up `subset_labels` arg.
 
