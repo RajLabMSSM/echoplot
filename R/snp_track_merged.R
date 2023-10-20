@@ -31,8 +31,7 @@ snp_track_merged <- function(dat,
                              strip.text.y.angle=0,
                              show_plot=FALSE,
                              verbose=TRUE){
-    # echoverseTemplate:::args2vars(snp_track_merged)
-    # echoverseTemplate:::source_all()
+    # devoptera::args2vars(snp_track_merged)
     
     requireNamespace("ggplot2") 
     leadSNP <- NULL;

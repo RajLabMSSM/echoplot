@@ -177,8 +177,7 @@ plot_locus <- function(dat,
                        conda_env="echoR_mini",
                        nThread=1,
                        verbose=TRUE){
-    # echoverseTemplate:::source_all(packages = "dplyr")
-    # echoverseTemplate:::args2vars(plot_locus)
+    # devoptera::args2vars(plot_locus)
      
     requireNamespace("ggplot2")
     requireNamespace("patchwork")

@@ -19,13 +19,16 @@ construct_snp_labels <- function(dat,
                                  merge_with_input=FALSE,
                                  base_size=5,
                                  verbose=FALSE){
-    
+    # devoptera::args2vars(construct_snp_labels)
     rowID <- type <- P <- CS <- leadSNP <- Support <- Consensus_SNP <-
         Method <- text_label <- NULL;
     
     messager("+ echoplot:: Constructing SNP labels.", v=verbose)
     #### Ensure data.table format ####
-    dat <- data.table::as.data.table(dat)
+    dat <- data.table::as.data.table(dat) 
+    #### Melt to long-format ####
+    dat <- echodata::melt_finemapping_results(dat = dat, 
+                                              verbose = verbose)
     dat <- echoannot::add_mb(dat = dat)
     #### Get fine-mapping methods ####
     finemap_methods <- if("Method" %in% names(dat)){
@@ -106,9 +109,10 @@ construct_snp_labels <- function(dat,
             consensus_SNPs$color <- "darkgoldenrod1"
             consensus_SNPs$shape <- 16
             consensus_SNPs$size <- base_size-1
-            if("consensus" %in% tolower(mean_only_text)){
+            if("consensus" %in% tolower(mean_only_text) &&
+               "Method" %in% names(consensus_SNPs)){
                 consensus_SNPs[,text_label:=(Method=="mean")] 
-            }else {
+            } else {
                 consensus_SNPs[,text_label:=TRUE] 
             }
             ## Only include consensus SNPs that are also Credible Set SNPs

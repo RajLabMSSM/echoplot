@@ -1,3 +1,10 @@
+# echoplot 0.99.7
+
+## Bug fixes
+
+- `construct_snp_labels`:
+    - Ensure data gets melted first.
+
 # echoplot 0.99.6
 
 ## New features

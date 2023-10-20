@@ -2,7 +2,7 @@ Package: echoplot
 Type: Package
 Title: echoverse module: Locus plot creation for fine-mapping and 
     colocalization studies
-Version: 0.99.6
+Version: 0.99.7
 Authors@R: 
     c(person(given = "Brian",
            family = "Schilder",
@@ -67,7 +67,7 @@ Remotes:
     github::RajLabMSSM/echodata,
     github::RajLabMSSM/echoannot,
     github::RajLabMSSM/echoLD
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 License: GPL-3
 Config/testthat/edition: 3
