@@ -50,6 +50,7 @@ Imports:
     dplyr, 
     pals
 Suggests: 
+    rworkflows,
     markdown,
     rmarkdown,
     magick,
