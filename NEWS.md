@@ -1,3 +1,12 @@
+# echoplot 0.99.8
+
+## New features
+
+* Standardize `rworkflows.yml` with canonical template:
+  enable Docker on `ghcr.io`, set `write-all` permissions.
+* Update R requirement from `>= 4.0.0` to `>= 4.1`.
+* Fix remote URL from `bschilder/echoplot` to `RajLabMSSM/echoplot`.
+
 # echoplot 0.99.7
 
 ## Bug fixes
