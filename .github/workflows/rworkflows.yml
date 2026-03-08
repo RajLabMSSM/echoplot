@@ -14,9 +14,7 @@ name: rworkflows
     - RELEASE_**
 jobs:
   rworkflows:
-    permissions:
-      contents: write
-      packages: write
+    permissions: write-all
     runs-on: ${{ matrix.config.os }}
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
     container: ${{ matrix.config.cont }}
@@ -28,7 +26,7 @@ jobs:
           bioc: devel
           r: auto
           cont: ghcr.io/bioconductor/bioconductor_docker:devel
-          rspm: https://packagemanager.rstudio.com/cran/__linux__/latest/release
+          rspm: ~
         - os: macOS-latest
           bioc: release
           r: auto
@@ -52,7 +50,5 @@ jobs:
         has_runit: ${{ false }}
         has_latex: ${{ false }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run_docker: ${{ false }}
-        DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-        runner_os: ${{ runner.os }}
-        cache_version: cache-v1
+        run_docker: ${{ true }}
+        docker_registry: ghcr.io

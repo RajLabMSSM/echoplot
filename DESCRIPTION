@@ -25,7 +25,7 @@ Description: echoverse module: Locus plot creation for fine-mapping
 URL: https://github.com/RajLabMSSM/echoplot
 BugReports: https://github.com/RajLabMSSM/echoplot/issues
 Encoding: UTF-8
-Depends: R (>= 4.0.0)
+Depends: R (>= 4.1)
 biocViews:
     Genetics, FunctionalGenomics, SystemsBiology
 Imports:
