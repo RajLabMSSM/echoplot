@@ -63,10 +63,10 @@ or shortest transcript model is retained. For meta, a meta-transcript
  (essentially identical to the operation \code{reduce(geneModel)}).
 Passed to \link[Gviz]{plotTracks}.}
 
-\item{stacking}{The stacking type for overlapping items of the track. One in
-\code{c(hide, dense, squish, pack,full)}. Currently, only hide (don't show
-the track items, squish (make best use of the available space) and dense (no
-stacking at all) are implemented.}
+\item{stacking}{Character. Stacking mode for the gene region track.
+One of \code{"squish"}, \code{"hide"}, \code{"dense"},
+\code{"pack"}, or \code{"full"}.
+Passed to \link[Gviz]{GeneRegionTrack}.}
 
 \item{method}{Method to use: "gviz" or "ggplot".}
 

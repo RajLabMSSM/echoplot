@@ -1,5 +1,6 @@
 test_that("XGR_plot works", {
-    
+    testthat::skip_if_not_installed("XGR")
+
     dat <- echodata::BST1[seq_len(1000),]
     xgr_out <- echoplot::XGR_plot(dat = dat,
                                   force_new = TRUE,

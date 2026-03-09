@@ -8,6 +8,7 @@
 #' @inheritParams plot_locus
 #' @importFrom echodata melt_finemapping_results
 #' @importFrom echoannot add_mb
+#' @importFrom rlang .data
 #' @importFrom stats as.formula
 #' @importFrom methods show
 #' @export
@@ -50,10 +51,17 @@ snp_track_merged <- function(dat,
         finemap_melt <- dat
         finemap_melt$Method <- if(is.null(dataset_type)) yvar else dataset_type
         cutoff_lab <- paste0("P<",formatC(sig_cutoff))
-        sig_cutoff <- -log10(sig_cutoff) 
+        sig_cutoff <- -log10(sig_cutoff)
         melt_methods <- FALSE
         grouping_vars <- c("SNP")
-    } 
+        ## Pre-compute expression-based yvar as a column
+        if(grepl("^-log10\\((.+)\\)$", yvar)){
+            pval_col <- gsub("^-log10\\((.+)\\)$", "\\1", yvar)
+            if(pval_col %in% names(finemap_melt)){
+                finemap_melt[[yvar]] <- -log10(finemap_melt[[pval_col]])
+            }
+        }
+    }
     finemap_melt <- echoannot::add_mb(dat = finemap_melt)
     #### Get grouping vars from facet formula ####
     grouping_vars <- c("SNP",
@@ -95,8 +103,8 @@ snp_track_merged <- function(dat,
     if(isTRUE(label_leadsnp)){
         snp_plot <- snp_plot + 
             ggplot2::geom_point(data = subset(finemap_melt, leadSNP),
-                                ggplot2::aes_string(x=genomic_units,
-                                                    y=yvar),
+                                ggplot2::aes(x=.data[[genomic_units]],
+                                             y=.data[[yvar]]),
                                 color="red",pch=9, size=3, 
                                 show.legend = FALSE, alpha=1) +
             ggplot2::theme(axis.title.x = ggplot2::element_blank())

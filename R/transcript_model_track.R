@@ -26,6 +26,10 @@
 #' @param expand_x_mult Expand the x-axis limits to include partially 
 #' overlapping transcripts.
 #' @param show.legend Show gene plot legend.
+#' @param stacking Character. Stacking mode for the gene region track.
+#' One of \code{"squish"}, \code{"hide"}, \code{"dense"},
+#' \code{"pack"}, or \code{"full"}.
+#' Passed to \link[Gviz]{GeneRegionTrack}.
 #' @inheritParams plot_locus
 #' @inheritParams Gviz::plotTracks
 #' @inheritParams Gviz::GeneRegionTrack
@@ -131,10 +135,14 @@ transcript_model_track <- function(dat,
             fill_var <- NULL
             color <- "darkslateblue"
         }
+        aes_args <- if(!is.null(fill_var)) {
+            ggplot2::aes(fill=.data[[fill_var]], color=.data[[fill_var]])
+        } else {
+            ggplot2::aes()
+        }
         tx.models <- ggbio::autoplot(tx$txdb_filt,
                                      which=tx$tx.gr,
-                                     ggplot2::aes_string(fill=fill_var,
-                                                         color=fill_var),
+                                     aes_args,
                                      columns =  c("symbol","tx_id"),
                                      names.expr = names.expr,
                                      color = color,

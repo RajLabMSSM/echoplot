@@ -40,18 +40,16 @@ add_multitrack_lines <- function(TRKS,
             trk <- trk +  # Consensus
                 ggplot2::geom_vline(xintercept = consensus.pos,
                                     color="goldenrod1",
-                                    alpha=line_alpha, 
-                                    size=line_size,
+                                    alpha=line_alpha,
                                     linewidth=line_size,
                                     linetype='solid')
         }
         if("UCS" %in% snp_groups){
             UCS.pos <- subset(snp_vlines, type=="UCS")[[genomic_units]]
             trk <- trk +  # Consensus
-                ggplot2::geom_vline(xintercept = UCS.pos, 
+                ggplot2::geom_vline(xintercept = UCS.pos,
                                     color="green3",
                                     alpha=line_alpha,
-                                    size=line_size,
                                     linewidth=line_size,
                                     linetype='dashed')
         }
@@ -59,7 +57,7 @@ add_multitrack_lines <- function(TRKS,
             lead.pos <- subset(snp_vlines, type=="Lead")[[genomic_units]]
             trk <- trk +  # Consensus
                 ggplot2::geom_vline(xintercept = lead.pos, color="red",
-                           alpha=line_alpha, size=line_size, linetype='dashed')
+                           alpha=line_alpha, linewidth=line_size, linetype='dashed')
         }
         TRKS_lines[[x]] <- trk
     }

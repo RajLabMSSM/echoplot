@@ -65,7 +65,7 @@ show_plot <- FALSE
 
 ## Full window
 
-```{r trk_plot, attr.output='style="max-height: 200px;"'}
+```{r trk_plot, attr.output='style="max-height: 200px;"', eval=FALSE}
 trk_plot <- echoplot::plot_locus(dat=dat, 
                                  LD_matrix=LD_matrix, 
                                  LD_reference=LD_reference,
@@ -75,7 +75,7 @@ trk_plot <- echoplot::plot_locus(dat=dat,
                                  zoom=zoom) 
 ```
 
-```{r}
+```{r, eval=FALSE}
 methods::show(trk_plot)
 ```
 
@@ -86,7 +86,7 @@ methods::show(trk_plot)
 * Each zoom view will be saved individually with its respective scale as the suffix (e.g. `multiview.BST1.UKB.4x.jpg`).  
 * Each zoom view is stored as a named item within the returned list.  
 
-```{r trk_zoom, attr.output='style="max-height: 200px;"'}
+```{r trk_zoom, attr.output='style="max-height: 200px;"', eval=FALSE}
 trk_zooms <- echoplot::plot_locus(dat=dat, 
                                   LD_matrix=LD_matrix, 
                                   LD_reference=LD_reference,
@@ -97,7 +97,7 @@ trk_zooms <- echoplot::plot_locus(dat=dat,
 names(trk_zooms) # Get zoom view names
 ```
 
-```{r}
+```{r, eval=FALSE}
 methods::show(trk_zooms)
 ```
 
@@ -107,7 +107,7 @@ methods::show(trk_zooms)
 * For even further control over each track of the multi-view plot, specify `plot_locus(..., return_list=TRUE)` to instead return a named list (nested within each zoom view list item) of `ggplot` objects which can each be modified individually. 
 * Once you've made your modifications, you can then bind this list of plots back together with `patchwork::wrap_plots(tracks_list, ncol = 1)`.  
 
-```{r trk_plot_list, attr.output='style="max-height: 200px;"'}
+```{r trk_plot_list, attr.output='style="max-height: 200px;"', eval=FALSE}
 trk_plot_list <- echoplot::plot_locus(dat=dat, 
                                        LD_matrix=LD_matrix, 
                                        LD_reference=LD_reference,
@@ -118,14 +118,14 @@ trk_plot_list <- echoplot::plot_locus(dat=dat,
                                        return_list=TRUE)  
 ```
 
-```{r extract view}
+```{r extract view, eval=FALSE}
 view1_list <- trk_plot_list[[zoom]]
 names(view1_list) # Get track names from a particular zoom view
 ```
 
 Modify a specific tracks within a view. 
 
-```{r modify track} 
+```{r modify track, eval=FALSE} 
 # Modify your selected track
 modified_track <- view1_list$GWAS + 
                       ggplot2::labs(title = "Modified GWAS") + 
@@ -153,7 +153,7 @@ the annotations that overlap with your locus will automatically be saved as `GRa
 *results/<dataset_type>/<dataset_name>/<locus>/annotation* 
 * If a selected annotation has previously been downloaded and stored for that locus, `plot_locus()` will automatically detect and import it to save time.   
 
-```{r trk_plot.xgr, attr.output='style="max-height: 200px;"'}
+```{r trk_plot.xgr, attr.output='style="max-height: 200px;"', eval=FALSE}
 trk_plot.xgr <- echoplot::plot_locus(dat=dat, 
                                      LD_matrix=LD_matrix, 
                                      LD_reference=LD_reference,
@@ -164,7 +164,7 @@ trk_plot.xgr <- echoplot::plot_locus(dat=dat,
                                zoom=zoom)
 ```
 
-```{r}
+```{r, eval=FALSE}
 methods::show(trk_plot.xgr)
 ```
 
@@ -179,7 +179,7 @@ methods::show(trk_plot.xgr)
 supported on Windows due to known bugs in
 [`rtracklayer`](https://github.com/lawremi/rtracklayer/issues).
 
-```{r trk_plot.roadmap, attr.output='style="max-height: 200px;"'} 
+```{r trk_plot.roadmap, attr.output='style="max-height: 200px;"', eval=FALSE} 
 
 if(.Platform!="windows"){
     trk_plot.roadmap <- echoplot::plot_locus(dat=dat, 
@@ -196,7 +196,7 @@ if(.Platform!="windows"){
 }
 ```
 
-```{r}
+```{r, eval=FALSE}
 methods::show(trk_plot.roadmap)
 ```
 
@@ -206,7 +206,7 @@ methods::show(trk_plot.roadmap)
 [Nott et al. (Science, 2019)](https://science.sciencemag.org/content/366/6469/1134.abstract)  
 (see `?NOTT_2019.bigwig_metadata` for details).
 
-```{r trk_plot.nott_2019, attr.output='style="max-height: 200px;"'} 
+```{r trk_plot.nott_2019, attr.output='style="max-height: 200px;"', eval=FALSE} 
 trk_plot.nott_2019 <- echoplot::plot_locus(dat=dat,  
                                            LD_matrix=LD_matrix, 
                                            LD_reference=LD_reference,
@@ -222,7 +222,7 @@ trk_plot.nott_2019 <- echoplot::plot_locus(dat=dat,
                                            zoom=zoom) 
 ```
 
-```{r}
+```{r, eval=FALSE}
 methods::show(trk_plot.nott_2019)
 ```
 
@@ -231,7 +231,7 @@ methods::show(trk_plot.nott_2019)
 * Plot multiple QTL p-value columns (or really P-value columns from any kind of dataset).  
 * Each QTL dataset will be plotted as a new track.
 
-```{r trk_plot.QTL, attr.output='style="max-height: 200px;"'}
+```{r trk_plot.QTL, attr.output='style="max-height: 200px;"', eval=FALSE}
 dat1 <- data.table::copy(dat)
 dat2 <- data.table::copy(dat)
 # Make fake QTL P-values for the sake a demonstration
@@ -247,7 +247,7 @@ trk_plot.qtl <- echoplot::plot_locus_multi(dat_ls = dat_ls,
                                            zoom = "10x")
 ```
 
-```{r}
+```{r, eval=FALSE}
 methods::show(trk_plot.qtl)
 ```
 

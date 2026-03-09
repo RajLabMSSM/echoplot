@@ -6,15 +6,12 @@
 #' #### Alternative approaches I've tried ####
 #' dat <- echodata::LRRK2
 #' gr.snp <- echodata::dt_to_granges(dat = dat)
-#' 
 #' # Warning:: MUST load the full package bc
 #' # it loads other necessary packages into the namespace.
-#' 
 #' BiocManager::install("Homo.sapiens")
 #' library(Homo.sapiens)
 #' txdb <- Homo.sapiens::Homo.sapiens
 #' GenomicFeatures::genes(txdb)
-#' 
 #' BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")
 #' library(TxDb.Hsapiens.UCSC.hg19.knownGene)
 #' txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene

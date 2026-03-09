@@ -35,7 +35,7 @@ ROADMAP_track_plot <- function(grl.roadmap,
     track.roadmap <- ggbio::autoplot(
         object = grl.roadmap,
         # which = gr.snp,
-        ggplot2::aes_string(fill = "chrom_state"),
+        ggplot2::aes(fill = .data[["chrom_state"]]),
         color = "white",
         size = .1,
         geom = geom,

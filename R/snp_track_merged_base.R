@@ -9,9 +9,9 @@ snp_track_merged_base <- function(finemap_melt,
                                   strip.text.y.angle){
     snp_plot <- ggplot2::ggplot(
         data = finemap_melt,
-        ggplot2::aes_string(
-            x=genomic_units, y=yvar, 
-            color=if("r2" %in% names(finemap_melt)) "r2" else NULL
+        ggplot2::aes(
+            x=.data[[genomic_units]], y=.data[[yvar]],
+            color=if("r2" %in% names(finemap_melt)) .data[["r2"]] else NULL
         )) +
         # Bottom plot delineator
         ggplot2::geom_hline(yintercept=0) +
@@ -22,12 +22,12 @@ snp_track_merged_base <- function(finemap_melt,
                                       breaks=c(0,.5,1), limits=c(0,1)) +
         ## Sig cutoff line
         ggplot2::geom_hline(yintercept = sig_cutoff, 
-                            alpha=.5, linetype=2, size=.5, 
+                            alpha=.5, linetype=2, linewidth=.5,
                             color="black") +
         ggplot2::geom_text(
             data = finemap_melt[1,],
-            ggplot2::aes_string(x=paste0("(",genomic_units,")"), 
-                                y="sig_cutoff*1.1"),
+            ggplot2::aes(x=.data[[genomic_units]],
+                         y=sig_cutoff*1.1),
             label=cutoff_lab,
             size=3, color="grey", hjust = 2) +
         ggplot2::labs(color=bquote(r^2),
@@ -35,9 +35,9 @@ snp_track_merged_base <- function(finemap_melt,
                           bquote("-log"[10]~"(p)")
                       } else {yvar} ) +
         ggplot2::theme_classic() +
-        ggplot2::facet_grid(facets =if(is.null(facet_formula)) {
-            facet_formula
-        } else  {stats::as.formula(facet_formula)}) +
+        {if(!is.null(facet_formula)) {
+            ggplot2::facet_grid(stats::as.formula(facet_formula))
+        }} +
         ggplot2::theme(
             strip.text.y = ggplot2::element_text(angle=strip.text.y.angle)
         ) +

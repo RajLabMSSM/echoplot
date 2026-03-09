@@ -18,7 +18,7 @@
 #' @inheritParams echoannot::ROADMAP_construct_reference
 #' @inheritParams echoannot::ROADMAP_tabix 
 #' @returns A named list containing:
-#' \itemize{
+#' \describe{
 #' \item{"data"}{\code{GRanges} object within the queried coordinates.}
 #' \item{"plot"}{\code{ggbio} plot.}
 #' }
@@ -27,10 +27,12 @@
 #' @importFrom echodata dt_to_granges
 #' @importFrom echoannot annotation_file_name ROADMAP_query
 #' @examples
+#' \donttest{
 #' dat <- echodata::BST1[seq_len(1000),]
 #' roadmap_out <- echoplot::ROADMAP_plot(
 #'     dat = dat,
 #'     roadmap_query = "monocyte")
+#' }
 ROADMAP_plot <- function(dat,
                          roadmap_query,
                          lib_name = "Roadmap.ChromatinMarks_CellTypes",

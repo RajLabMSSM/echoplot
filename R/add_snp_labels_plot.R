@@ -21,17 +21,17 @@ add_snp_labels_plot <- function(snp_plot,
     #                          calculate_per_facet=TRUE)  
     snp_plot <- snp_plot +
         ggplot2::geom_point(data = function(x){x[!is.na(x$type),]},
-                           ggplot2::aes_string(pch="shape",
-                                               size="size",
-                                               color="color",
-                                               group="Method"), 
+                           ggplot2::aes(pch=.data[["shape"]],
+                                        size=.data[["size"]],
+                                        color=.data[["color"]],
+                                        group=.data[["Method"]]),
                             fill=NA) +
         ggplot2::scale_shape_identity() +
         ggplot2::scale_size_identity() +
         ggplot2::scale_color_identity() +
         ### Background color label
         ggrepel::geom_label_repel(data = function(x){x[!is.na(x$type),]},
-                                  ggplot2::aes_string(label="SNP" ),
+                                  ggplot2::aes(label=.data[["SNP"]]),
                                   color=NA,
                                   # nudge_x = .5,
                                   fill="black",
@@ -45,8 +45,8 @@ add_snp_labels_plot <- function(snp_plot,
                                   size = 3) +
         ### Foreground color label
         ggrepel::geom_label_repel(data = function(x){x[!is.na(x$type),]},
-                                  ggplot2::aes_string(label="SNP",
-                                                      segment.colour="color"), 
+                                  ggplot2::aes(label=.data[["SNP"]],
+                                               segment.colour=.data[["color"]]), 
                                   color="white",
                                   segment.alpha = .5,
                                   box.padding = .5,
@@ -63,10 +63,10 @@ add_snp_labels_plot <- function(snp_plot,
        ##(to see them better)
         ggplot2::geom_point( 
             data = function(x){x[!is.na(x$type),]},
-            ggplot2::aes_string(
-                x=genomic_units, y=yvar,
-                pch="shape",
-                color=if("r2" %in% names(snp_labels)) "r2" else NULL
+            ggplot2::aes(
+                x=.data[[genomic_units]], y=.data[[yvar]],
+                pch=.data[["shape"]],
+                color=if("r2" %in% names(snp_labels)) .data[["r2"]] else NULL
             ),
             alpha=1,  
             show.legend = show.legend)

@@ -58,7 +58,7 @@ to parallelise downloading annotations over.}
 }
 \value{
 A named list containing:
-\itemize{
+\describe{
 \item{"data"}{\code{GRanges} object within the queried coordinates.}
 \item{"plot"}{\code{ggbio} plot.}
 }
@@ -69,8 +69,10 @@ of \code{dat}, and then plot the peaks.
 If the annotation has already been downloaded previously, it will be reused.
 }
 \examples{
+\donttest{
 dat <- echodata::BST1[seq_len(1000),]
 roadmap_out <- echoplot::ROADMAP_plot(
     dat = dat,
     roadmap_query = "monocyte")
+}
 }

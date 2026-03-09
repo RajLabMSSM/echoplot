@@ -17,9 +17,9 @@
 #' even if the file already exists locally (Default: \code{FALSE}).
 #' @param lib_name Which XGR annotations to check overlap with.
 #' For full list of libraries see
-#' \href{http://XGR_r-forge.r-project.org/#annotations-at-the-genomic-region-level}{
-#'  here.}
-#'  Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.
+#' \href{https://cran.r-project.org/package=XGR}{
+#'  here (XGR on CRAN).}
+#'  Passed to the \code{RData.customised} argument in \code{XGR::xRDataLoader}.
 #' @param locus_dir Locus-specific directory. 
 #' @param palette Any palette available in \pkg{pals}.
 #' See \link[echoplot]{get_palettes} for a list of all palettes.
@@ -33,7 +33,9 @@
 #' @export
 #' @importFrom echoannot XGR_query annotation_file_name
 #' @examples
+#' \dontrun{
 #' xgr_out <- echoplot::XGR_plot(dat = echodata::BST1[seq_len(1000),])
+#' }
 XGR_plot <- function(dat,
                      lib_name = "ENCODE_TFBS_ClusteredV3_CellTypes",
                      locus_dir = tempdir(),

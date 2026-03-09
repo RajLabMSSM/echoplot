@@ -30,9 +30,9 @@ XGR_plot(
 
 \item{lib_name}{Which XGR annotations to check overlap with.
 For full list of libraries see
-\href{http://XGR_r-forge.r-project.org/#annotations-at-the-genomic-region-level}{
- here.}
- Passed to the \code{RData.customised} argument in \link[XGR]{xRDataLoader}.}
+\href{https://cran.r-project.org/package=XGR}{
+ here (XGR on CRAN).}
+ Passed to the \code{RData.customised} argument in \code{XGR::xRDataLoader}.}
 
 \item{locus_dir}{Locus-specific directory.}
 
@@ -70,5 +70,7 @@ Import annotation from \emph{XGR}, filter to only those within the range of
 If the annotation has already been downloaded previously, it will be reused.
 }
 \examples{
+\dontrun{
 xgr_out <- echoplot::XGR_plot(dat = echodata::BST1[seq_len(1000),])
+}
 }
