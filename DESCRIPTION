@@ -2,7 +2,7 @@ Package: echoplot
 Type: Package
 Title: Echoverse Module: Locus Plot Creation for Fine-Mapping and
     Colocalization Studies
-Version: 1.99.9
+Version: 1.0.0
 Date: 2026-03-08
 Authors@R: 
     c(person(given = "Brian",
