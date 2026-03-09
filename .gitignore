@@ -1,4 +1,5 @@
 *.tbi
+Rplots.pdf
 vignettes/*.tbi
 
 echoverse_template.Rproj$
