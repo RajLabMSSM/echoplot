@@ -1,3 +1,15 @@
+# echoplot 1.0.0
+
+## Bug fixes
+
+* Migrate all `ggplot2::aes_string()` calls to `ggplot2::aes(.data[[]])`
+  for ggplot2 >= 3.5.0 compatibility.
+* Fix remote URL from `bschilder/echoplot` to `RajLabMSSM/echoplot`
+  in DESCRIPTION.
+* Update R requirement from `>= 4.0.0` to `>= 4.1`.
+* Fix Rd formatting and `\dontrun{}` example guards.
+* Add `Rplots.pdf` and `*.tbi` to `.gitignore`.
+
 # echoplot 0.99.9
 
 ## Bug fixes
