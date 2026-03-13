@@ -25,9 +25,9 @@ If you use ``r pkg``, please cite:
 ## Installation 
 
 ```R
-if(!require("remotes")) install.packages("remotes")
+if(!require("BiocManager")) install.packages("BiocManager")
 
-remotes::install_github("RajLabMSSM/`r pkg`")
+BiocManager::install("RajLabMSSM/`r pkg`")
 library(`r pkg`)
 ```
 ## Documentation 

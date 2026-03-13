@@ -32,9 +32,9 @@ If you use `echoplot`, please cite:
 ## Installation
 
 ``` r
-if(!require("remotes")) install.packages("remotes")
+if(!require("BiocManager")) install.packages("BiocManager")
 
-remotes::install_github("RajLabMSSM/echoplot")
+BiocManager::install("RajLabMSSM/echoplot")
 library(echoplot)
 ```
 
