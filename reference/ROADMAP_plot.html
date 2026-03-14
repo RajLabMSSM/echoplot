@@ -158,42 +158,12 @@ to parallelise downloading annotations over.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">echodata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/echodata/man/BST1.html" class="external-link">BST1</a></span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_len</a></span><span class="op">(</span><span class="fl">1000</span><span class="op">)</span>,<span class="op">]</span></span></span>
 <span class="r-in"><span><span class="va">roadmap_out</span> <span class="op">&lt;-</span> <span class="fu">echoplot</span><span class="fu">::</span><span class="fu">ROADMAP_plot</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    dat <span class="op">=</span> <span class="va">dat</span>,</span></span>
 <span class="r-in"><span>    roadmap_query <span class="op">=</span> <span class="st">"monocyte"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> echoannot:: Plotting ROADMAP annotations.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting dat to GRanges object.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> + ROADMAP:: 2 annotation(s) identified that match: monocyte</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Constructing GRanges query using min/max ranges across one or more chromosomes.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> + as_blocks=TRUE: Will query a single range per chromosome that covers all regions requested (plus anything in between).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Roadmap Chromatin Marks: E124</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting dat to GRanges object.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving query ==&gt; /tmp/Rtmp16siUW/roadmap_query--monocyte.n_top--5.limit_files--./ROADMAP_query.E124.rds</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting 1 GRanges object to separate BED files.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving BED file ==&gt; /tmp/Rtmp16siUW/roadmap_query--monocyte.n_top--5.limit_files--./E124.bed.txt.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> BED subset downloaded in 5.259 seconds</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Constructing GRanges query using min/max ranges across one or more chromosomes.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> + as_blocks=TRUE: Will query a single range per chromosome that covers all regions requested (plus anything in between).</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Downloading Roadmap Chromatin Marks: E029</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting dat to GRanges object.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving query ==&gt; /tmp/Rtmp16siUW/roadmap_query--monocyte.n_top--5.limit_files--./ROADMAP_query.E029.rds</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Converting 1 GRanges object to separate BED files.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Saving BED file ==&gt; /tmp/Rtmp16siUW/roadmap_query--monocyte.n_top--5.limit_files--./E029.bed.txt.gz</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> BED subset downloaded in 3.346 seconds</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ROADMAP:: Annotating GRangesList.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Annotating chromatin states.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Merging and processing ROADMAP annotations.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ROADMAP:: Done in 0.21 min.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Generating ROADMAP track plot.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">ggbio</span> package.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/lawremi/ggbio/issues&gt;</span>.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `facets`</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>no non-missing arguments to max; returning -Inf</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
