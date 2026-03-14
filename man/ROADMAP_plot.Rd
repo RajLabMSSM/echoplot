@@ -69,7 +69,7 @@ of \code{dat}, and then plot the peaks.
 If the annotation has already been downloaded previously, it will be reused.
 }
 \examples{
-\donttest{
+\dontrun{
 dat <- echodata::BST1[seq_len(1000),]
 roadmap_out <- echoplot::ROADMAP_plot(
     dat = dat,

@@ -1,5 +1,7 @@
 test_that("ROADMAP_plot works", {
-    
+
+    testthat::skip_if_offline()
+    testthat::skip_on_os("windows")
     dat <- echodata::BST1[seq_len(1000), ]
     roadmap_out <- ROADMAP_plot(
         dat = dat,

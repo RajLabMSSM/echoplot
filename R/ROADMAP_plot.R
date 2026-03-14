@@ -27,7 +27,7 @@
 #' @importFrom echodata dt_to_granges
 #' @importFrom echoannot annotation_file_name ROADMAP_query
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' dat <- echodata::BST1[seq_len(1000),]
 #' roadmap_out <- echoplot::ROADMAP_plot(
 #'     dat = dat,
