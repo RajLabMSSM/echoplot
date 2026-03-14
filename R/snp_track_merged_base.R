@@ -36,7 +36,7 @@ snp_track_merged_base <- function(finemap_melt,
                       } else {yvar} ) +
         ggplot2::theme_classic() +
         {if(!is.null(facet_formula)) {
-            ggplot2::facet_grid(stats::as.formula(facet_formula))
+            ggplot2::facet_grid(rows = stats::as.formula(facet_formula))
         }} +
         ggplot2::theme(
             strip.text.y = ggplot2::element_text(angle=strip.text.y.angle)
