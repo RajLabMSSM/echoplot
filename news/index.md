@@ -1,0 +1,114 @@
+# Changelog
+
+## echoplot 1.0.0
+
+### Bug fixes
+
+- Migrate all
+  [`ggplot2::aes_string()`](https://ggplot2.tidyverse.org/reference/aes_.html)
+  calls to `ggplot2::aes(.data[[]])` for ggplot2 \>= 3.5.0
+  compatibility.
+- Fix remote URL from `bschilder/echoplot` to `RajLabMSSM/echoplot` in
+  DESCRIPTION.
+- Update R requirement from `>= 4.0.0` to `>= 4.1`.
+- Fix Rd formatting and `\dontrun{}` example guards.
+- Add `Rplots.pdf` and `*.tbi` to `.gitignore`.
+
+## echoplot 0.99.9
+
+### Bug fixes
+
+- Local R CMD check fixes and compatibility updates.
+
+## echoplot 0.99.8
+
+### New features
+
+- Standardize `rworkflows.yml` with canonical template: enable Docker on
+  `ghcr.io`, set `write-all` permissions.
+- Update R requirement from `>= 4.0.0` to `>= 4.1`.
+- Fix remote URL from `bschilder/echoplot` to `RajLabMSSM/echoplot`.
+
+## echoplot 0.99.7
+
+### Bug fixes
+
+- `construct_snp_labels`:
+  - Ensure data gets melted first.
+
+## echoplot 0.99.6
+
+### New features
+
+- Implement `rworkflows`
+- New exports:
+  - `get_palettes`
+  - `list_namespace`
+- `plot_locus`:
+  - pass up `subset_labels` arg.
+
+### Bug fixes
+
+- Make `pals` an Import, and remove `RColorBrewer`.
+- Fix
+  `Can't combine ..1$Method <factor<2f980>> and ..4$Method <ordered<4e1b3>>.`
+  error.
+- Get rid of
+  `ggrepel: 7 unlabeled data points (too many overlaps). Consider increasing max.overlaps`
+  warnings.
+- Fixed potential issue with getting top SNPs per Method in
+  `construct_snp_labels`.
+- Fixed `colours encodes as numbers must be positive` errors.
+- Fix `dot_summary_plot` after `construct_snp_labels` updates.
+
+## echoplot 0.99.5
+
+### New features
+
+- `plot_locus_multi`: New function to plot multi-GWAS/multi-ancestry
+  results.
+- `get_transcripts_biotypes`: New exported function to help users
+  determine available biotypes.
+- `get_transcripts`: new argument `tx_biotypes=` allows user to filter
+  by biotypes. Passes up to `plot_locus`.
+- `plot_locus`: changed `qtl_prefixes` –\> `qtl_suffixes` to be
+  consistent with `merge` naming strategy.
+- Export `snp_track_merged`.
+- Move functions from `echoplot`:
+  - `ROADMAP_plot` and plotting subfunctions.\
+  - `XGR_plot` and plotting subfunctions.
+
+### Bug fixes
+
+- `transcript_model_track`: Handle when 0 transcripts are returned,
+  without error.
+- `get_transcripts_biotypes` ==\> `get_tx_biotypes` in all places.
+- Document all functions.
+- Fix GHA: [@master](https://github.com/master) –\>
+  [@v2](https://github.com/v2)
+
+## echoplot 0.99.4
+
+### New features
+
+- Replace “PLOT::” with “echoplot::”
+- Add Issues templates.
+
+## echoplot 0.99.3
+
+### Bug fixes
+
+- Fix `slice_max` bug in `transcript_model_track`.
+
+## echoplot 0.99.2
+
+### Bug fixes
+
+- Removed `echotabix` as dep since these functions are now handled by
+  `echoannot`.
+- Updated GHA workflow.
+- Nott2019 tracks working again.
+
+## echoplot 0.99.0
+
+- Added a `NEWS.md` file to track changes to the package.

@@ -1,0 +1,101 @@
+![](https://github.com/RajLabMSSM/echoplot/raw/master/inst/hex/hex.png "Hex sticker for echoplot")\
+[![License:
+GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://cran.r-project.org/web/licenses/GPL-3)
+[![](https://img.shields.io/badge/devel%20version-1.0.0-black.svg)](https://github.com/RajLabMSSM/echoplot)
+[![](https://img.shields.io/github/languages/code-size/RajLabMSSM/echoplot.svg)](https://github.com/RajLabMSSM/echoplot)
+[![](https://img.shields.io/github/last-commit/RajLabMSSM/echoplot.svg)](https://github.com/RajLabMSSM/echoplot/commits/master)\
+[![R build
+status](https://github.com/RajLabMSSM/echoplot/workflows/rworkflows/badge.svg)](https://github.com/RajLabMSSM/echoplot/actions)
+[![](https://codecov.io/gh/RajLabMSSM/echoplot/branch/master/graph/badge.svg)](https://app.codecov.io/gh/RajLabMSSM/echoplot)\
+[![](https://codecov.io/gh/RajLabMSSM/echoplot/branch/master/graphs/icicle.svg "Codecov icicle graph")](https://app.codecov.io/gh/RajLabMSSM/echoplot/tree/master)\
+
+#### \
+Authors: *Brian Schilder, Jack Humphrey, Towfique Raj*\
+
+##### \
+README updated: *Mar-16-2026*\
+
+## `echoplot`: Echoverse module: Locus plot creation for fine-mapping and colocalization studies.
+
+This R package is part of the *echoverse* suite that supports
+[`echolocatoR`](https://github.com/RajLabMSSM/echolocatoR): an automated
+genomic fine-mapping pipeline.
+
+If you use `echoplot`, please cite:
+
+> Brian M Schilder, Jack Humphrey, Towfique Raj (2021). echolocatoR: an
+> automated end-to-end statistical and functional genomic fine-mapping
+> pipeline. Bioinformatics, btab658.
+> <https://doi.org/10.1093/bioinformatics/btab658>
+
+## Installation
+
+``` r
+
+if(!require("BiocManager")) install.packages("BiocManager")
+
+BiocManager::install("RajLabMSSM/echoplot")
+library(echoplot)
+```
+
+## Documentation
+
+### [Website](https://rajlabmssm.github.io/echoplot)
+
+### [Getting started](https://rajlabmssm.github.io/echoplot/articles/echoplot)
+
+------------------------------------------------------------------------
+
+## Contact
+
+[Brian M. Schilder, Bioinformatician
+II](https://bschilder.github.io/BMSchilder/)\
+[Raj Lab](https://rajlab.org)\
+[Department of Neuroscience, Icahn School of Medicine at Mount
+Sinai](https://icahn.mssm.edu/about/departments-offices/neuroscience)
+
+# Package index
+
+## Locus Plotting
+
+Main functions for creating multi-track locus plots.
+
+- [`plot_locus()`](https://rajlabmssm.github.io/echoplot/reference/plot_locus.md)
+  : Generate a locus plot
+- [`plot_locus_multi()`](https://rajlabmssm.github.io/echoplot/reference/plot_locus_multi.md)
+  : Plot multi-GWAS/QTL or multi-ancestry fine-mapping results
+
+## Individual Tracks
+
+Functions for generating individual plot tracks.
+
+- [`snp_track_merged()`](https://rajlabmssm.github.io/echoplot/reference/snp_track_merged.md)
+  : SNP track merged
+- [`transcript_model_track()`](https://rajlabmssm.github.io/echoplot/reference/transcript_model_track.md)
+  : Plot transcripts
+- [`ROADMAP_plot()`](https://rajlabmssm.github.io/echoplot/reference/ROADMAP_plot.md)
+  : Plot annotation peaks: ROADMAP
+- [`XGR_plot()`](https://rajlabmssm.github.io/echoplot/reference/XGR_plot.md)
+  : Plot annotation peaks: XGR
+- [`XGR_plot_peaks()`](https://rajlabmssm.github.io/echoplot/reference/XGR_plot_peaks.md)
+  : Plot XGR peaks
+- [`dot_summary_plot()`](https://rajlabmssm.github.io/echoplot/reference/dot_summary_plot.md)
+  : Dot summary plot
+
+## Utilities
+
+Helper and configuration functions.
+
+- [`get_palettes()`](https://rajlabmssm.github.io/echoplot/reference/get_palettes.md)
+  : Get palettes
+- [`get_tx_biotypes()`](https://rajlabmssm.github.io/echoplot/reference/get_tx_biotypes.md)
+  : Get transcript biotypes
+- [`list_namespace()`](https://rajlabmssm.github.io/echoplot/reference/list_namespace.md)
+  : List namespace
+
+# Articles
+
+### Getting Started
+
+- [Get
+  Started](https://rajlabmssm.github.io/echoplot/articles/echoplot.md):
