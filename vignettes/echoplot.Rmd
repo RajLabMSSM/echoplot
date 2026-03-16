@@ -1,21 +1,19 @@
 ---
-title: "`Get Started" 
-author: "<h4>Author: <i>Brian M. Schilder</i></h4>" 
+title: "Get Started"
+author: "<h4>Author: <i>Brian M. Schilder</i></h4>"
 date: "<h4>Updated: <i>`r format( Sys.Date(), '%b-%d-%Y')`</i></h4>"
 output:
   BiocStyle::html_document
 vignette: >
-    %\VignetteIndexEntry{echoplot} 
+    %\VignetteIndexEntry{echoplot}
     %\usepackage[utf8]{inputenc}
     %\VignetteEngine{knitr::rmarkdown}
 ---
-
 
 ```{r setup, echo=FALSE, include=FALSE}
 pkg <- read.dcf("../DESCRIPTION", fields = "Package")[1]
 library(pkg, character.only = TRUE)
 ```
-
 
 ```R
 library(`r pkg`)
@@ -23,42 +21,48 @@ library(`r pkg`)
 
 # Plotting loci with *echoplot*
 
-*echoplot* contains various functions that can be used separately  
-from the comprehensive `echolocatoR::finemap_loci()` pipeline.  
+*echoplot* contains various functions that can be used separately
+from the comprehensive `echolocatoR::finemap_loci()` pipeline.
 
-Generate a multi-view plot of a given locus using `echoplot::plot_locus()`.  
+Generate a multi-view plot of a given locus using `echoplot::plot_locus()`.
 
-* You can mix and match different tracks and annotations using the 
-different arguments (see `?plot_locus` for details).  
+* You can mix and match different tracks and annotations using the
+different arguments (see `?plot_locus` for details).
 
-The plot is centered on the lead/index SNP. If a list is supplied to zoom
-* `plot_locus()` returns a series of `ggplot` objects bound together with [`patchwork`](https://patchwork.data-imaginist.com). One can further modify 
+The plot is centred on the lead/index SNP. If a list is supplied to `zoom`,
+each zoom view will be saved individually.
+
+* `plot_locus()` returns a series of `ggplot` objects bound together with
+[`patchwork`](https://patchwork.data-imaginist.com). One can further modify
 this object using `ggplot2` functions like `+ theme()`.
-  + The modifications will be applied to all tracks at once.  
-  
-* Save a high-resolution versions the plot by setting `save_plot=T`.  
-  + Further increase resolution by adjusting the `dpi` argument (*default=300*).
-  + Files are saved in *jpg* format by default, but users can specify their
-  preferred file format (e.g. `file_format="png"`)
-  + Adjust the `height` and `width` of the saved plot using these respective arguments.
-  + The plot will be automatically saved in the locus-specific directory as:  
-  *multiview_<locus>_<zoom>.jpg*.
-   
-## Load example data   
+  + The modifications will be applied to all tracks at once.
 
-Load example dataset of the results from fine-mapping the BST1 locus with `finemap_loci()`.
-Original data comes from the recent Nalls et al. (2019) Parkinson's disease GWAS (see `?BST1` for details).
+* Save a high-resolution version of the plot by setting `save_plot=TRUE`.
+  + Further increase resolution by adjusting the `dpi` argument
+  (*default=300*).
+  + Files are saved in *jpg* format by default, but users can specify their
+  preferred file format (e.g. `file_format="png"`).
+  + Adjust the `height` and `width` of the saved plot using these respective
+  arguments.
+  + The plot will be automatically saved in the locus-specific directory as:
+  *multiview_\<locus\>_\<zoom\>.jpg*.
+
+## Load example data
+
+Load example dataset of the results from fine-mapping the BST1 locus with
+`finemap_loci()`. Original data comes from the recent Nalls et al. (2019)
+Parkinson's disease GWAS (see `?BST1` for details).
 
 ```{r Load example data}
 library(ggplot2)
 library(patchwork)
 
 root.dir <- tempdir()
-locus_dir <- file.path(root.dir,echodata::locus_dir)
-dat <- echodata::BST1  
+locus_dir <- file.path(root.dir, echodata::locus_dir)
+dat <- echodata::BST1
 LD_matrix <- echodata::BST1_LD_matrix
 LD_reference <- "UKB" # Used for naming saved plots
-zoom = "10x"
+zoom <- "10x"
 show_plot <- FALSE
 ```
 
@@ -66,202 +70,211 @@ show_plot <- FALSE
 ## Full window
 
 ```{r trk_plot, attr.output='style="max-height: 200px;"', eval=FALSE}
-trk_plot <- echoplot::plot_locus(dat=dat, 
-                                 LD_matrix=LD_matrix, 
-                                 LD_reference=LD_reference,
-                                 locus_dir=locus_dir,  
-                                 save_plot=FALSE,
-                                 show_plot=show_plot,
-                                 zoom=zoom) 
+trk_plot <- echoplot::plot_locus(dat = dat,
+                                 LD_matrix = LD_matrix,
+                                 LD_reference = LD_reference,
+                                 locus_dir = locus_dir,
+                                 save_plot = FALSE,
+                                 show_plot = show_plot,
+                                 zoom = zoom)
 ```
 
-```{r, eval=FALSE}
+```{r show_trk_plot, eval=FALSE}
 methods::show(trk_plot)
 ```
 
 ## At multiple zooms
 
-* You can easily generate the same locus plot at multiple zoomed in views by supplying a list to `zoom`.  
-* This list can be composed of zoom multipliers (e.g. `c("1x", "2x")`), window widths in units of basepairs (e.g. `c(5000, 1500)`), or a mixture of both (e.g. `c("1x","4x", 5000, 2000)`). 
-* Each zoom view will be saved individually with its respective scale as the suffix (e.g. `multiview.BST1.UKB.4x.jpg`).  
-* Each zoom view is stored as a named item within the returned list.  
+* You can easily generate the same locus plot at multiple zoomed in views by
+supplying a list to `zoom`.
+* This list can be composed of zoom multipliers (e.g. `c("1x", "2x")`),
+window widths in units of basepairs (e.g. `c(5000, 1500)`), or a mixture of
+both (e.g. `c("1x","4x", 5000, 2000)`).
+* Each zoom view will be saved individually with its respective scale as the
+suffix (e.g. `multiview.BST1.UKB.4x.jpg`).
+* Each zoom view is stored as a named item within the returned list.
 
 ```{r trk_zoom, attr.output='style="max-height: 200px;"', eval=FALSE}
-trk_zooms <- echoplot::plot_locus(dat=dat, 
-                                  LD_matrix=LD_matrix, 
-                                  LD_reference=LD_reference,
-                                  locus_dir=locus_dir,  
-                                  save_plot=FALSE,
-                                  show_plot=show_plot,
-                                  zoom = c("1x","5x","10x")) 
+trk_zooms <- echoplot::plot_locus(dat = dat,
+                                  LD_matrix = LD_matrix,
+                                  LD_reference = LD_reference,
+                                  locus_dir = locus_dir,
+                                  save_plot = FALSE,
+                                  show_plot = show_plot,
+                                  zoom = c("1x", "5x", "10x"))
 names(trk_zooms) # Get zoom view names
 ```
 
-```{r, eval=FALSE}
+```{r show_trk_zooms, eval=FALSE}
 methods::show(trk_zooms)
 ```
 
 
-## Return as list  
+## Return as list
 
-* For even further control over each track of the multi-view plot, specify `plot_locus(..., return_list=TRUE)` to instead return a named list (nested within each zoom view list item) of `ggplot` objects which can each be modified individually. 
-* Once you've made your modifications, you can then bind this list of plots back together with `patchwork::wrap_plots(tracks_list, ncol = 1)`.  
+* For even further control over each track of the multi-view plot, specify
+`plot_locus(..., return_list=TRUE)` to instead return a named list (nested
+within each zoom view list item) of `ggplot` objects which can each be
+modified individually.
+* Once you've made your modifications, you can then bind this list of plots
+back together with `patchwork::wrap_plots(tracks_list, ncol = 1)`.
 
 ```{r trk_plot_list, attr.output='style="max-height: 200px;"', eval=FALSE}
-trk_plot_list <- echoplot::plot_locus(dat=dat, 
-                                       LD_matrix=LD_matrix, 
-                                       LD_reference=LD_reference,
-                                       locus_dir=locus_dir,  
-                                       save_plot=FALSE,
-                                       show_plot=show_plot,
-                                       zoom=zoom,
-                                       return_list=TRUE)  
+trk_plot_list <- echoplot::plot_locus(dat = dat,
+                                      LD_matrix = LD_matrix,
+                                      LD_reference = LD_reference,
+                                      locus_dir = locus_dir,
+                                      save_plot = FALSE,
+                                      show_plot = show_plot,
+                                      zoom = zoom,
+                                      return_list = TRUE)
 ```
 
-```{r extract view, eval=FALSE}
+```{r extract_view, eval=FALSE}
 view1_list <- trk_plot_list[[zoom]]
 names(view1_list) # Get track names from a particular zoom view
 ```
 
-Modify a specific tracks within a view. 
+Modify a specific track within a view.
 
-```{r modify track, eval=FALSE} 
+```{r modify_track, eval=FALSE}
 # Modify your selected track
-modified_track <- view1_list$GWAS + 
-                      ggplot2::labs(title = "Modified GWAS") + 
+modified_track <- view1_list$GWAS +
+                      ggplot2::labs(title = "Modified GWAS") +
                       ggplot2::theme_dark() +
                       ggplot2::theme(title = ggplot2::element_text(hjust = .5))
 # Put it back into your track list
 view1_list[["GWAS"]] <- modified_track
 # Remove a plot you don't want
 view1_list[["Genes"]] <- NULL
-# Specify the relative heights of each track (make sure it matches your new # of plots!)
-track_heights <- c(.3,.1,.3,1)
+# Specify the relative heights of each track
+track_heights <- c(.3, .1, .3, 1)
 
 # Bind them together and plot
-fused_plot <- patchwork::wrap_plots(view1_list, 
+fused_plot <- patchwork::wrap_plots(view1_list,
                                     heights = track_heights,
                                     ncol = 1)
 methods::show(fused_plot)
 ```
 
 
-## Using XGR annotations   
+## Using XGR annotations
 
-* Whenever you use annotation arguments (e.g. `xgr_libnames`,`Roadmap`,`nott_epigenome`)
-the annotations that overlap with your locus will automatically be saved as `GRanges` objects in a locus-specific subdirectory:  
-*results/<dataset_type>/<dataset_name>/<locus>/annotation* 
-* If a selected annotation has previously been downloaded and stored for that locus, `plot_locus()` will automatically detect and import it to save time.   
+* Whenever you use annotation arguments (e.g. `xgr_libnames`, `Roadmap`,
+`nott_epigenome`) the annotations that overlap with your locus will
+automatically be saved as `GRanges` objects in a locus-specific subdirectory:
+*results/\<dataset_type\>/\<dataset_name\>/\<locus\>/annotation*
+* If a selected annotation has previously been downloaded and stored for that
+locus, `plot_locus()` will automatically detect and import it to save time.
 
-```{r trk_plot.xgr, attr.output='style="max-height: 200px;"', eval=FALSE}
-trk_plot.xgr <- echoplot::plot_locus(dat=dat, 
-                                     LD_matrix=LD_matrix, 
-                                     LD_reference=LD_reference,
-                                     locus_dir=locus_dir, 
-                               xgr_libnames=c("ENCODE_TFBS_ClusteredV3_CellTypes"), 
-                               save_plot=FALSE,
-                               show_plot=show_plot,
-                               zoom=zoom)
+```{r trk_plot_xgr, attr.output='style="max-height: 200px;"', eval=FALSE}
+trk_plot.xgr <- echoplot::plot_locus(dat = dat,
+                                     LD_matrix = LD_matrix,
+                                     LD_reference = LD_reference,
+                                     locus_dir = locus_dir,
+                                     xgr_libnames = c("ENCODE_TFBS_ClusteredV3_CellTypes"),
+                                     save_plot = FALSE,
+                                     show_plot = show_plot,
+                                     zoom = zoom)
 ```
 
-```{r, eval=FALSE}
+```{r show_trk_xgr, eval=FALSE}
 methods::show(trk_plot.xgr)
 ```
 
-## Using [Roadmap](http://www.roadmapepigenomics.org/data/tables/brain) annotations
+## Using Roadmap annotations
 
-* Using the `Roadmap=T` and `roadmap_query="<query>"` arguments searches the Roadmap for chromatin mark data across various cell-types, cell-lines and tissues.  
-* Note that Roadmap queries requires `tabix` to be installed on your machine, or within a conda environment (`conda_env = "echoR"`). 
-* Parallelizing these queries across multiple thredas speeds up this process (`nThread=<n_cores_available>`), as does reusing previously stored data which is automatically saved to the locus-specific subfolder (`<dataset_type>/<dataset_name>/<locus>/annotations/Roadmap.ChromatinMarks_CellTypes.RDS`).
+* Using the `Roadmap=TRUE` and `roadmap_query="<query>"` arguments searches
+the [Roadmap](http://www.roadmapepigenomics.org/data/tables/brain) for
+chromatin mark data across various cell-types, cell-lines and tissues.
+* Note that Roadmap queries require `tabix` to be installed on your machine,
+or within a conda environment (`conda_env = "echoR"`).
+* Parallelising these queries across multiple threads speeds up this process
+(`nThread=<n_cores_available>`), as does reusing previously stored data which
+is automatically saved to the locus-specific subfolder.
 
-
-*NOTE*: Querying remote genomic data sources (e.g. Roadmap bigwigs) is not currently 
-supported on Windows due to known bugs in
+*NOTE*: Querying remote genomic data sources (e.g. Roadmap bigwigs) is not
+currently supported on Windows due to known bugs in
 [`rtracklayer`](https://github.com/lawremi/rtracklayer/issues).
 
-```{r trk_plot.roadmap, attr.output='style="max-height: 200px;"', eval=FALSE} 
-
-if(.Platform!="windows"){
-    trk_plot.roadmap <- echoplot::plot_locus(dat=dat, 
-                                         LD_matrix=LD_matrix, 
-                                         LD_reference=LD_reference,
-                                         locus_dir=locus_dir,  
-                                         
-                                         roadmap=TRUE, 
-                                         roadmap_query="monocyte", 
-                                         
-                                         save_plot=FALSE, 
-                                         show_plot=show_plot,
-                                         zoom="5x")
+```{r trk_plot_roadmap, attr.output='style="max-height: 200px;"', eval=FALSE}
+if (.Platform$OS.type != "windows") {
+    trk_plot.roadmap <- echoplot::plot_locus(dat = dat,
+                                             LD_matrix = LD_matrix,
+                                             LD_reference = LD_reference,
+                                             locus_dir = locus_dir,
+                                             roadmap = TRUE,
+                                             roadmap_query = "monocyte",
+                                             save_plot = FALSE,
+                                             show_plot = show_plot,
+                                             zoom = "5x")
 }
 ```
 
-```{r, eval=FALSE}
+```{r show_trk_roadmap, eval=FALSE}
 methods::show(trk_plot.roadmap)
 ```
 
-## Using [Nott_2019](https://science.sciencemag.org/content/366/6469/1134.abstract)   annotations   
+## Using Nott 2019 annotations
 
-* Query and plot brain cell type-specific epigenomic assays from 
-[Nott et al. (Science, 2019)](https://science.sciencemag.org/content/366/6469/1134.abstract)  
+* Query and plot brain cell type-specific epigenomic assays from
+[Nott et al. (Science, 2019)](https://science.sciencemag.org/content/366/6469/1134.abstract)
 (see `?NOTT_2019.bigwig_metadata` for details).
 
-```{r trk_plot.nott_2019, attr.output='style="max-height: 200px;"', eval=FALSE} 
-trk_plot.nott_2019 <- echoplot::plot_locus(dat=dat,  
-                                           LD_matrix=LD_matrix, 
-                                           LD_reference=LD_reference,
-                                           locus_dir=locus_dir, 
-                                           
-                                           nott_epigenome=TRUE,  
+```{r trk_plot_nott_2019, attr.output='style="max-height: 200px;"', eval=FALSE}
+trk_plot.nott_2019 <- echoplot::plot_locus(dat = dat,
+                                           LD_matrix = LD_matrix,
+                                           LD_reference = LD_reference,
+                                           locus_dir = locus_dir,
+                                           nott_epigenome = TRUE,
                                            nott_binwidth = 200,
-                                           nott_regulatory_rects = TRUE, 
+                                           nott_regulatory_rects = TRUE,
                                            nott_show_placseq = TRUE,
-                                           
-                                           save_plot=FALSE,
-                                           show_plot=show_plot,
-                                           zoom=zoom) 
+                                           save_plot = FALSE,
+                                           show_plot = show_plot,
+                                           zoom = zoom)
 ```
 
-```{r, eval=FALSE}
+```{r show_trk_nott, eval=FALSE}
 methods::show(trk_plot.nott_2019)
 ```
 
-## Using QTL datasets  
+## Using QTL datasets
 
-* Plot multiple QTL p-value columns (or really P-value columns from any kind of dataset).  
+* Plot multiple QTL p-value columns (or really P-value columns from any kind
+of dataset).
 * Each QTL dataset will be plotted as a new track.
 
-```{r trk_plot.QTL, attr.output='style="max-height: 200px;"', eval=FALSE}
+```{r trk_plot_QTL, attr.output='style="max-height: 200px;"', eval=FALSE}
 dat1 <- data.table::copy(dat)
 dat2 <- data.table::copy(dat)
-# Make fake QTL P-values for the sake a demonstration
+# Make fake QTL P-values for the sake of demonstration
 dat1$P <- abs(jitter(dat1$P, amount = 1e-15))
 dat2$P <- abs(jitter(dat2$P, amount = 1e-16))
-dat_ls <- list("fake_eQTL"=dat1, 
-               "fake_sQTL"=dat2)
+dat_ls <- list("fake_eQTL" = dat1,
+               "fake_sQTL" = dat2)
 
-trk_plot.qtl <- echoplot::plot_locus_multi(dat_ls = dat_ls, 
-                                           LD_ls = list(LD_matrix,LD_matrix),  
+trk_plot.qtl <- echoplot::plot_locus_multi(dat_ls = dat_ls,
+                                           LD_ls = list(LD_matrix, LD_matrix),
                                            locus_dir = locus_dir,
                                            show_plot = show_plot,
                                            zoom = "10x")
 ```
 
-```{r, eval=FALSE}
+```{r show_trk_qtl, eval=FALSE}
 methods::show(trk_plot.qtl)
 ```
 
 <hr>
 
-# Session info  
+# Session info
 
-<details>  
+<details>
 
 ```{r Session Info, attr.output='style="max-height: 200px;"'}
 utils::sessionInfo()
 ```
 
-<details>
+</details>
 
 <br>
-
